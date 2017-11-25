@@ -2,11 +2,13 @@
 ### commit naming
   * maximum line lenght 100 characters
 
-  * for all your commits, make sure that there's an issue for it and start the commit message with the issue-number.
+  * for all your commits, make sure that there's an issue for it and
+    start the commit message with the issue-number.  
     Example: '#1 then commit message here'
 
     Background:
-      * If you use the #<issue number> the commit message will get an automatic link to the referenced issue.
+      * If you use the #<issue number> the commit message will get an
+        automatic link to the referenced issue.
       * The issue will list all commits made, related to it.
  &nbsp;  <unneccesary thing, to test rebase>
  &nbsp;  
@@ -29,6 +31,5 @@ Project Board.
   * closed issues are moved automatically to the Done list.
   * from the To-Do list to the in progress list no automation exists, 
     so we have to move them manually.  
-    It's like defining the works getting done in the next sprint, 
-    should be moved there, that everyone is up-to-date what are the 
-    tasks for the current sprint.
+    It should be used to define the for the next sprint. THis way
+    everyone is up-to-date what are the tasks of the current sprint.
