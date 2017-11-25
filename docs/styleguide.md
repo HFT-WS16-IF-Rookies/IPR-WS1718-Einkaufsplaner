@@ -2,28 +2,25 @@
 ### commit naming
   * maximum line lenght 100 characters
 
-  * for all your commits, make sure that there's an issue for it  
-    and start the commit message with the issue-number.  
-    Example: '#1 then commit message here'  
-    
-    Background:  
-      * If you use the #<issue number> the commit message will get an  
-        automatic link to the referenced issue.  
-      * The issue will list all commits made, related to it.  
-  
+  * for all your commits, make sure that there's an issue for it and start the commit message with the issue-number.
+    Example: '#1 then commit message here'
 
-  * if you fix/fulfill an issue, that it can be closed after your  
-    change is merged, use the keywords for automatically close the  
-    issue through the commit message.  
+    Background:
+      * If you use the #<issue number> the commit message will get an automatic link to the referenced issue.
+      * The issue will list all commits made, related to it.
+ &nbsp;  
+ &nbsp;  
+  * if you fix/fulfill an issue, that it can be closed after your change is merged, use the keywords for automatically close
+    the issue through the commit message.  
     recommended reading: [Closing issues using keywords](https://help.github.com/articles/closing-issues-using-keywords/)
-  
+
 ### issue/milestone handling / Project Managing
 We'll use the issues & Milestones a bit like a project structure Plan.  
   * For each phase/deliverable there should be a milestone.  
 
   * Then we'll create an issue for every task we have to do.  
     So, an issue should match the effort of a single work package.
-  
+
 Additional to the issues & Milestones we have a Project called 
 Project Board.
   * newly created issues are added automatically to the To-Do list.  
