@@ -78,3 +78,12 @@ If you get merge conflicts, fix it and afterwards do
 ```
 git rebase --continue
 ```
+
+### branching
+We will use the following branches permanently:
+  * master - The default branch / represents the current production state
+  * dev    - development is going on here
+
+for the development of single pages, it could be practical to checkout
+a new feature branch.  
+This has to be done from `dev` and also get's merged back to `dev`
