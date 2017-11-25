@@ -1,5 +1,4 @@
-# git workflow
-### commit naming
+# commit naming
   * maximum line lenght 72 characters
 
   * for all your commits, make sure that there's an issue for it and
@@ -16,7 +15,7 @@
     the issue through the commit message.  
     recommended reading: [Closing issues using keywords](https://help.github.com/articles/closing-issues-using-keywords/)
 
-### issue/milestone handling / Project Managing
+# issue/milestone handling / Project Managing
 We'll use the issues & Milestones a bit like a project structure Plan.  
   * For each phase/deliverable there should be a milestone.  
 
@@ -34,7 +33,7 @@ Project Board.
     It should be used to define the for the next sprint. THis way
     everyone is up-to-date what are the tasks of the current sprint.
 
-### push to GitHub
+# push to GitHub
 If more than one person works on the same branch, it will happen that
 one has done something and pushed it, before you have pushed your work.
 &nbsp;  
@@ -82,7 +81,7 @@ git rebase --continue
 And finally if the rebase is completed run again  
 `git push origin <branch>`
 
-### branching
+# branching
 We will use the following branches permanently:
 
 | branch | description                                                  |
