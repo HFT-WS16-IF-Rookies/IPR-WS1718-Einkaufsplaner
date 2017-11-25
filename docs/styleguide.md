@@ -41,31 +41,31 @@ one has done something and pushed it, before you have pushed your work.
 &nbsp;  
 There are two (or maybe more and I just don't know them) ways now:  
 
-     1. pull:  
-        This will
-          * pull the changes you don't have from origin
-          * merge them into your local repo
+  1. pull:  
+     This will
+      * pull the changes you don't have from origin
+      * merge them into your local repo
 
-        That way, the commit from the remote, get's placed in the log
-        behind the one you did. But chronological seen, this is wrong,
-        as you finished later.  
-        Also it creates sometimes a strange history, if you have to fix
-        merge conflicts, as the yet done upstream commit appears two
-        times in the history. 1st is the original commit, and 2nd the
-        edited result of your merge conflic fix.
+     That way, the commit from the remote, get's placed in the log
+     behind the one you did. But chronological seen, this is wrong,
+     as you finished later.  
+     Also it creates sometimes a strange history, if you have to fix
+     merge conflicts, as the yet done upstream commit appears two
+     times in the history. 1st is the original commit, and 2nd the
+     edited result of your merge conflic fix.
 
-     2. rebase:  
-        This will  
-          * pull the latest changes you don't have
-          * move the commits done not online yet into temporary place
-          * fast-forward merge the new remote commits
-          * try to apply your made commits in the correct order one by
-            one ontop.
+  2. rebase:  
+     This will  
+      * pull the latest changes you don't have
+      * move the commits done not online yet into temporary place
+      * fast-forward merge the new remote commits
+      * try to apply your made commits in the correct order one by
+        one ontop.
 
-        This way you still can get merge-conflicts, but now you'll
-        have to make the compatibility changes in your own changes and
-        the fix won't generate a second commit just because you've had
-        to fix a merge-conflict.
+     This way you still can get merge-conflicts, but now you'll
+     have to make the compatibility changes in your own changes and
+     the fix won't generate a second commit just because you've had
+     to fix a merge-conflict.
 
 That's why we will use rebase if working together in the same branch.  
 If git tells you the push was rejected, because of new commits:  
