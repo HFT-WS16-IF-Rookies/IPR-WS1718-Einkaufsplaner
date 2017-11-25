@@ -21,6 +21,7 @@ We'll use the issues & Milestones a bit like a project structure Plan.
   * Then we'll create an issue for every task we have to do.  
     So, an issue should match the effort of a single work package.
 &nbsp;  
+
 Additional to the issues & Milestones we have a Project called 
 Project Board.
   * newly created issues are added automatically to the To-Do list.
