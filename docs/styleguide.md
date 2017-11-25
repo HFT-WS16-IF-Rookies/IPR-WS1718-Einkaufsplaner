@@ -40,8 +40,9 @@ one has done something and pushed it, before you have pushed your work.
 &nbsp;  
 &nbsp;  
 There are two (or maybe more and I just don't know them) ways now:  
+
      1. pull:  
-        This will  
+        This will
           * pull the changes you don't have from origin
           * merge them into your local repo
 
