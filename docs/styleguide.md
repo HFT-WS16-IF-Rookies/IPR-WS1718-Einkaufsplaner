@@ -10,7 +10,7 @@
       * If you use the #<issue number> the commit message will get an
         automatic link to the referenced issue.
       * The issue will list all commits made, related to it.
- &nbsp;  <unneccesary thing, to test rebase>
+ &nbsp;
  &nbsp;  
   * if you fix/fulfill an issue, that it can be closed after your change is merged, use the keywords for automatically close
     the issue through the commit message.  
