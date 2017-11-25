@@ -23,11 +23,11 @@ We'll use the issues & Milestones a bit like a project structure Plan.
 
   * Then we'll create an issue for every task we have to do.  
     So, an issue should match the effort of a single work package.
-  
+&nbsp;  
 Additional to the issues & Milestones we have a Project called 
 Project Board.
-  * newly created issues are added automatically to the To-Do list.  
-  * closed issues are moved automatically to the Done list.  
+  * newly created issues are added automatically to the To-Do list.
+  * closed issues are moved automatically to the Done list.
   * from the To-Do list to the in progress list no automation exists, 
     so we have to move them manually.  
     It's like defining the works getting done in the next sprint, 
