@@ -70,7 +70,7 @@ There are two (or maybe more and I just don't know them) ways now:
 That's why we will use rebase if working together in the same branch.  
 If git tells you the push was rejected, because of new commits:  
     ```
-    git fetch origin <branch>
+    git fetch origin <branch>  
     git rebase origin/<branch>
     ```
 
