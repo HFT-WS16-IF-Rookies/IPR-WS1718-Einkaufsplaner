@@ -22,8 +22,8 @@ We'll use the issues & Milestones a bit like a project structure Plan.
 
   * Then we'll create an issue for every task we have to do.  
     So, an issue should match the effort of a single work package.
-&nbsp;
-&nbsp;
+&nbsp;  
+&nbsp;  
 
 Additional to the issues & Milestones we have a Project called 
 Project Board.
@@ -66,6 +66,14 @@ There are two (or maybe more and I just don't know them) ways now:
         the fix won't generate a second commit just because you've had
         to fix a merge-conflict.
 
-That's why we will use rebase if working together in the same branch:
-  * make sure the upstream branch for the current branch is set
-  
+That's why we will use rebase if working together in the same branch.  
+If git tells you the push was rejected, because of new commits:
+    ```
+    git fetch origin <branch>
+    git rebase origin/<branch>
+    ```
+
+If you get merge conflicts, fix it and afterwards do
+    ```
+    git rebase --continue
+    ```
