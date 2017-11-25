@@ -39,9 +39,9 @@ If more than one person works on the same branch, it will happen that
 one has done something and pushed it, before you have pushed your work.
 &nbsp;  
 &nbsp;  
-There are two (or maybe more and I just don't know them) ways now:
+There are two (or maybe more and I just don't know them) ways now:  
      1. pull:  
-        This will
+        This will  
           * pull the changes you don't have from origin
           * merge them into your local repo
 
@@ -54,7 +54,7 @@ There are two (or maybe more and I just don't know them) ways now:
         edited result of your merge conflic fix.
 
      2. rebase:  
-        This will
+        This will  
           * pull the latest changes you don't have
           * move the commits done not online yet into temporary place
           * fast-forward merge the new remote commits
