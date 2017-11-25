@@ -1,6 +1,6 @@
 # git workflow
 ### commit naming
-  * maximum line lenght 100 characters
+  * maximum line lenght 72 characters
 
   * for all your commits, make sure that there's an issue for it and
     start the commit message with the issue-number.  
