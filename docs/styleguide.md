@@ -10,7 +10,7 @@
       * If you use the #<issue number> the commit message will get an
         automatic link to the referenced issue.
       * The issue will list all commits made, related to it.
- &nbsp;
+ &nbsp;  
  &nbsp;  
   * if you fix/fulfill an issue, that it can be closed after your change is merged, use the keywords for automatically close
     the issue through the commit message.  
@@ -33,3 +33,39 @@ Project Board.
     so we have to move them manually.  
     It should be used to define the for the next sprint. THis way
     everyone is up-to-date what are the tasks of the current sprint.
+
+### push to GitHub
+If more than one person works on the same branch, it will happen that
+one has done something and pushed it, before you have pushed your work.
+&nbsp;  
+&nbsp;  
+There are two (or maybe more and I just don't know them) ways now:
+     1. pull:  
+        This will
+          * pull the changes you don't have from origin
+          * merge them into your local repo
+
+        That way, the commit from the remote, get's placed in the log
+        behind the one you did. But chronological seen, this is wrong,
+        as you finished later.  
+        Also it creates sometimes a strange history, if you have to fix
+        merge conflicts, as the yet done upstream commit appears two
+        times in the history. 1st is the original commit, and 2nd the
+        edited result of your merge conflic fix.
+
+     2. rebase:  
+        This will
+          * pull the latest changes you don't have
+          * move the commits done not online yet into temporary place
+          * fast-forward merge the new remote commits
+          * try to apply your made commits in the correct order one by
+            one ontop.
+
+        This way you still can get merge-conflicts, but now you'll
+        have to make the compatibility changes in your own changes and
+        the fix won't generate a second commit just because you've had
+        to fix a merge-conflict.
+
+That's why we will use rebase if working together in the same branch:
+  * make sure the upstream branch for the current branch is set
+  
