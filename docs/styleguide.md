@@ -68,7 +68,7 @@ There are two (or maybe more and I just don't know them) ways now:
      to fix a merge-conflict.
 
 That's why we will use rebase if working together in the same branch.  
-If git tells you the push was rejected, because of new commits:  
+If `git push origin <branch>` get's rejected, because of new commits do:  
 ```
 git fetch origin <branch>
 git rebase origin/<branch>
@@ -78,6 +78,9 @@ If you get merge conflicts, fix it and afterwards do
 ```
 git rebase --continue
 ```
+
+And finally if the rebase is completed run again  
+`git push origin <branch>`
 
 ### branching
 We will use the following branches permanently:
