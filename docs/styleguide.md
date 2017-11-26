@@ -2,8 +2,11 @@
 Autoformat is nice feature if an IDE has it. But nevertheless:  
 ALWAYS look over the code by hand, if the Code is formatted the right
 way.  
-Please consider writing nice code natively, instead of hacking it in
-and then depend on the IDE to make it nice.  
+
+```diff
++ Please consider writing nice code natively
+- instead of hacking it in and then depend on the IDE to make it nice.
+```
 
 __naming__  
 lowerCamelCase get's used for:
