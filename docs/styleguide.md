@@ -8,7 +8,7 @@ way.
 - instead of hacking it in and then depend on the IDE to make it nice.
 ```
 
-__naming__  
+### naming
 lowerCamelCase get's used for:
   * HTML/CSS classes & id's
   * JS/PHP variable names
@@ -46,6 +46,13 @@ UpperCamelCase get's used for:
     </p>
 </div>
 
+```
+
+  2. Oneliners are allowed if you need a placeholder to fill later by
+     a script for example:
+
+```html
+<div id="topNavBarContent"></div>
 ```
 
 # CSS / JS / PHP
