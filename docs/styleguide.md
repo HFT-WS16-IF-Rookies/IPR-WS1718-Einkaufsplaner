@@ -72,4 +72,28 @@ UpperCamelCase get's used for:
 <div id="topNavBarContent"></div>
 ```
 
+  4. External files:
+  * please include stylesheets in the order you need them being applied
+  * external scripts are placed in right before the closing body tag.  
+    First the scripts we provide ourselfs, then the scripts we load from
+    external sources.
+
+```html
+<!DOCTYPE html>
+
+<html lang="de">
+    <head>
+        <!-- link here your CSS files -->
+        <meta charset ="utf-8">
+    </head>
+
+    <body>
+        <!-- here will be all our Content on the page -->
+
+        <!-- first scripts from our own server -->
+        <!-- then scripts from other servers -->
+    </body>
+</html>
+```
+
 # CSS / JS / PHP
