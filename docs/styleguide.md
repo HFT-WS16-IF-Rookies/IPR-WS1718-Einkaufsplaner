@@ -6,7 +6,7 @@
 | Indentation depth: | 4                 |
 
   1. If a tag contains other opening tags, it has to be opened,
-     the inner by one indentation indented and the closing tag in a
+     the inner indented by one indentation and the closing tag in a
      seperate line on the same intendation as the opening tag.  
      Example:
 
