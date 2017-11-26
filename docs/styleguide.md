@@ -48,7 +48,24 @@ UpperCamelCase get's used for:
 
 ```
 
-  2. Oneliners are allowed if you need a placeholder to fill later by
+  2. For longer Texts open a body and use line breaks in the file to 
+     make it better readable Code
+
+```html
+<div>
+    <p>This is a very short Text</p>
+</div>
+
+<div>
+    <p>
+        Hi, this paragraph will tell you a loooong Story. So let's begin
+        with what this all is about...
+    </p>
+</div>
+```
+
+
+  3. Oneliners are allowed if you need a placeholder to fill later by
      a script for example:
 
 ```html
