@@ -8,6 +8,11 @@ way.
 - instead of hacking it in and then depend on the IDE to make it nice.
 ```
 
+| item               | value             |
+| ------------------ | ----------------- |
+| Indentation:       | spaces            |
+| Indentation depth: | 4                 |
+
 ### naming
 lowerCamelCase get's used for:
   * HTML/CSS classes & id's
@@ -19,12 +24,6 @@ UpperCamelCase get's used for:
   * PHP Classes
 
 # HTML
-
-| item               | value             |
-| ------------------ | ----------------- |
-| Indentation:       | spaces            |
-| Indentation depth: | 4                 |
-
 1. If a tag contains other opening tags, it has to be opened,
 the inner indented by one indentation and the closing tag in a
 seperate line on the same intendation as the opening tag.  
