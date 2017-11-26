@@ -25,10 +25,10 @@ UpperCamelCase get's used for:
 | Indentation:       | spaces            |
 | Indentation depth: | 4                 |
 
-  1. If a tag contains other opening tags, it has to be opened,
-     the inner indented by one indentation and the closing tag in a
-     seperate line on the same intendation as the opening tag.  
-     Example:
+1. If a tag contains other opening tags, it has to be opened,
+the inner indented by one indentation and the closing tag in a
+seperate line on the same intendation as the opening tag.  
+Example:
 
 ```html
 <!-- Simple Example -->
@@ -48,8 +48,8 @@ UpperCamelCase get's used for:
 
 ```
 
-  2. For longer Texts open a body and use line breaks in the file to 
-     make it better readable Code
+2. For longer Texts open a body and use line breaks in the file to 
+make it better readable Code
 
 ```html
 <div>
@@ -64,15 +64,29 @@ UpperCamelCase get's used for:
 </div>
 ```
 
-
-  3. Oneliners are allowed if you need a placeholder to fill later by
-     a script for example:
+3. Onliners are allowed
+  1. If you need a placeholder to fill later by a script for example:
 
 ```html
 <div id="topNavBarContent"></div>
 ```
 
-  4. External files:
+  2. Or for a php echo of a variable or *short* String for example:
+
+```html
+<p><?php echo $myVariable ?></p>
+```
+
+  3. just a single function call
+
+```html
+<script>callMyFunction()</script>
+
+<!-- or a combination with a php oneliner -->
+<script>callMyFunction( <?php echo $myParameter ?> )</script>
+```
+
+4. External files:
   * please include stylesheets in the order you need them being applied
   * external scripts are placed in right before the closing body tag.  
     First the scripts we provide ourselfs, then the scripts we load from
