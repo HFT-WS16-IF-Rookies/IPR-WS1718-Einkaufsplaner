@@ -64,20 +64,23 @@ make it better readable Code
 </div>
 ```
 
-3. Onliners are allowed
-  1. If you need a placeholder to fill later by a script for example:
+3. Oneliners are allowed
+&nbsp;  
+&nbsp;&nbsp;&nbsp; 3.1. If you need a placeholder to fill later by a script for example:
 
 ```html
 <div id="topNavBarContent"></div>
 ```
-
-  2. Or for a php echo of a variable or *short* String for example:
+&nbsp;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+3.2. Or for a php echo of a variable or *short* String for example:
 
 ```html
 <p><?php echo $myVariable ?></p>
 ```
-
-  3. just a single function call
+&nbsp;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+3.3. just a single function call
 
 ```html
 <script>callMyFunction()</script>
