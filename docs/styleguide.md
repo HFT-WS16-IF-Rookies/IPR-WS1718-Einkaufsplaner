@@ -23,6 +23,11 @@ UpperCamelCase get's used for:
   * JS Objects
   * PHP Classes
 
+### brackets
+  * opening brackets always go to the next line
+  * code block starts in the line after the opening bracket, one indentation more.
+  * closing bracket in the last line, same intendation than the opening bracket.
+
 # HTML
 1. If a tag contains other opening tags, it has to be opened,
 the inner indented by one indentation and the closing tag in a
@@ -121,7 +126,6 @@ make it better readable Code
 
 #### code:
   * if the following style block is for multiple target elements, make after each comma also a line break.
-  * opening brackets will be placed into the next line
   * indent all values the same.
 
 Example:
@@ -142,5 +146,7 @@ targetTag2
 }
 ```
 
+# JS
 
-# JS / PHP
+
+# PHP
