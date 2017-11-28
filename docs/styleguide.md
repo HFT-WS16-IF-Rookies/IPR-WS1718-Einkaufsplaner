@@ -147,6 +147,7 @@ targetTag2
 ```
 
 # JS
-
+Not sure if there is anything special to say, apart from the general and HTML covered things
 
 # PHP
+Not sure if there is anything special to say, apart from the general and HTML covered things
