@@ -36,7 +36,7 @@ Example:
 </div>
 
 <!--
-    If your Text will contain a link in the <p> no longer use a 
+    If your Text will contain a link in the <p> no longer use a
     oneliner
 -->
 <div>
@@ -47,7 +47,7 @@ Example:
 
 ```
 
-2. For longer Texts open a body and use line breaks in the file to 
+2. For longer Texts open a body and use line breaks in the file to
 make it better readable Code
 
 ```html
@@ -112,4 +112,35 @@ make it better readable Code
 </html>
 ```
 
-# CSS / JS / PHP
+# CSS
+#### filing:
+  * general stylesheet for the whole site
+  * if you need special styling on single pages, first make a style tag in the sites head
+  * if the style tag in a sites head exceeds 50 lines, outsource it to a seperate stylesheet placed
+    in the same folder than, and namend the same as the site it belongs to.  
+
+#### code:
+  * if the following style block is for multiple target elements, make after each comma also a line break.
+  * opening brackets will be placed into the next line
+  * indent all values the same.
+
+Example:
+
+```css
+/* only one target */
+targetTag1
+{
+
+}
+
+/* multiple targets */
+targetTag1,
+targetTag2
+{
+    key:                value;
+    aKeyWhichIsLonger:  value;
+}
+```
+
+
+# JS / PHP
