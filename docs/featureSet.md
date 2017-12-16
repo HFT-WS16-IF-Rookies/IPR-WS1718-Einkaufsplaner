@@ -1,14 +1,17 @@
   * login / register
+  * default view
+    * new purchases
+    * current purchases of user
+    * view households
   * profile settings
     * change password
     * change eMail
-    * view households
-  * household settings
-    * manage members (invite/kick)
+  * household
     * overview
+    * view current purchases of household
+    * manage members (invite/kick)
     * manage articles (add/edit/delete)
-    * view active shoppings
-  * shopping
+  * purchase
     * optional: notificatoins in three steps
     * which store(s)
     * which household(s)
