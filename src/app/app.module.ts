@@ -11,6 +11,7 @@ import { HouseholdComponent } from './household/household.component';
 import { HouseholdSettingsComponent } from './household-settings/household-settings.component';
 import { HouseholdArticleManagementComponent } from './household-article-management/household-article-management.component';
 import { PurchaseComponent } from './purchase/purchase.component';
+import { AppRoutingModule } from './/app-routing.module';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { PurchaseComponent } from './purchase/purchase.component';
     PurchaseComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
