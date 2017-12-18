@@ -18,20 +18,6 @@ Under ./docs/ you'll find
 The IDE used in this project is Atom.  
 In the styleguides general section the identation rules to use, are described.  
 
-Please make sure the following settings are applied to your Atom, while working on this project.  
-1.  Open your Atom configuration folder as project  
-    (the folder is found in your user directory called '.atom')
-2. open the file 'config.cson'
-3. make sure that it contains the following settings:
-
-```
-"*"
-  editor:
-    preferredLineLength: 100
-    showIndentGuide: true <- optional but recommended
-    showInvisibles: true <- optional but recommended
-    tabLength: 4
-    tabType: "soft"
-  "line-ending-selector":
-    defaultLineEnding: "LF"
-```
+Please install the package 'editorconfig' from your Atom settings if not yet done.  
+The included editorconfig file in our project should ensure, that your Atom installation
+automatically follows our indent, charset and line-ending styles.
