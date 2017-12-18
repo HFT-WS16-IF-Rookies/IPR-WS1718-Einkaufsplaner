@@ -11,4 +11,5 @@
   * current amount
   * min amount
   * designated amount
+  * priority (high/medium/low)
   * column for edit/delete button
