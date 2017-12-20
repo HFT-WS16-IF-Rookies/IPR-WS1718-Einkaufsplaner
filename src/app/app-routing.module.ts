@@ -12,7 +12,15 @@ import { RegisterComponent } from './register/register.component';
 
 const routes: Routes =
 [
-
+    { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+    { path: 'dashboard', component: DashboardComponent },
+    { path: 'household/:id', component: HouseholdComponent },
+    { path: 'household/:id/articles', component: HouseholdArticleManagementComponent },
+    { path: 'household/:id/settings', component: HouseholdSettingsComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
+    { path: 'profile', component: ProfileComponent },
+    { path: 'purchase/:id', component: PurchaseComponent }
 ];
 
 @NgModule
