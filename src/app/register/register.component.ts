@@ -1,15 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Registration } from '../Registration';
 
-@Component({
+@Component
+({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit
+{
+    registration: Registration;
 
-  constructor() { }
+    constructor()
+    {
+        this.registration = new Registration();
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit(){ }
+
+    submit():void
+    {
+        console.log(JSON.stringify(this.registration));
+    }
 
 }
