@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Registration } from '../Registration';
+import { Http } from '@angular/http';
 
 @Component
 ({
@@ -9,18 +10,74 @@ import { Registration } from '../Registration';
 })
 export class RegisterComponent implements OnInit
 {
-    registration: Registration;
+    private registration: Registration;
+    @Input() private userPassword2: string;
+    private errorMsg: string;
+    private http: Http;
 
-    constructor()
+    constructor(http: Http)
     {
         this.registration = new Registration();
+        this.userPassword2 = "";
+        this.errorMsg = "";
+        this.http = http;
     }
 
     ngOnInit(){ }
 
     submit():void
     {
-        console.log(JSON.stringify(this.registration));
+        // reset error messages
+        this.errorMsg = "";
+
+        // check if name is empty
+        if (this.registration.firstName === "")
+        {
+            this.errorMsg += "Bitte Vorname eingeben<br/>";
+        }
+
+        if (this.registration.lastName === "")
+        {
+            this.errorMsg += "Bitte Nachname eingeben<br/>";
+        }
+
+        // check if email is given
+        if (this.registration.email === "")
+        {
+            this.errorMsg += "Bitte E-Mail Addresse eingeben<br/>";
+        }
+        // if email is given, check if it's a valid email address
+        else
+        {
+            //TO-DO: check with a regex for vaild email
+        }
+
+        // check if a password is given
+        if (this.registration.password === "")
+        {
+            this.errorMsg += "Bitte Passwort angeben<br/>";
+        }
+
+        // compare the two passwords
+        if (this.registration.password !== this.userPassword2)
+        {
+            this.errorMsg += "Die Passwörter stimmen nicht überein.<br/>"
+            this.userPassword2 = "";
+        }
+
+        // if errorMsg isn't empty, we had something to complain, so we won't bother our server
+        if (this.errorMsg !== "")
+        {
+            return;
+        }
+
+
+        // TO-DO: make a http-post request to register the user
+
+        // TO-DO: check if the registration was successful or there was an error server side
+
+        //this.http.post('test.php', 'Hi')
+        //    .subscribe();
     }
 
 }

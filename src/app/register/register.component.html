@@ -11,7 +11,7 @@
     <input type='password' [(ngModel)]='registration.password' name="userPassword"/>
     <p>Passwort wiederholen:</p>
     <input type='password' [(ngModel)]='userPassword2' name="userPassword2"/><br>
-    <br>
-    <div class='btn btn-success' (click)='submit("Hi")'>Registrieren</div>
+    <p [innerHTML]="errorMsg"></p>
+    <button class='btn btn-success' (click)='submit()'>Registrieren</button>
     <input class='btn btn-danger' type='reset' value='Zurücksetzen'>
 </form>
