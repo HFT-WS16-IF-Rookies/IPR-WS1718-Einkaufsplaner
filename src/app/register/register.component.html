@@ -1,17 +1,17 @@
 <h1>Registrierung</h1>
 
-<form>
+<form name="regForm">
     <p>Vorname:</p>
-    <input type='input' name='firstname'>
+    <input type='input' [(ngModel)]='registration.firstName' name="userFirstname"/>
     <p>Nachname:</p>
-    <input type='input' name='lastname'>
+    <input type='input' [(ngModel)]='registration.lastName' name="userLastname"/>
     <p>E-Mail Addresse:</p>
-    <input type='input' name='email'>
+    <input type='input' [(ngModel)]='registration.email' name="userEmail"/>
     <p>Passwort:</p>
-    <input type='password' name='password'>
+    <input type='password' [(ngModel)]='registration.password' name="userPassword"/>
     <p>Passwort wiederholen:</p>
-    <input type='password' name='password2'><br>
-    <br>
-    <input class='btn' type='submit' value='Registrieren'>
+    <input type='password' [(ngModel)]='userPassword2' name="userPassword2"/><br>
+    <p [innerHTML]="errorMsg"></p>
+    <button class='btn btn-success' (click)='submit()'>Registrieren</button>
     <input class='btn btn-danger' type='reset' value='Zurücksetzen'>
 </form>
