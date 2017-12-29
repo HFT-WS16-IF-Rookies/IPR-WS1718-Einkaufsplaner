@@ -5,6 +5,5 @@
 
 export const environment =
 {
-    production: false,
-    origin: 'IPR-WS1718-Einkaufsplaner/'
+    production: false
 };

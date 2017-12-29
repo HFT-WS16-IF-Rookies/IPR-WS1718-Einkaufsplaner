@@ -27,13 +27,11 @@ export class HttpInterceptorService extends Http
 
     public get(url: string, options?: RequestOptionsArgs): Observable<Response>
     {
-        url = this.updateUrl(url);
         return super.get(url, this.getRequestOptionArgs(options));
     }
 
     public post(url: string, body: string, options?: RequestOptionsArgs): Observable<Response>
     {
-        url = this.updateUrl(url);
         return super.post(url, body, this.getRequestOptionArgs(options))
             .catch(res =>
             {
@@ -48,19 +46,12 @@ export class HttpInterceptorService extends Http
 
     public put(url: string, body: string, options?: RequestOptionsArgs): Observable<Response>
     {
-        url = this.updateUrl(url);
         return super.put(url, body, this.getRequestOptionArgs(options));
     }
 
     public delete(url: string, options?: RequestOptionsArgs): Observable<Response>
     {
-        url = this.updateUrl(url);
         return super.delete(url, this.getRequestOptionArgs(options));
-    }
-
-    private updateUrl(req: string)
-    {
-        return  environment.origin + req;
     }
 
     private getRequestOptionArgs(options?: RequestOptionsArgs) : RequestOptionsArgs
