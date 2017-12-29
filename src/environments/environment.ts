@@ -6,5 +6,5 @@
 export const environment =
 {
     production: false,
-    origin: 'http://Lukas-WS.mshome.net/dist'
+    origin: 'IPR-WS1718-Einkaufsplaner/'
 };
