@@ -71,6 +71,9 @@ export class RegisterComponent implements OnInit
             return;
         }
 
+        console.log(JSON.stringify(this.registration));
+        this.http.post('register.php', JSON.stringify(this.registration)).subscribe();
+
 
         // TO-DO: make a http-post request to register the user
 
