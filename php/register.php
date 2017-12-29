@@ -33,8 +33,6 @@
         ." '$registration->email',"
         ." '$registration->password')";
 
-    echo $query;
-
     $dbState = $db->query($query);
     $db->close();
 
