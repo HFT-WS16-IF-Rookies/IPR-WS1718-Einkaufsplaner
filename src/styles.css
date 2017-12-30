@@ -3,3 +3,8 @@ body
 {
     text-align:             center;
 }
+
+.btn
+{
+    cursor:                 pointer;
+}
