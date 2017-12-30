@@ -38,6 +38,7 @@ export class HttpInterceptorService extends Http
                 if (res.status === 403)
                 {
                     console.log("Access denied, move to login page now");
+                    sessionStorage.removeItem('currentUser');
                     this.router.navigateByUrl('/login');
                 }
                 return Observable.throw(res);
