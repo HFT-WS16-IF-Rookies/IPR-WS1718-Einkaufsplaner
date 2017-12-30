@@ -27,13 +27,24 @@
     }
 
     require 'dbConnection.php';
+
+    $query = "SELECT * FROM $dbDatabase.Users WHERE email = '$registration->email'";
+    $result = $db->query($query);
+    if ($result->num_rows !== 0)
+    {
+        http_response_code(200);
+        $response = array();
+        $response['state'] = "error";
+        $response['text'] = "Diese E-Mail wurde bereits registriert.";
+        echo json_encode($response);
+        die();
+    }
+
     $query = "INSERT INTO $dbDatabase.Users (firstName, lastName, email, password)"
         . " values('$registration->firstName',"
         ." '$registration->lastName',"
         ." '$registration->email',"
         ." '$registration->password')";
-
-    echo $query;
 
     $dbState = $db->query($query);
     $db->close();
