@@ -7,5 +7,5 @@
     <input type='password' [(ngModel)]='password' name="userPassword"/>
     <p [innerHTML]="errorMsg"></p>
     <button class='btn btn-success' (click)='submit()'>Login</button>
-    <input class='btn btn-danger' type='reset' value='Zurücksetzen'>
+    <a class='btn btn-danger' routerLink="/register">Registrieren</a>
 </form>
