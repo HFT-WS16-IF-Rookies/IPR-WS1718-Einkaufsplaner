@@ -8,7 +8,8 @@ import { Http } from '@angular/http';
     templateUrl: './purchase.component.html',
     styleUrls: ['./purchase.component.css']
 })
-export class PurchaseComponent implements OnInit {
+export class PurchaseComponent implements OnInit
+{
 
     private http: Http;
     private router: Router;
@@ -19,7 +20,12 @@ export class PurchaseComponent implements OnInit {
         this.router = router;
     }
 
-    ngOnInit() {
+    ngOnInit()
+    {
+        if(sessionStorage.getItem('currentUser') === null)
+        {
+            this.router.navigateByUrl('/login')
+        }
     }
 
 }
