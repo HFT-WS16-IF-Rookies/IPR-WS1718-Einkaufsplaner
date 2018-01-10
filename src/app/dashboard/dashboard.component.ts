@@ -1,15 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Http } from '@angular/http';
 
-@Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+@Component
+({
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit
+{
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit() {
-  }
+    ngOnInit()
+    {
+        if(sessionStorage.getItem('currentUser') === null)
+        {
+            this.router.navigateByUrl('/login')
+        }
+    }
 
 }

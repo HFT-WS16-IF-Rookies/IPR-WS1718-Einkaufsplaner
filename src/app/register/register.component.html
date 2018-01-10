@@ -1,3 +1,18 @@
-<p>
-  register works!
-</p>
+<h1>Registrierung</h1>
+
+<a routerLink="/login">zurück zum Login</a>
+<form name="regForm">
+    <p>Vorname:</p>
+    <input type='input' [(ngModel)]='registration.firstName' name="userFirstname"/>
+    <p>Nachname:</p>
+    <input type='input' [(ngModel)]='registration.lastName' name="userLastname"/>
+    <p>E-Mail Addresse:</p>
+    <input type='input' [(ngModel)]='registration.email' name="userEmail"/>
+    <p>Passwort:</p>
+    <input type='password' [(ngModel)]='registration.password' name="userPassword"/>
+    <p>Passwort wiederholen:</p>
+    <input type='password' [(ngModel)]='userPassword2' name="userPassword2"/><br>
+    <p [innerHTML]="errorMsg"></p>
+    <button class='btn btn-success' (click)='submit()'>Registrieren</button>
+    <input class='btn btn-danger' type='reset' value='Zurücksetzen'>
+</form>
