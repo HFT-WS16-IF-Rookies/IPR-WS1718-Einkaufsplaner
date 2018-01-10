@@ -10,8 +10,14 @@ import { Http } from '@angular/http';
 })
 export class DashboardComponent implements OnInit
 {
+    private http: Http;
+    private router: Router;
 
-    constructor() { }
+    constructor(http: Http, router: Router)
+    {
+        this.http = http;
+        this.router = router;
+    }
 
     ngOnInit()
     {
