@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
-@Component({
-  selector: 'app-household',
-  templateUrl: './household.component.html',
-  styleUrls: ['./household.component.css']
+@Component
+({
+    selector: 'app-household',
+    templateUrl: './household.component.html',
+    styleUrls: ['./household.component.css']
 })
-export class HouseholdComponent implements OnInit {
+export class HouseholdComponent implements OnInit
+{
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit() {
-  }
+    ngOnInit() { }
 
 }
