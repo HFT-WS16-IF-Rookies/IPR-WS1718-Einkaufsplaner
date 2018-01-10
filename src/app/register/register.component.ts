@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Registration } from '../Registration';
+import { Router } from '@angular/router'
 import { Http } from '@angular/http';
 
 @Component
@@ -14,16 +15,24 @@ export class RegisterComponent implements OnInit
     @Input() private userPassword2: string;
     private errorMsg: string;
     private http: Http;
+    private router: Router;
 
-    constructor(http: Http)
+    constructor(http: Http, router: Router)
     {
         this.registration = new Registration();
         this.userPassword2 = "";
         this.errorMsg = "";
         this.http = http;
+        this.router = router;
     }
 
-    ngOnInit(){ }
+    ngOnInit()
+    {
+        if (sessionStorage.getItem('currentUser') !== null)
+        {
+            this.router.navigateByUrl('/dashboard');
+        }
+    }
 
     submit():void
     {

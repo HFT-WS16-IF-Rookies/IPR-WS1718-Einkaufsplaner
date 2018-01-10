@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Http } from '@angular/http';
 
 @Component
 ({
@@ -11,6 +13,12 @@ export class HouseholdComponent implements OnInit
 
     constructor() { }
 
-    ngOnInit() { }
+    ngOnInit()
+    {
+        if(sessionStorage.getItem('currentUser') === null)
+        {
+            this.router.navigateByUrl('/login')
+        }
+    }
 
 }
