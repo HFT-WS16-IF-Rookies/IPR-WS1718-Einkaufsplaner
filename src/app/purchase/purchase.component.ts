@@ -1,15 +1,31 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Http } from '@angular/http';
 
-@Component({
-  selector: 'app-purchase',
-  templateUrl: './purchase.component.html',
-  styleUrls: ['./purchase.component.css']
+@Component
+({
+    selector: 'app-purchase',
+    templateUrl: './purchase.component.html',
+    styleUrls: ['./purchase.component.css']
 })
-export class PurchaseComponent implements OnInit {
+export class PurchaseComponent implements OnInit
+{
 
-  constructor() { }
+    private http: Http;
+    private router: Router;
 
-  ngOnInit() {
-  }
+    constructor(http: Http, router: Router)
+    {
+        this.http = http;
+        this.router = router;
+    }
+
+    ngOnInit()
+    {
+        if(sessionStorage.getItem('currentUser') === null)
+        {
+            this.router.navigateByUrl('/login')
+        }
+    }
 
 }
