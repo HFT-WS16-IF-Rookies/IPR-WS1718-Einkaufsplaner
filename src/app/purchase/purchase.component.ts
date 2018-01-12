@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { Http } from '@angular/http';
 
 @Component
@@ -13,13 +13,11 @@ export class PurchaseComponent implements OnInit
 
     private http: Http;
     private router: Router;
-    private route: ActivatedRoute;
 
-    constructor(http: Http, router: Router, route: ActivatedRoute)
+    constructor(http: Http, router: Router)
     {
         this.http = http;
         this.router = router;
-        this.route = route;
     }
 
     ngOnInit()
@@ -32,8 +30,8 @@ export class PurchaseComponent implements OnInit
 
     private closePurchase(): void
     {
-        id = this.router.
-        this.http.post('./closePurchase.php', JSON(data))
+        id = this.route.snapshot.paraMap.get('id');
+        // this.http.post('./closePurchase.php', JSON(data))
     }
 
 }
