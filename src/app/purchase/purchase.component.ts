@@ -28,4 +28,10 @@ export class PurchaseComponent implements OnInit
         }
     }
 
+    private closePurchase(): void
+    {
+        id = this.router.
+        this.http.post('./closePurchase.php', JSON(data))
+    }
+
 }
