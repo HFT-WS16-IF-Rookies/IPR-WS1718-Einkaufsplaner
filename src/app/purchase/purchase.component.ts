@@ -32,7 +32,7 @@ export class PurchaseComponent implements OnInit
 
     private closePurchase(): void
     {
-        id = this.route.snapshot.paraMap.get('id');
+        let id = this.route.snapshot.paramMap.get('id');
         // this.http.post('./closePurchase.php', JSON(data))
     }
 
