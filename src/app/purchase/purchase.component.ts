@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Http } from '@angular/http';
 
 @Component
@@ -13,11 +13,13 @@ export class PurchaseComponent implements OnInit
 
     private http: Http;
     private router: Router;
+    private route: ActivatedRoute;
 
-    constructor(http: Http, router: Router)
+    constructor(http: Http, router: Router, route: ActivatedRoute)
     {
         this.http = http;
         this.router = router;
+        this.route = route;
     }
 
     ngOnInit()
