@@ -11,7 +11,7 @@
     </tr>
     <tr *ngFor="let article of articles">
         <td><input type="checkbox">{{article["name"]}}</td>
-        <td>{{article["amount"]}}</td>
+        <td>{{ article.amount }}</td>
         <td>
             <form>
                 <input type="number" [(ngModel)]="articles["found"]" >
