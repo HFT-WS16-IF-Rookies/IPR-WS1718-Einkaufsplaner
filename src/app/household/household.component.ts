@@ -23,7 +23,7 @@ export class HouseholdComponent implements OnInit
     {
         if(sessionStorage.getItem('currentUser') === null)
         {
-            this.router.navigateByUrl('/login')
+            this.router.navigateByUrl('/login');
         }
     }
 
