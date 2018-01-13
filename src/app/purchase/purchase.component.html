@@ -9,15 +9,14 @@
         <th>Opt.Anzahl</th>
         <th>gekaufte Anzahl</th>
     </tr>
-    <tr>
-        <td><input type="checkbox"> Produkt 1</td>
-        <td>5</td>
+    <tr *ngFor="let article of articles">
+        <td><input type="checkbox">{{article.name}}</td>
+        <td>{{article.amount}}</td>
         <td>
             <form>
                 <input type="number" >
             </form>
         </td>
-
     </tr>
 
 </table>
