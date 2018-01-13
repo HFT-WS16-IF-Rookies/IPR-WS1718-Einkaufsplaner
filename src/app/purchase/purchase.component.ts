@@ -29,6 +29,18 @@ export class PurchaseComponent implements OnInit
         {
             this.router.navigateByUrl('/login')
         }
+
+        let data: {[key: string]: string;} = {};
+        data['ID'] = this.route.snapshot.paramMap.get('id');
+        this.http.post('./getPurchaseData.php', JSON.stringify(data)).subscribe(res =>
+        {
+            if (res.status !== 200)
+            {
+                return;
+            }
+
+            console.log(res.json());
+        });
     }
 
     private closePurchase(): void
