@@ -10,11 +10,11 @@
         <th>gekaufte Anzahl</th>
     </tr>
     <tr *ngFor="let article of articles">
-        <td><input type="checkbox">{{article.name}}</td>
-        <td>{{article.amount}}</td>
+        <td><input type="checkbox">{{article["name"]}}</td>
+        <td>{{article["amount"]}}</td>
         <td>
             <form>
-                <input type="number" >
+                <input type="number" [(ngModel)]="articles["found"]" >
             </form>
         </td>
     </tr>

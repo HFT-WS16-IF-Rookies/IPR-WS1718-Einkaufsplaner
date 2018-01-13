@@ -14,7 +14,7 @@ export class PurchaseComponent implements OnInit
     private http: Http;
     private router: Router;
     private route: ActivatedRoute;
-    let articles: {[key: string]: string;} = {};
+    let articles: {[key: string]: {[key: string]: string}};
 
     constructor(http: Http, router: Router, route: ActivatedRoute)
     {
@@ -39,8 +39,24 @@ export class PurchaseComponent implements OnInit
                 return;
             }
 
-            console.log(res.json());
-        });
+            if(res.json().metaData.state === "success")
+            {
+                let temp: {[key: string]: string};
+                delete res.json().metaData
+                for(let key in res.json())
+                {
+                    temp["name"] = res.json().key.name;
+                    articles[res.json().key] = temp;
+                    temp["amount"] = res.json().key.amount;
+                    articles[res.json().key] = temp;
+                    temp["found"] = res.json().key.found;
+                    articles[res.json().key] = temp;
+
+                }
+            }
+
+
+        })
     }
 
     private closePurchase(): void
