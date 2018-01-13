@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Http } from '@angular/http';
+import { PurchaseArticle } from '../PurchaseArticle';
 
 @Component
 ({
@@ -14,7 +15,7 @@ export class PurchaseComponent implements OnInit
     private http: Http;
     private router: Router;
     private route: ActivatedRoute;
-    private articles: {[key: string]: {[key: string]: string}};
+    private articles: PurchaseArticle[];
 
     constructor(http: Http, router: Router, route: ActivatedRoute)
     {
@@ -41,16 +42,24 @@ export class PurchaseComponent implements OnInit
 
             if(res.json().metaData.state === "success")
             {
-                let temp: {[key: string]: string};
-                delete res.json().metaData
+                let temp: {[key: string]: string} = {};
+                delete res.json()['metaData'];
+
+                this.articles = new Array(3);
+                let i = 0;
+
                 for(let key in res.json())
                 {
-                    temp["name"] = res.json().key.name;
-                    this.articles[res.json().key] = temp;
-                    temp["amount"] = res.json().key.amount;
-                    this.articles[res.json().key] = temp;
-                    temp["found"] = res.json().key.found;
-                    this.articles[res.json().key] = temp;
+                    if (key !== 'metaData')
+                    {
+                        this.articles[i] = new PurchaseArticle(
+                            res.json()[key].name,
+                            res.json()[key].amount,
+                            res.json()[key].found
+                        );
+                    }
+                    console.log(key);
+                    i = i + 1;
 
                 }
             }
