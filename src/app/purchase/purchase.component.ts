@@ -14,7 +14,7 @@ export class PurchaseComponent implements OnInit
     private http: Http;
     private router: Router;
     private route: ActivatedRoute;
-    let articles: {[key: string]: {[key: string]: string}};
+    private articles: {[key: string]: {[key: string]: string}};
 
     constructor(http: Http, router: Router, route: ActivatedRoute)
     {
