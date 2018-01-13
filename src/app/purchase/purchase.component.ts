@@ -46,11 +46,11 @@ export class PurchaseComponent implements OnInit
                 for(let key in res.json())
                 {
                     temp["name"] = res.json().key.name;
-                    articles[res.json().key] = temp;
+                    this.articles[res.json().key] = temp;
                     temp["amount"] = res.json().key.amount;
-                    articles[res.json().key] = temp;
+                    this.articles[res.json().key] = temp;
                     temp["found"] = res.json().key.found;
-                    articles[res.json().key] = temp;
+                    this.articles[res.json().key] = temp;
 
                 }
             }
