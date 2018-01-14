@@ -74,4 +74,28 @@ export class PurchaseComponent implements OnInit
         // this.http.post('./closePurchase.php', JSON(data))
     }
 
+    private generateCheckedBoolean(article: PurchaseArticle):boolean
+    {
+        if (article.found < article.amount)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    private toggleFound(article: PurchaseArticle):void
+    {
+        if (article.found !== article.amount)
+        {
+            article.found = article.amount;
+        }
+        else
+        {
+            article.found = 0;
+        }
+    }
+
 }
