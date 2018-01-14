@@ -42,24 +42,24 @@ export class PurchaseComponent implements OnInit
 
             if(res.json().metaData.state === "success")
             {
-                let temp: {[key: string]: string} = {};
-                delete res.json()['metaData'];
+                let temp = res.json();
+                delete temp.metaData;
 
-                this.articles = new Array(3);
+                this.articles = new Array((Object.keys(temp)).length);
                 let i = 0;
 
-                for(let key in res.json())
+                for(let key in temp)
                 {
                     if (key !== 'metaData')
                     {
                         this.articles[i] = new PurchaseArticle(
                             res.json()[key].name,
-                            res.json()[key].amount,
-                            res.json()[key].found
+                            +res.json()[key].amount,
+                            +res.json()[key].found
                         );
                     }
                     console.log(key);
-                    i = i + 1;
+                    i++;
 
                 }
             }
