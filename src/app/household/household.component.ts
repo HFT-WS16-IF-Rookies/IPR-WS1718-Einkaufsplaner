@@ -34,6 +34,11 @@ export class HouseholdComponent implements OnInit
         {
             console.log(res);
         });
+
+        this.http.post('./getNeededArticles.php', JSON.stringify(data)).subscribe(res =>
+        {
+            console.log(res);
+        });
     }
 
 }

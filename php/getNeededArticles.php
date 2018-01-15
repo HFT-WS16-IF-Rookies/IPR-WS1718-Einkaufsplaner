@@ -13,7 +13,7 @@
 
     require './dbConnection.php';
 
-    $query = "select * from Articles where ID = '" . $jsonData['ID'] . "'";
+    $query = "select * from Articles where householdID = '" . $jsonData['ID'] . "'";
     $result = $db->query($query);
     $db->close();
 
@@ -28,40 +28,19 @@
         die();
     }
 
-    if ($result->num_rows > 1)
-    {
-        http_response_code(500);
-        die();
-    }
-
-    $neededArticles = $result->fetch_assoc();
-    /*echo print_r($purchase, true);
-    die();*/
-
-    $query = "select * from Articles where householdID = '" . $neededArticles['ID'] . "'";
-    require './dbConnection.php';
-    $result = $db->query($query);
-    $db->close();
-
     while(($article = $result->fetch_assoc()) !== null)
     {
-        $query = "select name from Articles where currentAmount < '" . $article['maxAmount'] . "'";
-
-        require './dbConnection.php';
-        $articleResult = $db->query($query);
-        $db->close();
-        $articleName = $articleResult->fetch_assoc();
-        if ($articleName === null)
+        if ($article['name'] === null)
         {
             http_response_code(500);
             die();
         }
 
         $nextArticle = array();
-        $nextArticle['name'] = $articleName['name'];
+        $nextArticle['name'] = $article['name'];
         $nextArticle['neededAmount'] = $article['maxAmount'] - $article['currentAmount'];
 
-        $data[$articleName['name']] = $nextArticle;
+        $data[$article['name']] = $nextArticle;
     }
 
     $metaData = array();
