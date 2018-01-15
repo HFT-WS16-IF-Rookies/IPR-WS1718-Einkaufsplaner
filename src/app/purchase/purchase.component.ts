@@ -91,7 +91,7 @@ export class PurchaseComponent implements OnInit
 
     private closePurchase(): void
     {
-        let id = this.route.snapshot.paramMap.get('id');
+        console.log(JSON.stringify(this.articles))
         this.http.post('./closePurchase.php', JSON.stringify(this.articles))
     }
 
