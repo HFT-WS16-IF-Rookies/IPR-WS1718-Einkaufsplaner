@@ -67,7 +67,7 @@ export class PurchaseComponent implements OnInit
             }
 
 
-        })
+        });
     }
 
     private generateCheckedBoolean(article: PurchaseArticle):boolean
