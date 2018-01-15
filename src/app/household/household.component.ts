@@ -32,12 +32,12 @@ export class HouseholdComponent implements OnInit
         data['ID'] = this.route.snapshot.paramMap.get('id');
         this.http.post('./getActiveHouseholdPurchases.php', JSON.stringify(data)).subscribe(res =>
         {
-            console.log(res);
+            console.log(res.json());
         });
 
         this.http.post('./getNeededArticles.php', JSON.stringify(data)).subscribe(res =>
         {
-            console.log(res);
+            console.log(res.json());
         });
     }
 
