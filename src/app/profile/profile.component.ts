@@ -19,8 +19,9 @@ export class currentUser
 
     constructor()
     {
-        this.firstName = sessionStorage.getItem('currentUser').firsName;
-        this.lastName = sessionStorage.getItem('currentUser').lastName;
+        let currentUser = sessionStorage.getItem('currentUser');
+        this.firstName = currentUser['firstName'];
+        this.lastName = currentUser['lastName'];
         this.email = "";
         this.password = "";
     }
