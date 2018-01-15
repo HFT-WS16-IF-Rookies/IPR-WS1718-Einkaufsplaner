@@ -42,24 +42,24 @@ export class PurchaseComponent implements OnInit
 
             if(res.json().metaData.state === "success")
             {
-                let temp = res.json();
-                delete temp.metaData;
+                let temp: {[key: string]: string} = {};
+                delete res.json()['metaData'];
 
-                this.articles = new Array((Object.keys(temp)).length);
+                this.articles = new Array(3);
                 let i = 0;
 
-                for(let key in temp)
+                for(let key in res.json())
                 {
                     if (key !== 'metaData')
                     {
                         this.articles[i] = new PurchaseArticle(
                             res.json()[key].name,
-                            +res.json()[key].amount,
-                            +res.json()[key].found
+                            res.json()[key].amount,
+                            res.json()[key].found
                         );
                     }
                     console.log(key);
-                    i++;
+                    i = i + 1;
 
                 }
             }
@@ -72,26 +72,6 @@ export class PurchaseComponent implements OnInit
     {
         let id = this.route.snapshot.paramMap.get('id');
         // this.http.post('./closePurchase.php', JSON(data))
-    }
-
-    private generateCheckedBoolean(article: PurchaseArticle):boolean
-    {
-        if (article.found < 0)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
-
-    private toggleFound(article: PurchaseArticle):void
-    {
-        if (article.found == 0)
-        {
-            article.found = article.amount;
-        }
     }
 
 }
