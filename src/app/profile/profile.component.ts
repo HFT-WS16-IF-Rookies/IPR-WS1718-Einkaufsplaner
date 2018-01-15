@@ -10,7 +10,7 @@ import { Http } from '@angular/http';
     styleUrls: ['./profile.component.css']
 })
 
-export class currentUser()
+export class currentUser
 {
     firstName: string;
     lastName: string;
