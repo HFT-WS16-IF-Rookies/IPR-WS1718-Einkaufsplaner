@@ -29,6 +29,7 @@ export class currentUser
 
 export class ProfileComponent implements OnInit
 {
+
     private http: Http;
     private router: Router;
     private liveUser: currentUser;
@@ -48,6 +49,7 @@ export class ProfileComponent implements OnInit
         }
     }
 
+    /*
     private submitPassword(): void
     {
         this.errorMsgPassword = "";
@@ -121,5 +123,5 @@ export class ProfileComponent implements OnInit
             }
         });
     }
-
+    */
 }
