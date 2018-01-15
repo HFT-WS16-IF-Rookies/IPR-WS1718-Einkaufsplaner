@@ -1,6 +1,4 @@
 <?php
-require 'dbConnection.php';
-
 class userInfo{
     public $firstName;
     public $lastName;
@@ -22,11 +20,15 @@ if($thisUser->firstName === null || $thisUSer->lastName === null)
     die();
 }
 
+require 'dbConnection.php';
+
 $query = "SELECT * FROM $dbDatabase.Users WHERE firstName = '$thisUser->firstName'
 AND lastName = '$thisUser->lastName'";
 
 $result = $db->query($query);
 $user = $result->fetch_assoc();
+
+$db->close();
 
 $emailSavedState = $user['email'];
 $passwordSavedState = $user['password'];
@@ -50,6 +52,7 @@ if ($dbState)
 
     function changeMail()
     {
+        require 'dbConnection.php';
         $queryEmailChange = "INSERT INTO $dbDatabase.Users (firstName, lastName, email, password)"
         + " VALUES('$thisUser->firstName', '$thisUser->lastName',"
         +" '$thisUser->email', '$passwordSavedState')";
@@ -60,6 +63,7 @@ if ($dbState)
 
     function changePassword()
     {
+        require 'dbConnection.php';
         $queryPasswordChange = "INSERT INTO $dbDatabase.Users (firstName, lastName, email, password)"
         + " VALUES('$thisUser->firstName', '$thisUser->lastName',"
         +" '$emailSavedState', '$thisUser->password')";
