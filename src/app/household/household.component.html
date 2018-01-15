@@ -23,7 +23,14 @@
 <h4>
     Produkte die gebraucht werden :
 </h4>
-<ul></ul>
+<tr>
+    <th>Produktname</th>
+    <th>Anzahl</th>
+</tr>
+<tr *ngFor="let neededItem of needed; let i=index">
+    <td>{{ needed.name }}</td>
+    <td>{{ needed.neededAmount }}</td>
+</tr>
 <form>
   <label>Laden : <!--Diese muss man au der Datenbank holen-->
     <select name="Läden">
