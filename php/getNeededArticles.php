@@ -35,12 +35,14 @@
             http_response_code(500);
             die();
         }
+        if ($article['maxAmount'] > $article['currentAmount'])
+        {
+            $nextArticle = array();
+            $nextArticle['name'] = $article['name'];
+            $nextArticle['neededAmount'] = $article['maxAmount'] - $article['currentAmount'];
 
-        $nextArticle = array();
-        $nextArticle['name'] = $article['name'];
-        $nextArticle['neededAmount'] = $article['maxAmount'] - $article['currentAmount'];
-
-        $data[$article['name']] = $nextArticle;
+            $data[$article['name']] = $nextArticle;
+        }
     }
 
     $metaData = array();
