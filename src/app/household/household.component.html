@@ -27,8 +27,8 @@
     <th>Anzahl</th>
 </tr>
 <tr *ngFor="let neededItem of needed; let i=index">
-    <td>{{ needed.name }}</td>
-    <td>{{ needed.neededAmount }}</td>
+    <td>{{ neededItem.name }}</td>
+    <td>{{ neededItem.neededAmount }}</td>
 </tr>
 <form>
   <label>Laden : <!--Diese muss man au der Datenbank holen-->

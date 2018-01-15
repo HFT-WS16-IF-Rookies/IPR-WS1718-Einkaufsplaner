@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Http } from '@angular/http';
 import { Purchase } from '../Purchase';
+import { NeededArticle } from '../NeededArticle';
 
 @Component
 ({
@@ -15,7 +16,7 @@ export class HouseholdComponent implements OnInit
     private router: Router;
     private route: ActivatedRoute;
     private purchases: Purchase[];
-    private needed: NeededArticles[];
+    private needed: NeededArticle[];
 
     constructor(http: Http, router: Router, route: ActivatedRoute)
     {
@@ -80,14 +81,12 @@ export class HouseholdComponent implements OnInit
 
                 for(let key in temp)
                 {
-                    this.needed[i] = new PurchaseArticle(
-                        res.json()[key].date,
-                        +res.json()[key].store
+                    this.needed[i] = new NeededArticle(
+                        temp[key].name,
+                        +temp[key].neededAmount
                     );
-
                     console.log(key);
                     i++;
-
                 }
             }
         });
