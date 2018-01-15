@@ -79,7 +79,7 @@
         require './dbConnection.php';
         $purchaseArticles = $db->query($query);
         $db->close();
-        $purchaseArticle = purchaseArticles->fetch_assoc();
+        $purchaseArticle = $purchaseArticles->fetch_assoc();
 
         $query = "select storeID from Articles where ID = " . $purchaseArticle['articleID'];
         require './dbConnection.php';
