@@ -55,7 +55,8 @@ export class PurchaseComponent implements OnInit
                         this.articles[i] = new PurchaseArticle(
                             res.json()[key].name,
                             +res.json()[key].amount,
-                            +res.json()[key].found
+                            +res.json()[key].found,
+                            +res.json()[key].id;
                         );
                     }
                     console.log(key);

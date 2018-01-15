@@ -61,6 +61,8 @@
         $nextArticle['name'] = $articleName['name'];
         $nextArticle['amount'] = $article['amount'];
         $nextArticle['found'] = $article['found'];
+        $nextArticle['id'] = $jsonData['ID'];
+
 
         $data[$articleName['name']] = $nextArticle;
     }
