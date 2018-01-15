@@ -38,11 +38,11 @@ if($result->num_rows === 0)
     die();
 }
 
-if($jsonData['email'] !== null)
+if($jsonData['email'] !== "")
 {
     $emailChange = $jsonData['email'];
     changeMail();
-}elseif($jsonData['password'] !== null)
+}elseif($jsonData['password'] !== "")
 {
     $passwordChange = $jsonData['password'];
     changePassword();
