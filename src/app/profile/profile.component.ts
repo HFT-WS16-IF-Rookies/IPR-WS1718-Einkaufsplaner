@@ -3,13 +3,6 @@ import { Router } from '@angular/router';
 import { Registration } from '../Registration';
 import { Http } from '@angular/http';
 
-@Component
-({
-    selector: 'app-profile',
-    templateUrl: './profile.component.html',
-    styleUrls: ['./profile.component.css']
-})
-
 export class currentUser
 {
     firstName: string;
@@ -27,6 +20,12 @@ export class currentUser
     }
 }
 
+@Component
+({
+    selector: 'app-profile',
+    templateUrl: './profile.component.html',
+    styleUrls: ['./profile.component.css']
+})
 export class ProfileComponent implements OnInit
 {
 

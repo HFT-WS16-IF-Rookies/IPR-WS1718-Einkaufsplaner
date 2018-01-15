@@ -57,7 +57,7 @@
     $row = $result->fetch_assoc();
     $query .= $row['purchaseID'];
 
-    while (($row = $result->fetch(assoc())) !== null)
+    while (($row = $result->fetch_assoc()) !== null)
     {
         $query .= ", " . $row['purchaseID'];
     }
@@ -70,10 +70,12 @@
 
     while (($row = $result->fetch_assoc()) !== null)
     {
+        $purchase = array();
         $query = "select firstName, Lastname from Users where ID = " . $row['userID'];
         require './dbConnection.php';
-        $user = $db->query($query);
+        $userResult = $db->query($query);
         $db->close();
+        $user = $userResult->fetch_assoc();
 
         $query = "select articleID from PurchaseArticles where purchaseID = " . $row['ID'];
         require './dbConnection.php';
@@ -85,12 +87,17 @@
         require './dbConnection.php';
         $storeResult = $db->query($query);
         $db->close();
+        $storeID = $storeResult->fetch_assoc();
+
+        $query = "select name from Store where ID = " . $storeID['storeID'];
+        require './dbConnection.php';
+        $storeResult = $db->query($query);
+        $db->close();
         $store = $storeResult->fetch_assoc();
 
         $purchase['createDate'] = $row['createDate'];
         $purchase['store'] = $store['name'];
 
-        $purchase = array();
         $purchase['user'] = $user['firstName'] . " " . $user['lastName'];
 
         $data['purchase_' . $row['ID']] = $purchase;
