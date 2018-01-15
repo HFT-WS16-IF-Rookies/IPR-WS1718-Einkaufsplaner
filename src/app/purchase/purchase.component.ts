@@ -76,7 +76,7 @@ export class PurchaseComponent implements OnInit
 
     private generateCheckedBoolean(article: PurchaseArticle):boolean
     {
-        if (article.found < article.amount)
+        if (article.found < 0)
         {
             return false;
         }
@@ -88,13 +88,9 @@ export class PurchaseComponent implements OnInit
 
     private toggleFound(article: PurchaseArticle):void
     {
-        if (article.found !== article.amount)
+        if (article.found == 0)
         {
             article.found = article.amount;
-        }
-        else
-        {
-            article.found = 0;
         }
     }
 
