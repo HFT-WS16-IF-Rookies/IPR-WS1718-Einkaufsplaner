@@ -5,18 +5,17 @@
 <h4>
     Liste aktiver Einkäufe :
 </h4>
+
 <table align="center">
     <tr>
-        <th>Erstellungsdatum</th>
-        <th>name</th>
-        <th>store</th>
-        <th>gekaufte Anzahl</th>
+        <th>Laden</th>
+        <th>Erstelldatum</th>
+        <th>Einkäufer</th>
     </tr>
     <tr *ngFor="let purchase of purchases; let i=index">
-        <td>{{ purchase.date }}</td>
         <td>{{ purchase.store }}</td>
-        <td>{{ purchase.name }}></td>
-        <td>{{ purchase.ammount}}</td>
+        <td>{{ purchase.date }}</td>
+        <td>{{ purchase.purchaser}}</td>
     </tr>
 
 </table>

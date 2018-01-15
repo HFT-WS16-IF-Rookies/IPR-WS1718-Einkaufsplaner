@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Http } from '@angular/http';
-import { ActiveHouseholdPurchases } from '../ActiveHouseholdPurchases';
+import { Purchase } from '../Purchase';
 
 @Component
 ({
@@ -14,7 +14,7 @@ export class HouseholdComponent implements OnInit
     private http: Http;
     private router: Router;
     private route: ActivatedRoute;
-    private purchases: ActiveHouseholdPurchases[];
+    private purchases: Purchase[];
     private needed: NeededArticles[];
 
     constructor(http: Http, router: Router, route: ActivatedRoute)
@@ -35,8 +35,6 @@ export class HouseholdComponent implements OnInit
         data['ID'] = this.route.snapshot.paramMap.get('id');
         this.http.post('./getActiveHouseholdPurchases.php', JSON.stringify(data)).subscribe(res =>
         {
-            console.log(res.json());
-
             if (res.status !== 200)
             {
                 return;
@@ -52,17 +50,15 @@ export class HouseholdComponent implements OnInit
 
                 for(let key in temp)
                 {
-                    this.purchases[i] = new PurchaseArticle(
-                        res.json()[key].date,
-                        +res.json()[key].store,
-                        +res.json()[key].name,
-                        +res.json()[key].amount
+                    this.purchases[i] = new Purchase(
+                        temp[key].createDate,
+                        temp[key].store,
+                        (temp[key].store + " - " + temp[key].createDate),
+                        temp[key].user
                     );
-
-                    console.log(key);
                     i++;
-
                 }
+                console.log(this.purchases)
             }
         });
 
