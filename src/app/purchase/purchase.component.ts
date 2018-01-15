@@ -56,7 +56,7 @@ export class PurchaseComponent implements OnInit
                             res.json()[key].name,
                             +res.json()[key].amount,
                             +res.json()[key].found,
-                            +res.json()[key].id;
+                            +res.json()[key].id
                         );
                     }
                     console.log(key);
@@ -70,24 +70,24 @@ export class PurchaseComponent implements OnInit
     }
 
     private generateCheckedBoolean(article: PurchaseArticle):boolean
--    {
--        if (article.found < 0)
--        {
--            return false;
--        }
--        else
--        {
--            return true;
--        }
--    }
--
--    private toggleFound(article: PurchaseArticle):void
--    {
--        if (article.found == 0)
--        {
--            article.found = article.amount;
--        }
--    }
+    {
+        if (article.found < 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    private toggleFound(article: PurchaseArticle):void
+    {
+        if (article.found == 0)
+        {
+            article.found = article.amount;
+        }
+    }
 
     private closePurchase(): void
     {
