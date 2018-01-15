@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Registration } from '../Registration';
 import { Http } from '@angular/http';
@@ -27,9 +27,9 @@ export class ProfileComponent implements OnInit
         this.router = router;
         this.liveUser = new Registration();
 
-        let currentUser = sessionStorage.getItem('currentUser');
-        this.liveUser.firstName = currentUser['firstName'];
-        this.liveUser.lastName = currentUser['lastName'];
+        let currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+        this.liveUser.firstName = currentUser.firstName;
+        this.liveUser.lastName = currentUser.lastName;
     }
 
     ngOnInit()
