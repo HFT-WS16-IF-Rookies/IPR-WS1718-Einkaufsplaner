@@ -9,15 +9,17 @@
         <th>Opt.Anzahl</th>
         <th>gekaufte Anzahl</th>
     </tr>
-    <tr>
-        <td><input type="checkbox"> Produkt 1</td>
-        <td>5</td>
+    <tr *ngFor="let article of articles; let i=index">
+        <td><pre><input type="checkbox" [checked]="generateCheckedBoolean(article)" (change)="toggleFound(article)">{{ article.name }}</pre></td>
+        <td>{{ article.amount }}</td>
         <td>
             <form>
-                <input type="number">
+                <input type="number" [(ngModel)]="article.found" name="found">
             </form>
         </td>
-
     </tr>
 
 </table>
+
+<button class="btn btn-primary" >Speichern</button>
+<button class="btn btn-success" (click)='closePurchase()' name="button">Einkauf beenden</button>
