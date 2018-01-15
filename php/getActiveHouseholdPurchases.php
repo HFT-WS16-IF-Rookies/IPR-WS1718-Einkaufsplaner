@@ -1,4 +1,4 @@
-<<?php
+<?php
     require './checkLogin.php';
 
     $jsonData = json_decode(file_get_contents('php://input'), true);
@@ -10,7 +10,6 @@
     }
 
     $data = array();
-
     require './dbConnection.php';
 
     $query = "select * from Household where ID = '" . $jsonData['ID'] . "'";
