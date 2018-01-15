@@ -92,7 +92,10 @@ export class PurchaseComponent implements OnInit
     private closePurchase(): void
     {
         console.log(JSON.stringify(this.articles))
-        this.http.post('./closePurchase.php', JSON.stringify(this.articles))
+        this.http.post('./closePurchase.php', JSON.stringify(this.articles)).subscribe(res =>
+        {
+            // TO-DO: keine Ahnung
+        });
     }
 
 }
