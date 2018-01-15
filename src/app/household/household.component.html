@@ -5,7 +5,21 @@
 <h4>
     Liste aktiver Einkäufe :
 </h4>
-<ul></ul>
+<table align="center">
+    <tr>
+        <th>Erstellungsdatum</th>
+        <th>name</th>
+        <th>store</th>
+        <th>gekaufte Anzahl</th>
+    </tr>
+    <tr *ngFor="let purchase of purchases; let i=index">
+        <td>{{ purchase.date }}</td>
+        <td>{{ purchase.store }}</td>
+        <td>{{ purchase.name }}></td>
+        <td>{{ purchase.ammount}}</td>
+    </tr>
+
+</table>
 <h4>
     Produkte die gebraucht werden :
 </h4>
