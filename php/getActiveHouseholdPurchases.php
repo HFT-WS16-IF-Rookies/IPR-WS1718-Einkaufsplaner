@@ -76,26 +76,11 @@
         $db->close();
         $user = $userResult->fetch_assoc();
 
-        $query = "select articleID from PurchaseArticles where purchaseID = " . $row['ID'];
-        require './dbConnection.php';
-        $purchaseArticles = $db->query($query);
-        $db->close();
-        $purchaseArticle = $purchaseArticles->fetch_assoc();
-
-        $query = "select storeID from Articles where ID = " . $purchaseArticle['articleID'];
-        require './dbConnection.php';
-        $storeResult = $db->query($query);
-        $db->close();
-        $storeID = $storeResult->fetch_assoc();
-
-        $query = "select name from Store where ID = " . $storeID['storeID'];
-        require './dbConnection.php';
-        $storeResult = $db->query($query);
-        $db->close();
-        $store = $storeResult->fetch_assoc();
+        $purchaseID = $row['ID'];
+        require './getStoreName.php';
 
         $purchase['createDate'] = $row['createDate'];
-        $purchase['store'] = $store['name'];
+        $purchase['store'] = $storeName;
 
         $purchase['user'] = $user['firstName'] . " " . $user['lastName'];
 
