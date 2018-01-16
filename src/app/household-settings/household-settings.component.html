@@ -3,12 +3,12 @@
     Haushaltseinstellungen
 </h2>
 <form>
-    <label>Name :
-        <input type="text" name="" value="Aktueller Name">
-    </label>
-    <input type="submit" value="Speichern">
+    <label>E-Mail :
+        <input type="email" name="newUser" [(ngModel)]="newUser">
+    <button class="btn btn-default" (click)="addUserToHousehold()">Benutzer hinzufügen</button>
+</label>
+<p [innerHTML]="addUserErrorMsg"></p>
 </form>
-<button value="Benutzer einladen"></button>
 <h2>
     Lister der aktiven benutzer :
 </h2>
