@@ -9,4 +9,20 @@
 <h4>
     Liste der Artikel
 </h4>
-<ul></ul>
+<table align="center">
+    <tr>
+        <th>Artikelname</th>
+        <th>Aktuelle Anzahl</th>
+        <th>Mindestanzahl</th>
+        <th>Maximalanzahl</th>
+        <th>Priorität</th>
+    </tr>
+    <tr *ngFor="let article of articles; let i=index">
+        <td>{{ article.name }}</td>
+        <td>{{ article.currentAmount }}</td>
+        <td>{{ article.minAmount }}</td>
+        <td>{{ article.maxAmount }}</td>
+        <td>{{ article.priority }}</td>
+    </tr>
+
+</table>
