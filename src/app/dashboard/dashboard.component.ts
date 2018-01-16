@@ -64,7 +64,8 @@ export class DashboardComponent implements OnInit
                         temp[key].createDate,
                         temp[key].store,
                         (temp[key].store + " - " + temp[key].createDate),
-                        null
+                        null,
+                        temp[key].purchaseID
                     );
                     i++;
                 }
