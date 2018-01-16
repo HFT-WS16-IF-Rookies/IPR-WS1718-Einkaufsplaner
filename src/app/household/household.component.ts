@@ -17,6 +17,7 @@ export class HouseholdComponent implements OnInit
     private route: ActivatedRoute;
     private purchases: Purchase[];
     private needed: NeededArticle[];
+    private stores: String[];
 
     constructor(http: Http, router: Router, route: ActivatedRoute)
     {
@@ -59,7 +60,6 @@ export class HouseholdComponent implements OnInit
                     );
                     i++;
                 }
-                console.log(this.purchases)
             }
         });
 
@@ -85,6 +85,31 @@ export class HouseholdComponent implements OnInit
                         temp[key].name,
                         +temp[key].neededAmount
                     );
+                    i++;
+                }
+            }
+        });
+
+        this.http.post('./getStores.php', JSON.stringify(data)).subscribe(res =>
+        {
+            console.log(res.json());
+            if (res.status !== 200)
+            {
+                return;
+            }
+
+            if(res.json().metaData.state === "success")
+            {
+                let temp = res.json();
+                delete temp.metaData;
+
+                this.stores = new Array((Object.keys(temp)).length);
+                let i = 0;
+
+                for(let key in temp)
+                {
+                    this.stores[i] = temp[key].name;
+
                     console.log(key);
                     i++;
                 }
