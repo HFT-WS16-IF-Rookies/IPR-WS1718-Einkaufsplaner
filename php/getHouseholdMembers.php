@@ -27,7 +27,7 @@
         $user['firstName'] = $userRow['firstName'];
         $user['lastName'] = $userRow['lastName'];
 
-        $data[$row['userID']] = $user;
+        $data['user_' . $row['userID']] = $user;
     }
 
     $metaData = array();
