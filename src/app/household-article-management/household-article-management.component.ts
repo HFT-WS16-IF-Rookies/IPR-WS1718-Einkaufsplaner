@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Http } from '@angular/http';
 import { Article } from '../Article';
 
@@ -13,12 +13,14 @@ export class HouseholdArticleManagementComponent implements OnInit
 {
     private http: Http;
     private router: Router;
+    private route: ActivatedRoute;
     private articles: Article[];
 
-    constructor(http: Http, router: Router)
+    constructor(http: Http, router: Router, route: ActivatedRoute)
     {
         this.http = http;
         this.router = router;
+        this.route = route;
     }
 
     ngOnInit()
@@ -49,7 +51,7 @@ export class HouseholdArticleManagementComponent implements OnInit
 
                 for(let key in temp)
                 {
-                    this.purchases[i] = new Article(
+                    this.articles[i] = new Article(
                         temp[key].name,
                         temp[key].currentAmount,
                         temp[key].minAmount,
