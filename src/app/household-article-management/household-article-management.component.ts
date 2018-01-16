@@ -53,6 +53,7 @@ export class HouseholdArticleManagementComponent implements OnInit
                 {
                     this.articles[i] = new Article(
                         temp[key].name,
+                        temp[key].storeName,
                         temp[key].currentAmount,
                         temp[key].minAmount,
                         temp[key].maxAmount,
