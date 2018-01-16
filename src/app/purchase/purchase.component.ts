@@ -56,7 +56,8 @@ export class PurchaseComponent implements OnInit
                             res.json()[key].name,
                             +res.json()[key].amount,
                             +res.json()[key].found,
-                            +res.json()[key].id
+                            +res.json()[key].id,
+                            +res.json()[key].articleID
                         );
                     }
                     console.log(key);
@@ -66,7 +67,7 @@ export class PurchaseComponent implements OnInit
             }
 
 
-        })
+        });
     }
 
     private generateCheckedBoolean(article: PurchaseArticle):boolean
