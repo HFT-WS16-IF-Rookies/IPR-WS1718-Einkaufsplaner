@@ -32,8 +32,8 @@
 </tr>
 <form>
   <label>Laden :
-    <select *ngFor="let store of stores; let i=index">
-      <option>{{ store }}</option>
+    <select>
+      <option *ngFor="let store of stores; let i=index">{{ store }}</option>
     </select>
   </label>
 </form>
