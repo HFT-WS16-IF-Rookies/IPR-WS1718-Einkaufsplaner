@@ -33,6 +33,11 @@ export class HouseholdSettingsComponent implements OnInit
             this.router.navigateByUrl('/login');
         }
 
+        this.getHouseholdMembers();
+    }
+
+    private getHouseholdMembers():void
+    {
         let data: {[key: string]: string;} = {};
         data['ID'] = this.route.snapshot.paramMap.get('id');
 
@@ -57,13 +62,51 @@ export class HouseholdSettingsComponent implements OnInit
 
     private addUserToHousehold():void
     {
-        let data: {[key: string]: string} = {};
         if (this.newUser === "")
         {
             this.addUserErrorMsg = "Bitte E-Mail addresse eingeben";
             return;
         }
 
+        let data: {[key: string]: string} = {};
+        data['householdID'] = this.route.snapshot.paramMap.get('id');
+        data['newUser'] = this.newUser;
+
+        this.http.post('./addHouseholdMember.php', JSON.stringify(data)).subscribe(res =>
+        {
+            if (res.status !== 200)
+            {
+                return;
+            }
+
+            let jsonData = res.json();
+            let metaData = jsonData.metaData;
+            delete jsonData.metaData;
+
+            if (metaData.state === 'error')
+            {
+                switch(metaData.case)
+                {
+                    case 'user not found':
+                        this.addUserErrorMsg = 'Es ist kein Benutzer mit dieser E-Mail registriert.';
+                        break;
+
+                    case 'db error':
+                        this.addUserErrorMsg = "Es ist etwas in der Datenbank schiefgelaufen.";
+                        break;
+
+                    case 'user is member yet':
+                        this.addUserErrorMsg = 'Hast du Tomaten auf den Augen?! Der ist schon Mitglied!';
+                        break;
+                }
+            }
+
+            if(metaData.state === 'success')
+            {
+                // this.router.navigateByUrl(this.route.snapshot['_routerState'].url);
+                this.getHouseholdMembers();
+            }
+        });
 
     }
 
