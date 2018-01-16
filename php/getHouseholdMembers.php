@@ -22,5 +22,18 @@
         require './dbConnection.php';
         $userResult = $db->query($query);
         $db->close();
+        $userRow = $userResult->fetch_assoc();
+
+        $user['firstName'] = $userRow['firstName'];
+        $user['lastName'] = $userRow['lastName'];
+
+        $data[$row['userID']] = $user;
     }
+
+    $metaData = array();
+    $metaData['state'] = 'success';
+    $data['metaData'] = $metaData;
+
+    echo json_encode($data);
+    die();
 ?>
