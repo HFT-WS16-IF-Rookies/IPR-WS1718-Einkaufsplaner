@@ -3,13 +3,6 @@ import { Router } from '@angular/router';
 import { Http } from '@angular/http';
 import { Purchase } from '../Purchase';
 
-@Component
-({
-    selector: 'app-dashboard',
-    templateUrl: './dashboard.component.html',
-    styleUrls: ['./dashboard.component.css']
-})
-
 class Household
 {
     private name: string;
@@ -20,6 +13,12 @@ class Household
     }
 }
 
+@Component
+({
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.css']
+})
 export class DashboardComponent implements OnInit
 {
     private http: Http;

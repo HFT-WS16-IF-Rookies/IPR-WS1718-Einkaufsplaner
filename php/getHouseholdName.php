@@ -46,7 +46,7 @@
 
         $householdName = $result->fetch_assoc();
         $household['name'] = $householdName['name'];
-        $data['household_' . $row['ID'] = $household;
+        $data['household_' . $row['ID']] = $household;
     }
 
     $metaData = array();
