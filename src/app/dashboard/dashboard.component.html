@@ -20,6 +20,6 @@
         <th>Name des Haushalts</th>
     </tr>
     <tr *ngFor="let household of households; let i=index">
-        <td>{{ household.name }}</td>
+        <td><a [routerLink]="['/household/', household.id]">{{ household.name }}</a></td>
     </tr>
 </table>
