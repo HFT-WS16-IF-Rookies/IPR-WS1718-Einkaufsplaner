@@ -1,7 +1,7 @@
 <?php
     require './checkLogin.php';
 
-    $jsonData = json_decode(file_get_contents('php://inputs'), true);
+    $jsonData = json_decode(file_get_contents('php://input'), true);
 
     if($jsonData['ID'] === null)
     {
@@ -10,31 +10,29 @@
     }
 
     $data = array();
-    $query = "SELECT * FROM Purchases WHERE userID='$jsonData['ID']' AND done=0'";
+    $query = "SELECT * FROM Purchases WHERE userID=" . $jsonData['ID'] . " AND done=false";
 
     require './dbConnection.php';
-    $result = $db->query($query);
+    $resultMain = $db->query($query);
     $db->close();
 
-    if($result->num_rows === 0)
+    if(!$resultMain)
     {
         http_response_code(200);
-        metaData['state'] = "dumbUser";
-        metaData['reason'] = "purchase not found";
+        $metaData['state'] = "dumbUser";
+        $metaData['reason'] = "purchase not found";
         $data['metaData'] = $metaData;
         echo json_encode($data);
         die();
     }
-    while (($row = $result->fetch_assoc()) !== null)
+    while (($row = $resultMain->fetch_assoc()) !== null)
     {
-        $purchaseArray = $result->fetch_assoc();
-
-        $query = "SELECT articleID FROM PurchaseArticles WHERE purchaseID='" . $purchaseArray['purchaseID'] . "'";
+        $query = "SELECT articleID FROM PurchaseArticles WHERE purchaseID=" . $row['ID'];
         require './dbConnection.php';
         $result = $db->query($query);
         $db->close();
 
-        if($result->num_rows === 0)
+        if(!$result)
         {
             $metaData = array();
             $metaData['state'] = "success";
@@ -48,12 +46,12 @@
         $articleArray = $result->fetch_assoc();
         $focusedArticle = $articleArray['articleID'];
 
-        $query = "SELECT storeID FROM Articles WHERE ID ='" . $focusedArticle . "'";
+        $query = "SELECT storeID FROM Articles WHERE ID =" . $focusedArticle;
         require './dbConnection.php';
         $result = $db->query($query);
         $db->close();
 
-        if($result->num_rows === 0)
+        if(!$result)
         {
             $metaData = array();
             $metaData['state'] = "success";
@@ -67,12 +65,12 @@
         $storeArray = $result->fetch_assoc();
         $focusedStoreID = $storeArray['storeID'];
 
-        $query = "SELECT name FROM Store WHERE ID ='" . $focusedStoreID . "'";
+        $query = "SELECT name FROM Store WHERE ID =" . $focusedStoreID;
         require './dbConnection.php';
         $result = $db->query($query);
         $db->close();
 
-        if($result->num_rows === 0)
+        if(!$result)
         {
             $metaData = array();
             $metaData['state'] = "success";
