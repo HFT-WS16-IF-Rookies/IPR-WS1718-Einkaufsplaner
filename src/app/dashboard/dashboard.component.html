@@ -10,25 +10,16 @@
     <tr *ngFor="let purchase of purchases; let i=index">
         <td>{{ purchase.name }}</td>
         <td>{{ purchase.store }}</td>
-        <td>{{ purchase.date}}</td>
+        <td>{{ purchase.date }}</td>
     </tr>
 </table>
 
 <div class="temHeadLines">Deine Haushalte <button id="createHouseholds"><span id="plusSign">&#43;</span></button></div>
-<table class="householdTables" align="center">
-  <tr>
-    <th class="tableHeader">Name Household</th>
-    <th class="tableHeader">Open Purchases</th>
-    <th class="tableHeader">Members</th>
-  </tr>
-  <tr>
-    <td class="tableContent">HFT</td>
-    <td class="tableContent">500</td>
-    <td class="tableContent">4000</td>
-  </tr>
-  <tr>
-    <td class="tableContent">WG 1</td>
-    <td class="tableContent">2</td>
-    <td class="tableContent">4</td>
-  </tr>
+<table align="center">
+    <tr>
+        <th>Name des Haushalts</th>
+    </tr>
+    <tr *ngFor="let household of households; let i=index">
+        <td>{{ household.name }}</td>
+    </tr>
 </table>
