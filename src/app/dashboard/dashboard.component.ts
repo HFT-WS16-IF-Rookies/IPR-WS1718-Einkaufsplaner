@@ -6,10 +6,12 @@ import { Purchase } from '../Purchase';
 class Household
 {
     private name: string;
+    private id: number;
 
-    constructor(name: string)
+    constructor(name: string, id: number)
     {
         this.name = name;
+        this.id = id;
     }
 }
 
@@ -62,7 +64,8 @@ export class DashboardComponent implements OnInit
                         temp[key].createDate,
                         temp[key].store,
                         (temp[key].store + " - " + temp[key].createDate),
-                        null
+                        null,
+                        temp[key].purchaseID
                     );
                     i++;
                 }
@@ -87,7 +90,8 @@ export class DashboardComponent implements OnInit
                 for(let key in temp)
                 {
                     this.households[i] = new Household(
-                        temp[key].name
+                        temp[key].name,
+                        temp[key].householdID
                     );
                     i++;
                 }
