@@ -5,11 +5,31 @@
 <h4>
     Liste aktiver Einkäufe :
 </h4>
-<ul></ul>
+
+<table align="center">
+    <tr>
+        <th>Laden</th>
+        <th>Erstelldatum</th>
+        <th>Einkäufer</th>
+    </tr>
+    <tr *ngFor="let purchase of purchases; let i=index">
+        <td>{{ purchase.store }}</td>
+        <td>{{ purchase.date }}</td>
+        <td>{{ purchase.purchaser}}</td>
+    </tr>
+
+</table>
 <h4>
     Produkte die gebraucht werden :
 </h4>
-<ul></ul>
+<tr>
+    <th>Produktname</th>
+    <th>Anzahl</th>
+</tr>
+<tr *ngFor="let neededItem of needed; let i=index">
+    <td>{{ neededItem.name }}</td>
+    <td>{{ neededItem.neededAmount }}</td>
+</tr>
 <form>
   <label>Laden : <!--Diese muss man au der Datenbank holen-->
     <select name="Läden">
