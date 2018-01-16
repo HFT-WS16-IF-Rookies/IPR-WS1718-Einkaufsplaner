@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PurchaseComponent } from './purchase/purchase.component';
+import { CreatePurchaseComponent } from './create-purchase/create-purchase.component';
 
 const routes: Routes =
 [
@@ -20,7 +21,8 @@ const routes: Routes =
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'profile', component: ProfileComponent },
-    { path: 'purchase/:id', component: PurchaseComponent }
+    { path: 'purchase/:id', component: PurchaseComponent },
+    { path: 'purchaseCreate', component: CreatePurchaseComponent }
 ];
 
 @NgModule

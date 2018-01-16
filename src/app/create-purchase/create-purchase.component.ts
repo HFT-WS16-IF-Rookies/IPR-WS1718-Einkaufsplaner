@@ -12,10 +12,8 @@ export class CreatePurchaseComponent implements OnInit {
     private http: Http;
     private router: Router;
     private route: ActivatedRoute;
-    private stores: String[];
-    private households: Sting[];
-    private selectedStore: string;
-    private selectedHousehold: string;
+    private stores: string[];
+    private households: string[];
 
     constructor(http: Http, router: Router, route: ActivatedRoute)
     {
@@ -60,12 +58,13 @@ export class CreatePurchaseComponent implements OnInit {
         });
     }
 
-    private makePurchase(): void
+    private makePurchase(storeIndex: number, householdIndex: number): void
     {
+        let data: {[key: string]: string;} = {};
         data['ID'] = JSON.parse(sessionStorage.getItem('currentUser'))['userID'];
-        data['store'] = selectedStore;
-        data['household'] = selectedHousehold;
-        this.http.post('./makePurchase.php'), JSON.stringify(data)).subscribe(res=>
+        data['store'] = this.stores[storeIndex];
+        data['household'] = this.households[householdIndex];
+        this.http.post('./makePurchase.php', JSON.stringify(data)).subscribe(res =>
         {
             if(res.json().metaData.state === "success")
             {
