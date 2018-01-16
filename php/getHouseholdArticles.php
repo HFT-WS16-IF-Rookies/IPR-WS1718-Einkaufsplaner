@@ -29,8 +29,6 @@
     }
 
     $neededArticles = $result->fetch_assoc();
-    /*echo print_r($purchase, true);
-    die();*/
 
     $query = "select * from Articles where householdID = '" . $jsonData['ID'] . "'";
     require './dbConnection.php';
@@ -39,25 +37,13 @@
 
     while(($article = $result->fetch_assoc()) !== null)
     {
-        $query = "select * from Articles";
-
-        require './dbConnection.php';
-        $articleResult = $db->query($query);
-        $db->close();
-        $articleName = $articleResult->fetch_assoc();
-        if ($articleName === null)
-        {
-            http_response_code(500);
-            die();
-        }
-
         $nextArticle = array();
-        $nextArticle['name'] = $articleName['name'];
+        $nextArticle['name'] = $article['name'];
         $nextArticle['currentAmount'] = $article['currentAmount'];
         $nextArticle['minAmount'] = $article['minAmount'];
         $nextArticle['maxAmount'] = $article['maxAmount'];
         $nextArticle['priority'] = $article['priority'];
-        $data[$articleName['name']] = $nextArticle;
+        $data[$article['name']] = $nextArticle;
     }
 
     $metaData = array();
