@@ -19,7 +19,7 @@
         $db->close();
     }
     require './dbConnection.php';
-    $query = "update Purchases set done=true where ID =" .$jsonData[i]['id'];
+    $query = "update Purchases set done=true where ID =".$jsonData[i]['id'];
     $result = $db ->query($query);
     $db->close();
 
