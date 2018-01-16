@@ -3,7 +3,7 @@
 <form name="changePassword">
     <p>Passwort ändern</p>
     <p>Neues Passwort</p>
-    <input type="passowrd" name="newPassword" [(ngModel)]='liveUser.password' value=""><br>
+    <input type="password" name="newPassword" [(ngModel)]='liveUser.password' value=""><br>
     <p>Passwort bestätigen</p>
     <input type="password" name="passwordConfirm" [(ngModel)]='passwordConfirm' value=""><br>
     <button class='btn btn-sucess' (click)='submitPassword()'>Passwort ändern</button><a [innerHTML]="errorMsgPassword"></a>
