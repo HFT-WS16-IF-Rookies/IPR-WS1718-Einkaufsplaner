@@ -1,3 +1,19 @@
-<p>
-  create-purchase works!
-</p>
+<app-nav-bar></app-nav-bar>
+<h2>
+    Einkauf anlegen: <!--name-->
+</h2>
+
+<form name="addPurchaseForm">
+    <label>Laden :
+      <select [ng-value]='selectedStore'>
+        <option *ngFor="let store of stores; let i=index">{{ store }}</option>
+      </select>
+    </label>
+    <label>Laden :
+      <select [ng-value]='selectedHousehold'>
+        <option *ngFor="let household of households; let i=index">{{ store }}</option>
+      </select>
+    </label>
+    <button class='btn btn-success' (click)='makePurchase()'>Einkauf anlegen</button>
+    <input class='btn btn-danger' type='reset' value='Zurücksetzen'>
+</form>
