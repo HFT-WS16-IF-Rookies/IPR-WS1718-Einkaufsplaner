@@ -42,7 +42,7 @@
 
         $nextArticle = array();
         $nextArticle['name'] = $article['name'];
-        $nextArticle['storeIName'] = $article['storeName'];
+        $nextArticle['storeName'] = $storeName;
         $nextArticle['currentAmount'] = $article['currentAmount'];
         $nextArticle['minAmount'] = $article['minAmount'];
         $nextArticle['maxAmount'] = $article['maxAmount'];
