@@ -31,12 +31,9 @@
     <td>{{ neededItem.neededAmount }}</td>
 </tr>
 <form>
-  <label>Laden : <!--Diese muss man au der Datenbank holen-->
-    <select name="Läden">
-      <option>Lidl</option>
-      <option>Aldi</option>
-      <option selected>Rewe</option>
-      <option>Edeka</option>
+  <label>Laden :
+    <select *ngFor="let store of stores; let i=index">
+      <option>{{ store }}</option>
     </select>
   </label>
 </form>
