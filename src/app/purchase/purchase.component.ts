@@ -97,7 +97,7 @@ export class PurchaseComponent implements OnInit
         {
             if(res.json().metaData.state === "success")
             {
-              this.router.navigateByUrl('/dashboard');
+                this.router.navigateByUrl('/dashboard');
             }
         });
     }
