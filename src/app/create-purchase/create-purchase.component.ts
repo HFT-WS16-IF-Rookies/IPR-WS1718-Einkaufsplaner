@@ -58,7 +58,7 @@ export class CreatePurchaseComponent implements OnInit {
         });
 
         data['ID'] = JSON.parse(sessionStorage.getItem('currentUser'))['userID'];
-        this.http.post('./getHousholdName.php', JSON.stringify(data)).subscribe(res =>
+        this.http.post('./getHouseholdName.php', JSON.stringify(data)).subscribe(res =>
         {
             console.log(res.json());
             if (res.status !== 200)
