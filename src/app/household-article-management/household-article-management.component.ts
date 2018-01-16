@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http } from '@angular/http';
+import { Article } from '../Article';
 
 @Component
 ({
@@ -12,6 +13,7 @@ export class HouseholdArticleManagementComponent implements OnInit
 {
     private http: Http;
     private router: Router;
+    private articles: Article[];
 
     constructor(http: Http, router: Router)
     {
@@ -26,5 +28,37 @@ export class HouseholdArticleManagementComponent implements OnInit
             this.router.navigateByUrl('/login');
         }
     }
+
+    let data: {[key: string]: string;} = {};
+    data['ID'] = this.route.snapshot.paramMap.get('id');
+
+    this.http.post('./getHouseholdArticles.php', JSON.stringify(data)).subscribe(res =>
+    {
+        if (res.status !== 200)
+        {
+            return;
+        }
+
+        if(res.json().metaData.state === "success")
+        {
+            let temp = res.json();
+            delete temp.metaData;
+
+            this.articles = new Array((Object.keys(temp)).length);
+            let i = 0;
+
+            for(let key in temp)
+            {
+                this.purchases[i] = new Article(
+                    temp[key].name,
+                    temp[key].currentAmount,
+                    temp[key].minAmount,
+                    temp[key].maxAmount,
+                    temp[key].priority                    
+                );
+                i++;
+            }
+        }
+    });
 
 }
