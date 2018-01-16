@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { Registration } from '../Registration';
 import { Http } from '@angular/http';
 
 @Component
@@ -15,8 +14,10 @@ export class ProfileComponent implements OnInit
 
     private http: Http;
     private router: Router;
-    private liveUser: Registration;
+    private liveUser: {[key: string]: string;};
+    @Input() private password: string;
     @Input() private passwordConfirm: string;
+    @Input() private email: string;
     @Input() private emailConfirm: string;
     private errorMsgMail: string;
     private errorMsgPassword: string;
@@ -25,11 +26,10 @@ export class ProfileComponent implements OnInit
     {
         this.http = http;
         this.router = router;
-        this.liveUser = new Registration();
+        this.liveUser = {};
 
         let currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-        this.liveUser.firstName = currentUser.firstName;
-        this.liveUser.lastName = currentUser.lastName;
+        this.liveUser['userID'] = currentUser.userID;
     }
 
     ngOnInit()
@@ -44,7 +44,7 @@ export class ProfileComponent implements OnInit
     {
         this.errorMsgPassword = "";
 
-        if(this.liveUser.password === "")
+        if(this.password === "")
         {
             this.errorMsgPassword = "Bitte Passwort eingeben";
         }
@@ -54,7 +54,7 @@ export class ProfileComponent implements OnInit
             this.errorMsgPassword = "Bitte Passwort bestätigen";
         }
 
-        if(this.liveUser.password != this.passwordConfirm)
+        if(this.password != this.passwordConfirm)
         {
             this.errorMsgPassword = "Passwörte stimmen nicht überein";
             this.passwordConfirm = "";
@@ -65,12 +65,15 @@ export class ProfileComponent implements OnInit
             return;
         }
 
+        this.liveUser['password'] = this.password;
+        this.liveUser['change'] = 'password';
+
         this.http.post('changeCredentials.php', JSON.stringify(this.liveUser))
             .subscribe(res =>
             {
-                if(res.json().state === "error")
+                if(res.json().metaData.state === "error")
                 {
-                    this.errorMsgPassword = res.json().text;
+                    this.errorMsgPassword = res.json().metaData.text;
                 }
             });
     }
@@ -79,7 +82,7 @@ export class ProfileComponent implements OnInit
     {
         this.errorMsgMail = "";
 
-        if(this.liveUser.email === "")
+        if(this.email === "")
         {
             this.errorMsgMail = "Bitte Email-Adresse eingeben";
         }
@@ -89,7 +92,7 @@ export class ProfileComponent implements OnInit
             this.errorMsgMail = "Bitte Email-Adresse bestätigen";
         }
 
-        if(this.liveUser.email != this.emailConfirm)
+        if(this.email != this.emailConfirm)
         {
             this.errorMsgMail = "Email-Adressen stimmen nicht überein";
             this.emailConfirm = "";
@@ -100,12 +103,15 @@ export class ProfileComponent implements OnInit
             return;
         }
 
+        this.liveUser['email'] = this.email;
+        this.liveUser['change'] = 'email';
+
         this.http.post('changeCredentials.php', JSON.stringify(this.liveUser))
         .subscribe(res =>
         {
-            if(res.json().state === "error")
+            if(res.json().metaData.state === "error")
             {
-                this.errorMsgMail = res.json().text;
+                this.errorMsgMail = res.json().metaData.text;
             }
         });
     }

@@ -1,66 +1,112 @@
 <?php
-    class userInfo
-    {
-        public $firstName;
-        public $lastName;
-        public $email;
-        public $password;
-    }
-
     $jsonData= json_decode(file_get_contents('php://input'), true);
-    echo print_r($jsonData, true);
 
-    $thisUser = new userInfo();
-    $thisUser->firstName = $jsonData['firstName'];
-    $thisUser->lastName = $jsonData['lastName'];
-    $thisUser->email = $jsonData['email'];
-    $thisUser->password = $jsonData['password'];
-
-    if($thisUser->firstName === null || $thisUser->lastName === null)
+    if($jsonData['userID'] === null || $jsonData['change'] === null)
     {
         http_response_code(400);
         die();
     }
 
 
-    $query = "SELECT * FROM $dbDatabase.Users WHERE firstName = '$thisUser->firstName'
-    AND lastName = '$thisUser->lastName'";
+    $query = "SELECT * FROM $dbDatabase.Users WHERE ID = " . $jsonData['userID'];
 
-    require 'dbConnection.php';
+    require './dbConnection.php';
     $result = $db->query($query);
     $db->close();
     $user = $result->fetch_assoc();
-
-    $emailSavedState = $user['email'];
-    $passwordSavedState = $user['password'];
-
-    if($thisUser->email !== "")
+    if ($user === null)
     {
-        changeMail();
-    }
-    elseif($thisUser->password !== "")
-    {
-        changePassword($user['ID']);
+        http_response_code(500);
+        die();
     }
 
-    function changeMail()
+    if($jsonData['change'] === 'email')
     {
-        require 'dbConnection.php';
-        $queryEmailChange = "INSERT INTO $dbDatabase.Users (firstName, lastName, email, password)"
-        + " VALUES('$thisUser->firstName', '$thisUser->lastName',"
-        +" '$thisUser->email', '$passwordSavedState')";
+        changeMail($jsonData['userID'], $jsonData['email']);
+    }
+    elseif($jsonData['change'] === 'password')
+    {
+        changePassword($jsonData['userID'], $jsonData['password']);
+    }
 
-        $dbState = $db->query($queryEmailChange);
+    function changeMail($userID, $email)
+    {
+        $query = "select * from Users where email = '" . $email . "'";
+        require './dbConnection.php';
+        $dbState = $db->query($query);
         $db->close();
+
+        $data = array();
+        if ($dbState->num_rows !== 0)
+        {
+            $metaData = array();
+            $metaData['state'] = 'error';
+            $metaData['text'] = 'email is in use';
+
+            $data['metaData'] = $metaData;
+
+            http_response_code(200);
+            echo json_encode($data);
+            die();
+        }
+
+        $query = "update Users set `email`='" . $email . "' where ID = " . $userID;
+        require './dbConnection.php';
+        $result = $db->query($query);
+        $db->close();
+
+        if (!$result)
+        {
+            $metaData = array();
+            $metaData['state'] = 'error';
+            $metaData['text'] = 'db error';
+
+            $data['metaData'] = $metaData;
+            http_response_code(200);
+            echo json_encode($data);
+            die();
+        }
+        else
+        {
+            $metaData = array();
+            $metaData['state'] = 'success';
+
+            $data['metaData'] = $metaData;
+            http_response_code(200);
+            echo json_encode($data);
+            die();
+        }
     }
 
-    function changePassword($userID)
+    function changePassword($userID, $password)
     {
-        require 'dbConnection.php';
-        $queryPasswordChange = "Update set `password`='" . $thisUser.password ."' where ID = " . $userID;
+        $queryPasswordChange = "Update Users set `password`='" . $password ."' where ID = " . $userID;
 
+        require './dbConnection.php';
         $dbState = $db->query($queryPasswordChange);
         $db->close();
+
+        if (!$dbState)
+        {
+            $metaData = array();
+            $metaData['state'] = 'error';
+            $metaData['text'] = 'db error';
+
+            $data['metaData'] = $metaData;
+            http_response_code(200);
+            echo json_encode($data);
+            die();
+        }
+        else
+        {
+            $metaData = array();
+            $metaData['state'] = 'success';
+
+            $data['metaData'] = $metaData;
+            http_response_code(200);
+            echo json_encode($data);
+            die();
+        }
     }
 
 ?>

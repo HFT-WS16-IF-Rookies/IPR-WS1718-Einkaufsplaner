@@ -17,6 +17,8 @@ import { HouseholdArticleManagementComponent } from './household-article-managem
 import { PurchaseComponent } from './purchase/purchase.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { CreatePurchaseComponent } from './create-purchase/create-purchase.component';
+import { CreateHouseholdComponent } from './create-household/create-household.component';
 
 
 @NgModule
@@ -32,7 +34,9 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
         HouseholdSettingsComponent,
         HouseholdArticleManagementComponent,
         PurchaseComponent,
-        NavBarComponent
+        NavBarComponent,
+        CreatePurchaseComponent,
+        CreateHouseholdComponent
     ],
 
     imports:
