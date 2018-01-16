@@ -105,7 +105,7 @@ export class PurchaseComponent implements OnInit
     private savePurchase(): void
     {
         console.log(JSON.stringify(this.articles))
-        this.http.post('./sPurchase.php', JSON.stringify(this.articles)).subscribe(res =>
+        this.http.post('./savePurchase.php', JSON.stringify(this.articles)).subscribe(res =>
         {
             if(res.json().metaData.state === "success")
             {
