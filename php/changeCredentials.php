@@ -1,55 +1,51 @@
 <?php
-require 'dbConnection.php';
-
-class userInfo{
-    public $firstName;
-    public $lastName;
-    public $email;
-    public $password;
-}
-
-$jsonData= json_decode(file_get_contents('php://input'), true);
-
-$thisUser = new userInfo();
-$thisUser->firstName = $jsonData['firstName'];
-$thisUser->lastName = $jsonData['lastName'];
-$thisUser->email = $jsonData['email'];
-$thisUser->password = $jsonData['password'];
-
-if($thisUser->firstName === null || $thisUSer->lastName === null)
-{
-    http_response_code(400);
-    die();
-}
-
-$query = "SELECT * FROM $dbDatabase.Users WHERE firstName = '$thisUser->firstName'
-AND lastName = '$thisUser->lastName'";
-
-$result = $db->query($query);
-$user = $result->fetch_assoc();
-
-$emailSavedState = $user['email'];
-$passwordSavedState = $user['password'];
-
-if($thisUser->email !== "")
-{
-    changeMail();
-}elseif($thisUser->password !== "")
-{
-    changePassword();
-}
-
-if ($dbState)
-{
-
-}else
+    class userInfo
     {
-        http_response_code(500);
+        public $firstName;
+        public $lastName;
+        public $email;
+        public $password;
+    }
+
+    $jsonData= json_decode(file_get_contents('php://input'), true);
+    echo print_r($jsonData, true);
+
+    $thisUser = new userInfo();
+    $thisUser->firstName = $jsonData['firstName'];
+    $thisUser->lastName = $jsonData['lastName'];
+    $thisUser->email = $jsonData['email'];
+    $thisUser->password = $jsonData['password'];
+
+    if($thisUser->firstName === null || $thisUser->lastName === null)
+    {
+        http_response_code(400);
         die();
+    }
+
+
+    $query = "SELECT * FROM $dbDatabase.Users WHERE firstName = '$thisUser->firstName'
+    AND lastName = '$thisUser->lastName'";
+
+    require 'dbConnection.php';
+    $result = $db->query($query);
+    $db->close();
+    $user = $result->fetch_assoc();
+
+    $emailSavedState = $user['email'];
+    $passwordSavedState = $user['password'];
+
+    if($thisUser->email !== "")
+    {
+        changeMail();
+    }
+    elseif($thisUser->password !== "")
+    {
+        changePassword($user['ID']);
     }
 
     function changeMail()
     {
+        require 'dbConnection.php';
         $queryEmailChange = "INSERT INTO $dbDatabase.Users (firstName, lastName, email, password)"
         + " VALUES('$thisUser->firstName', '$thisUser->lastName',"
         +" '$thisUser->email', '$passwordSavedState')";
@@ -58,14 +54,13 @@ if ($dbState)
         $db->close();
     }
 
-    function changePassword()
+    function changePassword($userID)
     {
-        $queryPasswordChange = "INSERT INTO $dbDatabase.Users (firstName, lastName, email, password)"
-        + " VALUES('$thisUser->firstName', '$thisUser->lastName',"
-        +" '$emailSavedState', '$thisUser->password')";
+        require 'dbConnection.php';
+        $queryPasswordChange = "Update set `password`='" . $thisUser.password ."' where ID = " . $userID;
 
         $dbState = $db->query($queryPasswordChange);
         $db->close();
     }
 
-    ?>
+?>

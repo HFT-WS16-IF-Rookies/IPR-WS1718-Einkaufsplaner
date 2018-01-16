@@ -3,17 +3,17 @@
 <form name="changePassword">
     <p>Passwort ändern</p>
     <p>Neues Passwort</p>
-    <input type="passowrd" name="newPassword" [(ngModel)]='change.password' value=""><br>
+    <input type="passowrd" name="newPassword" [(ngModel)]='liveUser.password' value=""><br>
     <p>Passwort bestätigen</p>
-    <input type="password" name="newPasswordConfirm" [(ngModel)]='change.passwordConfirm' value=""><br>
+    <input type="password" name="passwordConfirm" [(ngModel)]='passwordConfirm' value=""><br>
     <button class='btn btn-sucess' (click)='submitPassword()'>Passwort ändern</button><a [innerHTML]="errorMsgPassword"></a>
 </form>
 
 <form name="changeEMail">
     <p>E-Mail ändern</p>
     <p>Neue E-Mail</p>
-    <input type="text" name="newEMail" [(ngModel)]='change.email' value=""><br>
+    <input type="text" name="newEMail" [(ngModel)]='liveUser.email' value=""><br>
     <p>EMail bestätigen</p>
-    <input type="text" name="newEMailConfirm" [(ngModel)]='change.emailConfirm' value=""><br>
+    <input type="text" name="emailConfirm" [(ngModel)]='emailConfirm' value=""><br>
     <button class='btn btn-sucess' (click)='submitMail()'>Passwort ändern</button><a [innerHTML]="errorMsgMail"></a>
 </form>

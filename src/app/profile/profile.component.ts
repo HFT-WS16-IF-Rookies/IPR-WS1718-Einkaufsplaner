@@ -1,24 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Registration } from '../Registration';
 import { Http } from '@angular/http';
-
-export class currentUser
-{
-    firstName: string;
-    lastName: string;
-    email: string;
-    password: string;
-
-    constructor()
-    {
-        let currentUser = sessionStorage.getItem('currentUser');
-        this.firstName = currentUser['firstName'];
-        this.lastName = currentUser['lastName'];
-        this.email = "";
-        this.password = "";
-    }
-}
 
 @Component
 ({
@@ -26,18 +9,27 @@ export class currentUser
     templateUrl: './profile.component.html',
     styleUrls: ['./profile.component.css']
 })
+
 export class ProfileComponent implements OnInit
 {
 
     private http: Http;
     private router: Router;
-    private liveUser: currentUser;
+    private liveUser: Registration;
+    @Input() private passwordConfirm: string;
+    @Input() private emailConfirm: string;
+    private errorMsgMail: string;
+    private errorMsgPassword: string;
 
     constructor(http: Http, router: Router)
     {
         this.http = http;
         this.router = router;
-        this.liveUser = new currentUser;
+        this.liveUser = new Registration();
+
+        let currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+        this.liveUser.firstName = currentUser.firstName;
+        this.liveUser.lastName = currentUser.lastName;
     }
 
     ngOnInit()
@@ -48,33 +40,30 @@ export class ProfileComponent implements OnInit
         }
     }
 
-    /*
     private submitPassword(): void
     {
         this.errorMsgPassword = "";
 
-        if(this.change.passowrd === "")
+        if(this.liveUser.password === "")
         {
             this.errorMsgPassword = "Bitte Passwort eingeben";
         }
 
-        if(this.change.passwordConfirm === "")
+        if(this.passwordConfirm === "")
         {
             this.errorMsgPassword = "Bitte Passwort bestätigen";
         }
 
-        if(this.change.password != this.change.passwordConfirm)
+        if(this.liveUser.password != this.passwordConfirm)
         {
             this.errorMsgPassword = "Passwörte stimmen nicht überein";
-            this.change.passwordConfirm = "";
+            this.passwordConfirm = "";
         }
 
         if(this.errorMsgPassword != "")
         {
             return;
         }
-
-        this.liveUser.password = this.change.passwordConfirm;
 
         this.http.post('changeCredentials.php', JSON.stringify(this.liveUser))
             .subscribe(res =>
@@ -90,28 +79,26 @@ export class ProfileComponent implements OnInit
     {
         this.errorMsgMail = "";
 
-        if(this.change.email === "")
+        if(this.liveUser.email === "")
         {
             this.errorMsgMail = "Bitte Email-Adresse eingeben";
         }
 
-        if(this.change.emailConfirm === "")
+        if(this.emailConfirm === "")
         {
             this.errorMsgMail = "Bitte Email-Adresse bestätigen";
         }
 
-        if(this.change.email != this.change.emailConfirm)
+        if(this.liveUser.email != this.emailConfirm)
         {
             this.errorMsgMail = "Email-Adressen stimmen nicht überein";
-            this.change.emailConfirm = "";
+            this.emailConfirm = "";
         }
 
         if(this.errorMsgMail != "")
         {
             return;
         }
-
-        this.liveUser.email = this.change.emailConfirm;
 
         this.http.post('changeCredentials.php', JSON.stringify(this.liveUser))
         .subscribe(res =>
@@ -122,5 +109,4 @@ export class ProfileComponent implements OnInit
             }
         });
     }
-    */
 }
