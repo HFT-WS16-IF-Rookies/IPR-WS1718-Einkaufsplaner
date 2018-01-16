@@ -13,6 +13,7 @@ export class HouseholdSettingsComponent implements OnInit
     private http: Http;
     private router: Router;
     private route: ActivatedRoute;
+    private members: string[];
 
     constructor(http: Http, router: Router, route: ActivatedRoute)
     {
@@ -34,18 +35,19 @@ export class HouseholdSettingsComponent implements OnInit
         this.http.post('./getHouseholdMembers.php', JSON.stringify(data)).subscribe(res =>
         {
             let temp = res.json();
-            console.log(temp);
             let metaData = temp.metaData;
             delete temp.metaData;
-
-            console.log(metaData);
-            console.log(temp);
-
             if (metaData.state === 'success')
             {
+                this.members = new Array((Object.keys(temp)).length);
 
+                let i = 0;
+                for (let key in temp)
+                {
+                    this.members[i] = temp[key].firstName + " " + temp[key].lastName;
+                    i++;
+                }
             }
-
         });
     }
 
