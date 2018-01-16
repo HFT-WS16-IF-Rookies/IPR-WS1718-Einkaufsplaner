@@ -16,10 +16,7 @@
         $result = $db ->query($query);
         $db->close();
     }
-    require './dbConnection.php';
-    $query = "update Purchases set done=true where ID =".$jsonData[0]['id'];
-    $result = $db ->query($query);
-    $db->close();
+    
 
     $metaData = array();
     $metaData['state'] = "success";
