@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActiveRoute } from '@angular/router';
 import { Http } from '@angular/http';
 
 @Component
@@ -12,11 +12,13 @@ export class HouseholdSettingsComponent implements OnInit
 {
     private http: Http;
     private router: Router;
+    private route: ActiveRoute;
 
-    constructor(http: Http, router: Router)
+    constructor(http: Http, router: Router, route: ActiveRoute)
     {
         this.http = http;
         this.router = router;
+        this.route = route;
     }
 
     ngOnInit()
@@ -25,6 +27,16 @@ export class HouseholdSettingsComponent implements OnInit
         {
             this.router.navigateByUrl('/login');
         }
+
+        let data: {[key: string]: string;} = {};
+        data['ID'] = this.route.snapshot.paramMap.get('id');
+
+        this.http.post('./getHouseholdMembers.php', JSON.stringify(data)).subscribe(res =>
+        {
+
+        });
     }
+
+
 
 }
