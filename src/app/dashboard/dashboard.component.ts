@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit
 
         let data:{[key: string]: string;} = {};
         data['ID'] = this.route.snapshot.paramMap.get('id');
-        this.http.post(/*php Script*/, JSON.stringify(data)).subscribe(res =>
+        this.http.post('./getUserPurchases.php', JSON.stringify(data)).subscribe(res =>
         {
             if(res.status !== 200)
             {
@@ -51,7 +51,7 @@ export class DashboardComponent implements OnInit
                         temp[key].createDate,
                         temp[key].store,
                         (temp[key].store + " - " + temp[key].createDate),
-                        0
+                        null
                     );
                     i++;
                 }
