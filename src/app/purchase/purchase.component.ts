@@ -95,7 +95,10 @@ export class PurchaseComponent implements OnInit
         console.log(JSON.stringify(this.articles))
         this.http.post('./closePurchase.php', JSON.stringify(this.articles)).subscribe(res =>
         {
-            // TO-DO: keine Ahnung
+            if(res.json().metaData.state === "success")
+            {
+              this.router.navigateByUrl('/dashboard')
+            }
         });
     }
 

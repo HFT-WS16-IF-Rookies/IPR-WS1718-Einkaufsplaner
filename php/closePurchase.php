@@ -11,13 +11,20 @@
     }
 
 
-    require './dbConnection.php';
-    for ($i = 0; $i <= $jsonData.length; $i++) {
 
-        $query = "update PurchaseArticles set found='".$jsonData[i]['found']."' where purchaseID ='"$jsonData[i]['id']"' and articleID='"$jsonData[i]['articleID']"'";
+    for ($i = 0; $i <= $jsonData.length; $i++) {
+        require './dbConnection.php';
+        $query = "update PurchaseArticles set found=".$jsonData[i]['found']." where purchaseID =" .$jsonData[i]['id']." and articleID=".$jsonData[i]['articleID'];
         $result = $db ->query($query);
+        $db.close();
     }
+    require './dbConnection.php';
+    $query = "update Purchases set done=true where ID =" .$jsonData[i]['id'];
+    $result = $db ->query($query);
     $db.close();
 
-
+    $metaData = array();
+    $metaData['state'] = "success";
+    echo json_encode($metaData);
+    die();
 ?>
