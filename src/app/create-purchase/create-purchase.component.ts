@@ -44,6 +44,33 @@ export class CreatePurchaseComponent implements OnInit {
                 let temp = res.json();
                 delete temp.metaData;
 
+                this.households = new Array((Object.keys(temp)).length);
+                let i = 0;
+
+                for(let key in temp)
+                {
+                    this.stores[i] = temp[key].name;
+
+                    console.log(key);
+                    i++;
+                }
+            }
+        });
+
+        data['ID'] = JSON.parse(sessionStorage.getItem('currentUser'))['userID'];
+        this.http.post('./getHouseholdName.php', JSON.stringify(data)).subscribe(res =>
+        {
+            console.log(res.json());
+            if (res.status !== 200)
+            {
+                return;
+            }
+
+            if(res.json().metaData.state === "success")
+            {
+                let temp = res.json();
+                delete temp.metaData;
+
                 this.stores = new Array((Object.keys(temp)).length);
                 let i = 0;
 
