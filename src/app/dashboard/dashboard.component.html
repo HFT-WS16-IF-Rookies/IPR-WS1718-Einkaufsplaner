@@ -1,22 +1,17 @@
 <app-nav-bar></app-nav-bar>
 <h1>Dashboard</h1>
 <div class="temHeadLines">Aktuelle Einkäufe <button id="createPurchase"><span id="plusSign">&#43;</span></button></div>
-<table class="purchaseTable" align="center">
-  <tr>
-    <th class="tableHeader">NamePurchase</th>
-    <th class="tableHeader">Shop</th>
-    <th class="tableHeader">Percent Done</th>
-  </tr>
-  <tr>
-    <td class="tableContent">Lebensmittel</td>
-    <td class="tableContent">Edeka</td>
-    <td class="tableContent">25</td>
-  </tr>
-  <tr>
-    <td class="tableContent">Hardware</td>
-    <td class="tableContent">Conrad</td>
-    <td class="tableContent">0</td>
-  </tr>
+<table align="center">
+    <tr>
+        <th>Name</th>
+        <th>Laden</th>
+        <th>Erstelldatum</th>
+    </tr>
+    <tr *ngFor="let purchase of purchases; let i=index">
+        <td>{{ purchase.name }}</td>
+        <td>{{ purchase.store }}</td>
+        <td>{{ purchase.date}}</td>
+    </tr>
 </table>
 
 <div class="temHeadLines">Deine Haushalte <button id="createHouseholds"><span id="plusSign">&#43;</span></button></div>
