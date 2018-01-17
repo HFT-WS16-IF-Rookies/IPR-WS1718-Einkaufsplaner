@@ -10,6 +10,7 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PurchaseComponent } from './purchase/purchase.component';
 import { CreatePurchaseComponent } from './create-purchase/create-purchase.component';
+import { CreateHouseholdComponent } from './create-purchase/create-household.component';
 
 const routes: Routes =
 [
@@ -22,7 +23,8 @@ const routes: Routes =
     { path: 'register', component: RegisterComponent },
     { path: 'profile', component: ProfileComponent },
     { path: 'purchase/:id', component: PurchaseComponent },
-    { path: 'purchaseCreate', component: CreatePurchaseComponent }
+    { path: 'purchaseCreate', component: CreatePurchaseComponent },
+    { path: 'householdCreate', component: CreateHouseholdComponent }
 ];
 
 @NgModule

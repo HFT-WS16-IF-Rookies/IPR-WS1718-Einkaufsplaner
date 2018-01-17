@@ -103,4 +103,9 @@ export class DashboardComponent implements OnInit
     {
         this.router.navigateByUrl('/purchaseCreate');
     }
+
+    private createHousehold():void
+    {
+        this.router.navigateByUrl('/householdCreate');
+    }
 }
