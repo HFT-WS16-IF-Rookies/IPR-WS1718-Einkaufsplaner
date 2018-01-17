@@ -56,27 +56,29 @@ export class LoginComponent implements OnInit
         data['email'] = this.email;
         data['password'] = this.password;
 
-        this.http.post('./login.php', JSON.stringify(data))
-            .subscribe(res =>
+        this.http.post('./login.php', JSON.stringify(data)).subscribe(res =>
+        {
+            if (res.status !== 200)
             {
-                if (res.status !== 200)
-                {
-                    return;
-                }
+                return;
+            }
 
-                if (res.json().state === "error")
-                {
-                    this.errorMsg = res.json().text;
-                }
+            let jsonData = res.json();
+            let metaData = jsonData.metaData;
+            delete jsonData.metaData;
 
-                if (res.json().state === "success")
-                {
-                    let response: {[key: string]: string;} = res.json();
-                    delete response.state;
-                    sessionStorage.setItem('currentUser', JSON.stringify(response));
+            switch(metaData.state)
+            {
+                case 'error':
+                    this.errorMsg = metaData.text;
+                    break;
+
+                case 'success':
+                    sessionStorage.setItem('currentUser', JSON.stringify(jsonData.user));
                     this.router.navigateByUrl('/dashboard');
-                }
-            });
+                    break;
+            }
+        });
     }
 
 }

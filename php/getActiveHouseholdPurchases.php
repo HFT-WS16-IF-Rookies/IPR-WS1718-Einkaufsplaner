@@ -79,6 +79,7 @@
         $purchaseID = $row['ID'];
         require './getStoreName.php';
 
+        $purchase['purchaseID'] = $purchaseID;
         $purchase['createDate'] = $row['createDate'];
         $purchase['store'] = $storeName;
 
