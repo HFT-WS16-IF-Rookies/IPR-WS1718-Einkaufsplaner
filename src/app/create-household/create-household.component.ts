@@ -58,10 +58,7 @@ export class CreateHouseholdComponent implements OnInit
                 if(res.json().metaData.state === "error")
                 {
                     this.errorMsg = res.json().metaData.text;
-                }
-                if(res.json().metaData.state === "success")
-                {
-                    this.router.navigateByUrl('/household/' + res.json().metaData.id);
+                    return;
                 }
             });
 
