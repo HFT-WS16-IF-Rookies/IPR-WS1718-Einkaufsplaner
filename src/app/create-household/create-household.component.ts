@@ -65,6 +65,7 @@ export class CreateHouseholdComponent implements OnInit
                 }
             });
 
+            this.router.navigateByUrl('/dashboard');
   }
 
   private back()
