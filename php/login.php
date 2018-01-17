@@ -24,10 +24,13 @@
     if ($result->num_rows === 0)
     {
         http_response_code(200);
-        $response = array();
-        $response['state'] = "error";
-        $response['text'] = "Es existiert kein Benutzer mit dieser E-Mail";
-        echo json_encode($response);
+        $metaData = array();
+        $metaData['state'] = "error";
+        $metaData['text'] = "Es existiert kein Benutzer mit dieser E-Mail";
+
+        $data = array();
+        $data['metaData'] = $metaData;
+        echo json_encode($data);
         die();
     }
 
@@ -36,22 +39,31 @@
     if ($user['password'] !== $jsonData['password'])
     {
         http_response_code(200);
-        $response = array();
-        $response['state'] = "error";
-        $response['text'] = "Passwort falsch!";
-        echo json_encode($response);
-        die();
+        $metaData = array();
+        $metaData['state'] = "error";
+        $metaData['text'] = "Passwort falsch!";
+
+        $data = array();
+        $data['metaData'] = $metaData;
+        echo json_encode($data);
     }
 
     session_start();
     $_SESSION['userID'] = $user['ID'];
 
     http_response_code(200);
-    $response = array();
-    $response['state'] = "success";
-    $response['userID'] = $user['ID'];
-    $response['firstName'] = $user['firstName'];
-    $response['lastName'] = $user['lastName'];
-    echo json_encode($response);
+    $metaData = array();
+    $metaData['state'] = "success";
+
+    $data = array();
+    $data['metaData'] = $metaData;
+    $userData = array();
+    $userData['userID'] = $user['ID'];
+    $userData['firstName'] = $user['firstName'];
+    $userData['lastName'] = $user['lastName'];
+    $userData['email'] = $user['email'];
+
+    $data['user'] = $userData;
+    echo json_encode($data);
     die();
 ?>

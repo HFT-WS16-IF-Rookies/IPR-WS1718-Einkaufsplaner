@@ -80,17 +80,40 @@ export class RegisterComponent implements OnInit
             return;
         }
 
-        this.http.post('register.php', JSON.stringify(this.registration))
-            .subscribe(res =>
+        this.http.post('register.php', JSON.stringify(this.registration)).subscribe(res =>
+        {
+            let jsonData = res.json();
+            let metaData = jsonData.metaData;
+            delete jsonData.metaData;
+
+            switch(metaData.state)
             {
-                if (res.json().state === "error")
-                {
-                    this.errorMsg = res.json().text;
-                }
-            });
+                case 'error':
+                    this.errorMsg = metaData.text;
+                    break;
 
-        // TO-DO: check if the registration was successful or there was an error server side
+                case 'success':
+                    let data: {[key: string]: string} = {};
+                    data.email = this.registration.email;
+                    data.password = this.registration.password;
 
+                    this.http.post('login.php', JSON.stringify(data)).subscribe(resLogin =>
+                    {
+                        let jsonDataLogin = resLogin.json();
+                        let metaDataLogin = jsonDataLogin.metaData;
+                        delete jsonDataLogin.metaData;
+
+                        switch(metaDataLogin.state)
+                        {
+                            case 'success':
+                                sessionStorage.setItem('currentUser', JSON.stringify(jsonDataLogin.user));
+                                this.router.navigateByUrl('/dashboard');
+                                break;
+                        }
+                    });
+                    break;
+            }
+        });
     }
 
 }

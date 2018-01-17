@@ -33,10 +33,13 @@
     if ($result->num_rows !== 0)
     {
         http_response_code(200);
-        $response = array();
-        $response['state'] = "error";
-        $response['text'] = "Diese E-Mail wurde bereits registriert.";
-        echo json_encode($response);
+        $metaData = array();
+        $metaData['state'] = "error";
+        $metaData['text'] = "Diese E-Mail wurde bereits registriert.";
+
+        $data = array();
+        $data['metaData'] = $metaData;
+        echo json_encode($data);
         die();
     }
 
@@ -49,13 +52,17 @@
     $dbState = $db->query($query);
     $db->close();
 
-    if ($dbState)
-    {
-        // TO-DO: move on to login
-    }
-    else
+    if (!$dbState)
     {
         http_response_code(500);
         die();
     }
+
+    $metaData = array();
+    $metaData['state'] = "success";
+
+    $data = array();
+    $data['metaData'] = $metaData;
+    echo json_encode($data);
+    die();
 ?>
