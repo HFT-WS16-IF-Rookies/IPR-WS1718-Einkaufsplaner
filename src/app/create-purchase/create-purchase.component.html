@@ -6,12 +6,12 @@
 <form name="addPurchaseForm">
     <label>Laden :
       <select #selectedStore>
-        <option *ngFor="let store of stores; let i=index" [value]="i">{{ store }}</option>
+        <option *ngFor="let store of stores; let i=index" [value]="i">{{ store.name }}</option>
       </select>
     </label>
     <label>Haushalt :
       <select #selectedHousehold>
-        <option *ngFor="let household of households; let i=index" [value]="i">{{ store }}</option>
+        <option *ngFor="let household of households; let i=index" [value]="i">{{ household.name }}</option>
       </select>
     </label>
     <button class='btn btn-success' (click)='makePurchase(selectedStore.value, selectedHousehold.value)'>Einkauf anlegen</button>

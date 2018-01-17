@@ -40,6 +40,7 @@
 
         $nextStore = array();
         $nextArticle['name'] = $row['name'];
+        $nextArticle['storeID'] = $row['ID'];
         $data[$row['name']] = $nextArticle;
 
     }
