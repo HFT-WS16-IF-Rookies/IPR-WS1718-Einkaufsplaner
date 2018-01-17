@@ -12,8 +12,8 @@
     {
         http_response_code(200);
         $metaData = array();
-        $metaData['state'] = "dumbUser";
-        $metaData['reason'] = "not found";
+        $metaData['state'] = "error";
+        $metaData['case'] = "no articles needed from this store";
         $data['metaData'] = $metaData;
         echo json_encode($data);
         die();
@@ -22,7 +22,14 @@
     $query = "insert into Purchases (userID) values(".$jsonData['user']['ID'].")";
     require './dbConnection.php';
     if (!$db->query($query)) {
-        http_response_code(500);
+        http_response_code(200);
+        $metaData['state'] = 'error';
+        $metaData['case'] = 'create new purchase failed';
+
+        $data = array();
+        $data['metaData'] = $metaData;
+
+        echo json_encode($data);
         die();
     }
     $last_id = $db->insert_id;
@@ -32,7 +39,14 @@
     require './dbConnection.php';
     if (!$db->query($query))
     {
-        http_response_code(500);
+        http_response_code(200);
+        $metaData['state'] = 'error';
+        $metaData['case'] = 'assign household to purchase failed';
+
+        $data = array();
+        $data['metaData'] = $metaData;
+
+        echo json_encode($data);
         die();
     }
     $db->close();
@@ -43,7 +57,14 @@
         require './dbConnection.php';
         if(!$db->query($query))
         {
-            http_response_code(500);
+            http_response_code(200);
+            $metaData['state'] = 'error';
+            $metaData['case'] = 'higher current amount failed';
+
+            $data = array();
+            $data['metaData'] = $metaData;
+
+            echo json_encode($data);
             die();
         }
 
@@ -52,4 +73,12 @@
         $db->query($query);
         $db->close();
     }
+
+    $metaData['state'] = 'success';
+    $metaData['purchaseID'] = $last_id;
+
+    $data = array();
+    $data['metaData'] = $metaData;
+
+    echo json_encode($data);
 ?>
