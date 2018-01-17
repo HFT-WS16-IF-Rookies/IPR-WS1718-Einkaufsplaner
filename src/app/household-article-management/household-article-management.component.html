@@ -44,5 +44,12 @@
         </td>
         <td><button class="btn btn-success" (click)='addArticle(selectedPriority.value, selectedStore.value)'>Hinzufuegen</button></td>
     </tr>
-
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><p>neuen Laden anlegen: </p></td>
+        <td><input type='text' [(ngModel)]='newStore' name='newStore'/></td>
+        <td><button class='btn btn-success' (click)='addStore()'>Erstellen</button></td>
+    </tr>
 </table>

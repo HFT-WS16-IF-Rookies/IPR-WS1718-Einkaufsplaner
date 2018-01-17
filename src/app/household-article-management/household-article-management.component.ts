@@ -99,7 +99,28 @@ export class HouseholdArticleManagementComponent implements OnInit
                 this.getStores();
             }
         });
+    }
 
+    private addStore():void
+    {
+        let data: {[key: string]: string} = {};
+        data['newStoreName'] = this.newStore;
+        this.http.post('./createStore.php', JSON.stringify(data)).subscribe(res =>
+        {
+            let jsonData = res.json();
+            let metaData = jsonData.metaData;
+            delete jsonData.metaData;
+
+            switch(metaData.state)
+            {
+                case 'success':
+                    this.getStores();
+                    break;
+
+                case 'error':
+                    break;
+            }
+        });
     }
 
     public getStores():void
