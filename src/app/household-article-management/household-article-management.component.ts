@@ -15,6 +15,13 @@ export class HouseholdArticleManagementComponent implements OnInit
     private router: Router;
     private route: ActivatedRoute;
     private articles: Article[];
+    private newName: string;
+    private newStore: string;
+    private newCurrentAmount: number;
+    private newMinAmount: number;
+    private newMaxAmount: number;
+    private stores: {[key: string]: string;}[];
+
 
     constructor(http: Http, router: Router, route: ActivatedRoute)
     {
@@ -30,7 +37,13 @@ export class HouseholdArticleManagementComponent implements OnInit
             this.router.navigateByUrl('/login');
         }
 
+        this.getArticles();
+        this.getStores();
 
+    }
+
+    public getArticles():void
+    {
         let data: {[key: string]: string;} = {};
         data['ID'] = this.route.snapshot.paramMap.get('id');
 
@@ -59,6 +72,58 @@ export class HouseholdArticleManagementComponent implements OnInit
                         temp[key].maxAmount,
                         temp[key].priority
                     );
+                    i++;
+                }
+            }
+        });
+    }
+
+    public addArticle(priority: string, storeIndex: number):void
+    {
+        console.log('priority = ' + priority);
+        let data: {[key: string]: string;} = {};
+        data['ID'] = this.route.snapshot.paramMap.get('id');
+        data['name'] = this.newName;
+        data['storeID'] = this.stores[storeIndex]['storeID'];
+
+        data['currentAmount'] = ""+this.newCurrentAmount;
+        data['minAmount'] = ""+this.newMinAmount;
+        data['maxAmount'] = ""+this.newMaxAmount;
+        data['priority'] = priority;
+
+        this.http.post('./addArticle.php', JSON.stringify(data)).subscribe(res =>
+        {
+            if(res.json().metaData.state === "success")
+            {
+                this.getArticles();
+                this.getStores();
+            }
+        });
+
+    }
+
+    public getStores():void
+    {
+        this.http.post('./getStores.php', '{}').subscribe(res =>
+        {
+            if (res.status !== 200)
+            {
+                return;
+            }
+
+            if(res.json().metaData.state === "success")
+            {
+                let temp = res.json();
+                delete temp.metaData;
+
+                this.stores = new Array((Object.keys(temp)).length);
+                let i = 0;
+
+                for(let key in temp)
+                {
+                    this.stores[i] = {};
+                    this.stores[i]['name'] = temp[key].name;
+                    this.stores[i]['storeID'] = temp[key].storeID;
                     i++;
                 }
             }
