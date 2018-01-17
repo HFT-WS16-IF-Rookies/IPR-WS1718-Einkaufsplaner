@@ -21,6 +21,29 @@
     $result = $db ->query($query);
     $db->close();
 
+    for ($i=0; $i < sizeof($jsonData); $i++)
+    {
+        $query = "select amount, found from PurchaseArticles where purchaseID="
+            .$jsonData[$i]['id'] . " and articleID="
+            .$jsonData[$i]['articleID'];
+
+        require './dbConnection.php';
+        $result = $db->query($query);
+        $db->close();
+
+        $row = $result->fetch_assoc();
+        $query = "update Articles set currentAmount=currentAmount-"
+            . ($row['amount'] - $row['found'])
+            . " where ID=" . $jsonData[$i]['articleID'];
+
+        require './dbConnection.php';
+        if (!$db->query($query))
+        {
+            http_response_code(500);
+            die();
+        }
+    }
+
     $metaData = array();
     $metaData['state'] = "success";
     $data = array();
