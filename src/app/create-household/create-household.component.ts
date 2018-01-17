@@ -52,16 +52,19 @@ export class CreateHouseholdComponent implements OnInit
 
         this.newHousehold['name'] = this.nameNewHousehold;
 
-        this.http.post('', JSON.stringify(this.newHousehold))
+        this.http.post('createHousehold.php', JSON.stringify(this.newHousehold))
             .subscribe(res =>
             {
                 if(res.json().metaData.state === "error")
                 {
                     this.errorMsg = res.json().metaData.text;
                 }
+                if(res.json().metaData.state === "success")
+                {
+                    this.router.navigateByUrl('/household/' + res.json().metaData.id);
+                }
             });
 
-            // TO DO Needs redirecting to just created household
   }
 
   private back()
