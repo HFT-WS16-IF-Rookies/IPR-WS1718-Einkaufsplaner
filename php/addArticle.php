@@ -3,9 +3,10 @@
 
     $jsonData = json_decode(file_get_contents('php://input'), true);
 
+    $query = "INSERT INTO Articles (storeID, householdID, name, currentAmount, minAmount, maxAmount, priority)"
+                ." VALUES (".$jsonData['storeID'].",".$jsonData['ID'].",'".$jsonData['name']."',".$jsonData['currentAmount'].",".$jsonData['minAmount'].",".$jsonData['maxAmount'].",'".$jsonData['priority']."')";
+
     require './dbConnection.php';
-    $query = "INSERT INTO Articles(storeID, householdID, name, currentAmount, minAmount, maxAmount, priority)
-                VALUES (".$jsonData['storeID'].",".$jsonData['ID'].",".$jsonData['name'].",".$jsonData['currentAmount'].",".$jsonData['minAmount'].",".$jsonData['maxAmount'].",".$jsonData['priority'].")";
     $result = $db ->query($query);
     $db->close();
 

@@ -37,8 +37,8 @@ export class HouseholdArticleManagementComponent implements OnInit
             this.router.navigateByUrl('/login');
         }
 
-        getArticles();
-        getStores();
+        this.getArticles();
+        this.getStores();
 
     }
 
@@ -80,29 +80,23 @@ export class HouseholdArticleManagementComponent implements OnInit
 
     public addArticle(priority: string, storeIndex: number):void
     {
+        console.log('priority = ' + priority);
         let data: {[key: string]: string;} = {};
         data['ID'] = this.route.snapshot.paramMap.get('id');
-        data['name'] = newName;
-        if(storeIndex === -1)
-        {
-            data['storeID'] = newStore;
-        }
-        else
-        {
-            data['storeID'] = stores
-        }
+        data['name'] = this.newName;
+        data['storeID'] = this.stores[storeIndex]['storeID'];
 
-        data['currentAmount'] = newCurrentAmount;
-        data['minAmount'] = newMinAmount;
-        data['maxAmount'] = newMaxAmount;
+        data['currentAmount'] = ""+this.newCurrentAmount;
+        data['minAmount'] = ""+this.newMinAmount;
+        data['maxAmount'] = ""+this.newMaxAmount;
         data['priority'] = priority;
 
-        this.http.post('./addHouseholdArticles.php', JSON.stringify(data)).subscribe(res =>
+        this.http.post('./addArticle.php', JSON.stringify(data)).subscribe(res =>
         {
             if(res.json().metaData.state === "success")
             {
-                getArticles();
-                getStores();
+                this.getArticles();
+                this.getStores();
             }
         });
 
@@ -110,7 +104,7 @@ export class HouseholdArticleManagementComponent implements OnInit
 
     public getStores():void
     {
-        this.http.post('./getStores.php', JSON.stringify(data)).subscribe(res =>
+        this.http.post('./getStores.php', '{}').subscribe(res =>
         {
             if (res.status !== 200)
             {

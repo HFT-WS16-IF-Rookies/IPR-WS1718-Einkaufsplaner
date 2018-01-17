@@ -26,24 +26,23 @@
         <td>{{ article.priority }}</td>
     </tr>
     <tr>
-        <td><input type='input' [(ngModel)]='name' name="name"/></td>
+        <td><input type='input' [(ngModel)]='newName' name="name"/></td>
         <td>
             <select #selectedStore>
               <option *ngFor="let store of stores; let i=index" [value]="i">{{ store.name }}</option>
-              <option [value]='-1' ><input type='input' [(ngModel)]='newStore' name="store" /></option>
             </select>
         </td>
-        <td><input type='number' [(ngModel)]='newAmount' name="amount"/></td>
+        <td><input type='number' [(ngModel)]='newCurrentAmount' name="amount"/></td>
         <td><input type='number' [(ngModel)]='newMinAmount' name="minAmount"/></td>
         <td><input type='number' [(ngModel)]='newMaxAmount' name="maxAmount"/></td>
         <td>
             <select #selectedPriority>
-                <option [value]="low">low</option>
-                <option [value]="medium" selected>medium</option>
-                <option [value]="high">high</option>
+                <option [value]="'low'">low</option>
+                <option [value]="'medium'" selected>medium</option>
+                <option [value]="'high'">high</option>
             </select>
         </td>
-        <td><button class="btn btn-success" (click)='addArticle(selectedStore.value, selectedPriority.value)'>Hinzufuegen</button></td>
+        <td><button class="btn btn-success" (click)='addArticle(selectedPriority.value, selectedStore.value)'>Hinzufuegen</button></td>
     </tr>
 
 </table>
