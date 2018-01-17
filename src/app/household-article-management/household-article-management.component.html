@@ -1,6 +1,6 @@
 <app-nav-bar></app-nav-bar>
 <h2>
-    Artikel managen
+    Artikel Management
 </h2>
 <form action="">
   Artikel Suchen: <input type="text" name="name"><input type="submit" value="Suchen">
@@ -10,12 +10,12 @@
 </h4>
 <table align="center">
     <tr>
-        <th>Artikelname</th>
-        <th>Ladenname</th>
-        <th>Aktuelle Anzahl</th>
-        <th>Mindestanzahl</th>
-        <th>Maximalanzahl</th>
-        <th>Priorität</th>
+        <th>Artikelname |</th>
+        <th> Ladenname |</th>
+        <th> Aktuelle Anzahl |</th>
+        <th> Mindestanzahl |</th>
+        <th> Maximalanzahl |</th>
+        <th> Priorität</th>
     </tr>
     <tr *ngFor="let article of articles; let i=index">
         <td>{{ article.name }}</td>
@@ -37,9 +37,9 @@
         <td><input type='number' [(ngModel)]='newMaxAmount' name="maxAmount"/></td>
         <td>
             <select #selectedPriority>
-                <option [value]="'low'">low</option>
-                <option [value]="'medium'" selected>medium</option>
-                <option [value]="'high'">high</option>
+                <option [value]="'low'">niedrig</option>
+                <option [value]="'medium'" selected>normal</option>
+                <option [value]="'high'">hoch</option>
             </select>
         </td>
         <td><button class="btn btn-success" (click)='addArticle(selectedPriority.value, selectedStore.value)'>Hinzufuegen</button></td>

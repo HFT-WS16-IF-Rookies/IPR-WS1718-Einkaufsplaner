@@ -5,9 +5,9 @@
 
 <table align="center">
     <tr>
-        <th>Produktname</th>
-        <th>Opt.Anzahl</th>
-        <th>gekaufte Anzahl</th>
+        <th>Produktname |</th>
+        <th> Opt.Anzahl |</th>
+        <th> gekaufte Anzahl</th>
     </tr>
     <tr *ngFor="let article of articles; let i=index">
         <td><pre><input type="checkbox" [checked]="generateCheckedBoolean(article)" (change)="toggleFound(article)">{{ article.name }}</pre></td>
