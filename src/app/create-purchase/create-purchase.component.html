@@ -11,7 +11,7 @@
     </label>
     <label>Haushalt :
       <select #selectedHousehold>
-        <option *ngFor="let household of households; let i=index" [value]="i">{{ store }}</option>
+        <option *ngFor="let household of households; let i=index" [value]="i">{{ household }}</option>
       </select>
     </label>
     <button class='btn btn-success' (click)='makePurchase(selectedStore.value, selectedHousehold.value)'>Einkauf anlegen</button>
