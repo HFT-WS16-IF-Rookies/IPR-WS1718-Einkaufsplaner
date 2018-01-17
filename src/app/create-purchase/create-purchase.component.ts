@@ -14,6 +14,7 @@ export class CreatePurchaseComponent implements OnInit {
     private route: ActivatedRoute;
     private stores: {[key: string]: string;}[];
     private households: {[key: string]: string;}[];
+    private errorMsg: string;
 
     constructor(http: Http, router: Router, route: ActivatedRoute)
     {
@@ -95,9 +96,19 @@ export class CreatePurchaseComponent implements OnInit {
         console.log(JSON.stringify(data));
         this.http.post('./makePurchase.php', JSON.stringify(data)).subscribe(res =>
         {
-            if(res.json().metaData.state === "success")
+            let jsonData = res.json();
+            let metaData = jsonData.metaData;
+            delete jsonData.metaData;
+
+            switch(metaData.state)
             {
-                this.router.navigateByUrl('/purchase/' + res.json().metaData.id);
+                case 'success':
+                    this.router.navigateByUrl('/purchase/' + res.json().metaData.purchaseID);
+                    break;
+
+                case 'error':
+                    this.errorMsg = metaData.case;
+                    break;
             }
         });
     }
