@@ -10,16 +10,10 @@
 
 <table align="center">
     <tr>
-<<<<<<< HEAD
-        <th>Name</th>
-        <th>Laden</th>
-        <th>Erstelldatum</th>
-        <th>Einkäufer</th>
-=======
-        <th>Laden </th>
-        <th>| Erstelldatum |</th>
-        <th> Einkäufer</th>
->>>>>>> kevin
+        <th>Name </th>
+        <th>| Laden </th>
+        <th>| Erstelldatum </th>
+        <th>| Einkäufer</th>
     </tr>
     <tr *ngFor="let purchase of purchases; let i=index">
         <td><a [routerLink]="['/purchase/', purchase.id]">{{ purchase.name }}</a></td>
