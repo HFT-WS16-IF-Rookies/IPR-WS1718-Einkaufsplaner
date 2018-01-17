@@ -5,14 +5,14 @@
 <h4>
     Liste aktiver Einkäufe :
 </h4>
-<a [routerLink]="['/household/', id, 'articles']">Artikel-Manangement</a>
+<a [routerLink]="['/household/', id, 'articles']">Artikel-Manangement</a> |
 <a [routerLink]="['/household/', id, 'settings']">Haushalt-Einstellungen</a>
 
 <table align="center">
     <tr>
-        <th>Laden</th>
-        <th>Erstelldatum</th>
-        <th>Einkäufer</th>
+        <th>Laden </th>
+        <th>| Erstelldatum |</th>
+        <th> Einkäufer</th>
     </tr>
     <tr *ngFor="let purchase of purchases; let i=index">
         <td>{{ purchase.store }}</td>
@@ -25,8 +25,8 @@
     Produkte die gebraucht werden :
 </h4>
 <tr>
-    <th>Produktname</th>
-    <th>Anzahl</th>
+    <th>Produktname |</th>
+    <th> Anzahl</th>
 </tr>
 <tr *ngFor="let neededItem of needed; let i=index">
     <td>{{ neededItem.name }}</td>
