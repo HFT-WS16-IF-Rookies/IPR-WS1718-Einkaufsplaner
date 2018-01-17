@@ -70,7 +70,8 @@ export class HouseholdArticleManagementComponent implements OnInit
                         temp[key].currentAmount,
                         temp[key].minAmount,
                         temp[key].maxAmount,
-                        temp[key].priority
+                        temp[key].priority,
+                        temp[key].id
                     );
                     i++;
                 }
@@ -148,6 +149,14 @@ export class HouseholdArticleManagementComponent implements OnInit
                     i++;
                 }
             }
+        });
+    }
+
+    private deleteArticle(id: number): void
+    {
+        console.log(JSON.stringify(this.article[id].getID()));
+        this.http.post('./deleteArticle.php', JSON.stringify(this.article[id].getID())).subscribe(res =>
+        {
         });
     }
 }
