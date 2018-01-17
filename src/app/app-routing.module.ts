@@ -10,7 +10,7 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PurchaseComponent } from './purchase/purchase.component';
 import { CreatePurchaseComponent } from './create-purchase/create-purchase.component';
-import { CreateHouseholdComponent } from './create-purchase/create-household.component';
+import { CreateHouseholdComponent } from './create-household/create-household.component';
 
 const routes: Routes =
 [
