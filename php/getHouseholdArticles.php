@@ -47,6 +47,7 @@
         $nextArticle['minAmount'] = $article['minAmount'];
         $nextArticle['maxAmount'] = $article['maxAmount'];
         $nextArticle['priority'] = $article['priority'];
+        $nextArticle['ID'] = $article['ID'];
         $data[$article['name']] = $nextArticle;
     }
 
