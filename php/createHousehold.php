@@ -28,7 +28,7 @@
     }
 
     require './dbConnection.php';
-    $query = "INSERT INTO HouseholdUsers (HouseholdID, userID) VALUES(" . $last_id . ", '" . $jsonData['ID'] . "')";
+    $query = "INSERT INTO HouseholdUsers (HouseholdID, userID) VALUES(" . $last_id . ", " . $jsonData['userID'] . ")";
     $dbState = $db->query($query);
     $db->close();
 
