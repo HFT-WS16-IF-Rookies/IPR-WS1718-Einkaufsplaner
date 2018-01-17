@@ -3,30 +3,31 @@
 
     $jsonData = json_decode(file_get_contents('php://input'), true);
 
-    echo print_r($jsonData, true);
-
+    $query = "insert into Purchases (userID) values(".$jsonData['user']['ID'].")";
     require './dbConnection.php';
-    $query = "insert into Purchases (userID) values(".$jsonData['id'].")";
-    $result = $db ->query($query);
-    $db->close();
-
-    require './dbConnection.php';
-    $query = "insert into Purchases (userID) values(".$jsonData['id'].")";
-    if ($db->query($query) === TRUE) {
+    if (!$db->query($query)) {
+        http_response_code(500);
+        die();
+    }
     $last_id = $db->insert_id;
     $db->close();
 
+    $query = "insert into PurchaseHouseholds (purchaseID, householdID) values(".$last_id.",".$jsonData['household']['householdID'].")";
     require './dbConnection.php';
-    $query = "insert into PurchaseHouseholds (purchaseID, userID) values("$last_id",".$jsonData['ID'].")";
+    $result = $db->query($query);
+    if (!$result)
+    {
+        http_response_code(500);
+        die();
+    }
+    $db->close();
+
+    $query = "select * from Articles where householdID = " . $jsonData['household']['householdID'] . " and storeID = ".$jsonData['store']['storeID']." and currentAmount < maxAmount";
+    require './dbConnection.php';
     $result = $db->query($query);
     $db->close();
 
-    require './dbConnection.php';
-    $query = "select * from Articles where householdID = '" . $jsonData['ID'] . "' and storeID = '".$jsonData['store']."' and currentAmount < maxAmount";
-    $result = $db->query($query);
-    $db->close();
-
-    if ($result->num_rows === 0)
+    if($result->num_rows === 0)
     {
         http_response_code(200);
         $metaData = array();
@@ -39,21 +40,9 @@
 
     while(($article = $result->fetch_assoc()) !== null)
     {
-        if ($article['name'] === null)
-        {
-            http_response_code(500);
-            die();
-        }
-
-            $nextArticle = array();
-            $nextArticle['name'] = $article['name'];
-            $nextArticle['neededAmount'] = $article['maxAmount'] - $article['currentAmount'];
-            $nextArticle['ID'] = $article['ID']
-
+        $query = "insert into PurchaseArticles (purchaseID, articleID, amount, found) values(".$last_id.", ".$article['ID'].", ".($article['maxAmount'] - $article['currentAmount']).", 0)";
+        require './dbConnection.php';
+        $db->query($query);
+        $db->close();
     }
-
-    require './dbConnection.php';
-    $query = "insert into PurchaseArticles (purchaseID, userID) values("$last_id",".$jsonData['ID'].")";
-    $result = $db->query($query);
-    $db->close();
 ?>
