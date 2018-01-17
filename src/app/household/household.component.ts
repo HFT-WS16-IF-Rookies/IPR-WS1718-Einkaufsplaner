@@ -18,6 +18,7 @@ export class HouseholdComponent implements OnInit
     private purchases: Purchase[];
     private needed: NeededArticle[];
     private stores: String[];
+    private id: String;
 
     constructor(http: Http, router: Router, route: ActivatedRoute)
     {
@@ -32,6 +33,7 @@ export class HouseholdComponent implements OnInit
         {
             this.router.navigateByUrl('/login');
         }
+        this.id = this.route.snapshot.paramMap.get('id');
 
         let data: {[key: string]: string;} = {};
         data['ID'] = this.route.snapshot.paramMap.get('id');
