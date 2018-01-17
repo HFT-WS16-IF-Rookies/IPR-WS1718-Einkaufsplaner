@@ -58,7 +58,8 @@ export class HouseholdComponent implements OnInit
                         temp[key].createDate,
                         temp[key].store,
                         (temp[key].store + " - " + temp[key].createDate),
-                        temp[key].user
+                        temp[key].user,
+                        temp[key].purchaseID
                     );
                     i++;
                 }
