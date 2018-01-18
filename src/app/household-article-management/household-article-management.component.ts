@@ -71,7 +71,7 @@ export class HouseholdArticleManagementComponent implements OnInit
                         temp[key].minAmount,
                         temp[key].maxAmount,
                         temp[key].priority,
-                        temp[key].id
+                        temp[key].ID
                     );
                     i++;
                 }
@@ -155,8 +155,7 @@ export class HouseholdArticleManagementComponent implements OnInit
     private deleteArticle(id: number): void
     {
         console.log(id);
-        console.log(JSON.stringify(this.articles[id].getID()));
-        this.http.post('./deleteArticle.php', JSON.stringify(this.articles[id].getID())).subscribe(res =>
+        this.http.post('./deleteArticle.php', JSON.stringify(id)).subscribe(res =>
         {
         });
     }
