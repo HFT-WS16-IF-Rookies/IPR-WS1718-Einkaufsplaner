@@ -26,12 +26,12 @@ export class EditArticleComponent implements OnInit
 
     ngOnInit()
     {
-        let id = this.route.snapshot.paramMap.get('id');
+        let articleID = this.route.snapshot.paramMap.get('articleID');
         let request: {[key: string]: string} = {};
-        request['articleID'] = id;
+        request['articleID'] = articleID;
         this.http.post('./getArticle.php', JSON.stringify(request)).subscribe(res =>
         {
-
+            console.log(res.json());
         });
     }
 
