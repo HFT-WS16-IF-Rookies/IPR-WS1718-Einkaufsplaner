@@ -11,6 +11,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { PurchaseComponent } from './purchase/purchase.component';
 import { CreatePurchaseComponent } from './create-purchase/create-purchase.component';
 import { CreateHouseholdComponent } from './create-household/create-household.component';
+import { EditArticleComponent } from './edit-article/edit-article.component';
 
 const routes: Routes =
 [
