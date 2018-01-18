@@ -2,24 +2,35 @@
 <h2>
     Einkauf: <!--name-->
 </h2>
+<div class="container">
+    <div class="row">
+        <div class="col-sm"></div>
+        <div class="col-sm">
+            <table class="table table-striped" align="center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Produktname</th>
+                        <th scope="col">Opt.Anzahl</th>
+                        <th scope="col">gekaufte Anzahl</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let article of articles; let i=index">
+                        <td><pre><input type="checkbox" [checked]="generateCheckedBoolean(article)" (change)="toggleFound(article)">{{ article.name }}</pre></td>
+                        <td>{{ article.amount }}</td>
+                        <td>
+                            <form>
+                                <input type="number" [(ngModel)]="article.found" name="found">
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 
-<table align="center">
-    <tr>
-        <th>Produktname |</th>
-        <th> Opt.Anzahl |</th>
-        <th> gekaufte Anzahl</th>
-    </tr>
-    <tr *ngFor="let article of articles; let i=index">
-        <td><pre><input type="checkbox" [checked]="generateCheckedBoolean(article)" (change)="toggleFound(article)">{{ article.name }}</pre></td>
-        <td>{{ article.amount }}</td>
-        <td>
-            <form>
-                <input type="number" [(ngModel)]="article.found" name="found">
-            </form>
-        </td>
-    </tr>
-
-</table>
-
-<button class="btn btn-primary" (click)='savePurchase()' name="save">Speichern</button>
-<button class="btn btn-success" (click)='closePurchase()' name="close">Einkauf beenden</button>
+            <button class="btn btn-primary" (click)='savePurchase()' name="save">Speichern</button>
+            <button class="btn btn-success" (click)='closePurchase()' name="close">Einkauf beenden</button>
+        </div>
+        <div class="col-sm">
+        </div>
+    </div>
+</div>

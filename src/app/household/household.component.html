@@ -7,38 +7,48 @@
     Liste aktiver Einkäufe :
 </h4>
 
-<table align="center">
-    <tr>
-        <th>Name </th>
-        <th>| Laden </th>
-        <th>| Erstelldatum </th>
-        <th>| Einkäufer</th>
-    </tr>
-    <tr *ngFor="let purchase of purchases; let i=index">
-        <td><a [routerLink]="['/purchase/', purchase.id]">{{ purchase.name }}</a></td>
-        <td>{{ purchase.store }}</td>
-        <td>{{ purchase.date }}</td>
-        <td>{{ purchase.purchaser}}</td>
-    </tr>
+<div class="container">
+    <div class="row">
+        <div class="col-sm"></div>
+        <div class="col-sm">
+            <table class="table table-striped" align="center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Laden</th>
+                        <th scope="col">Erstelldatum</th>
+                        <th scope="col">Einkäufer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let purchase of purchases; let i=index">
+                        <td><a [routerLink]="['/purchase/', purchase.id]">{{ purchase.name }}</a></td>
+                        <td>{{ purchase.store }}</td>
+                        <td>{{ purchase.date }}</td>
+                        <td>{{ purchase.purchaser}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h4>
+                Produkte die gebraucht werden :
+            </h4>
+            <table class="table table-striped" align="center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Produktname</th>
+                        <th scope="col">Anzahl</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let neededItem of needed; let i=index">
+                        <td>{{ neededItem.name }}</td>
+                        <td>{{ neededItem.neededAmount }}</td>
+                    </tr>
+                </tbody>
+            </table>
 
-</table>
-<h4>
-    Produkte die gebraucht werden :
-</h4>
-<tr>
-    <th>Produktname |</th>
-    <th> Anzahl</th>
-</tr>
-<tr *ngFor="let neededItem of needed; let i=index">
-    <td>{{ neededItem.name }}</td>
-    <td>{{ neededItem.neededAmount }}</td>
-</tr>
-<form>
-  <label>Laden :
-    <select>
-      <option *ngFor="let store of stores; let i=index">{{ store }}</option>
-    </select>
-  </label>
-</form>
-
-<button class='btn btn-success' (click)="createPurchase()">Einkauf anlegen</button>
+            <button class='btn btn-success' (click)="createPurchase()">Einkauf anlegen</button>
+        </div>
+        <div class="col-sm"></div>
+    </div>
+</div>

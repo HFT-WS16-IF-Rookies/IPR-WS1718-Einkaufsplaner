@@ -18,7 +18,6 @@
     if($db->query($query) === true)
     {
         $last_id = $db->insert_id;
-        echo "just generated id" . $last_id;
         $db->close();
     }
     else

@@ -21,7 +21,7 @@
         http_response_code(200);
         $metaData = array();
         $metaData['state'] = "dumbUser";
-        $metaData['reason'] = "not found";
+        $metaData['reason'] = "nicht gefunden";
         $data['metaData'] = $metaData;
         echo json_encode($data);
         die();
@@ -44,7 +44,7 @@
     {
         $metaData = array();
         $metaData['state'] = "success";
-        $metaData['response'] = "emtpy";
+        $metaData['response'] = "leer";
 
         $data['metaData'] = $metaData;
         http_response_code(200);

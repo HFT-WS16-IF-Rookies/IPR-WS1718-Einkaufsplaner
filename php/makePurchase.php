@@ -13,7 +13,7 @@
         http_response_code(200);
         $metaData = array();
         $metaData['state'] = "error";
-        $metaData['case'] = "no articles needed from this store";
+        $metaData['case'] = "Es wird nichts von diesem Laden benötigt";
         $data['metaData'] = $metaData;
         echo json_encode($data);
         die();
@@ -24,7 +24,7 @@
     if (!$db->query($query)) {
         http_response_code(200);
         $metaData['state'] = 'error';
-        $metaData['case'] = 'create new purchase failed';
+        $metaData['case'] = 'Fehler beim Erstellen des Einkaufs';
 
         $data = array();
         $data['metaData'] = $metaData;
@@ -41,7 +41,7 @@
     {
         http_response_code(200);
         $metaData['state'] = 'error';
-        $metaData['case'] = 'assign household to purchase failed';
+        $metaData['case'] = 'Einkauf konnte nicht hinzugefügt werden';
 
         $data = array();
         $data['metaData'] = $metaData;
@@ -59,7 +59,7 @@
         {
             http_response_code(200);
             $metaData['state'] = 'error';
-            $metaData['case'] = 'higher current amount failed';
+            $metaData['case'] = 'Stand konnte nicht erhöht werden';
 
             $data = array();
             $data['metaData'] = $metaData;

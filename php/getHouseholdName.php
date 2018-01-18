@@ -20,7 +20,7 @@
     {
         http_response_code(200);
         $metaData['state'] = "dumbUser";
-        $metaData['reason'] = "user not found(HouseholdUsers)";
+        $metaData['reason'] = "Benutzer nicht gefunden(HouseholdUsers)";
         $data['metaData'] = $metaData;
         echo json_encode($data);
         die();
@@ -37,7 +37,7 @@
         {
             $metaData = array();
             $metaData['state'] = "success";
-            $metaData['response'] = "name not found(Household)";
+            $metaData['response'] = "Name nicht gefundend(Household)";
             $data['metaData'] = $metaData;
             http_response_code(200);
             echo json_encode($data);

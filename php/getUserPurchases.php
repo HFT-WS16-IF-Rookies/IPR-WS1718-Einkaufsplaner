@@ -20,7 +20,7 @@
     {
         http_response_code(200);
         $metaData['state'] = "dumbUser";
-        $metaData['reason'] = "purchase not found";
+        $metaData['reason'] = "Einkauf nicht gefunden";
         $data['metaData'] = $metaData;
         echo json_encode($data);
         die();
