@@ -20,7 +20,7 @@ const routes: Routes =
     { path: 'household/:id', component: HouseholdComponent },
     { path: 'household/:id/articles', component: HouseholdArticleManagementComponent },
     { path: 'household/:id/settings', component: HouseholdSettingsComponent },
-    { path: 'household/:id/articles/edit/:articleID', component: HouseholdSettingsComponent },
+    { path: 'household/:id/articles/edit/:articleID', component: EditArticleComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'profile', component: ProfileComponent },
