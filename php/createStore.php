@@ -17,7 +17,7 @@
     {
         $metaData = array();
         $metaData['state'] = 'error';
-        $metaData['case'] = 'exists yet';
+        $metaData['case'] = 'Laden existiert nicht';
 
         $data = array();
         $data['metaData'] = $metaData;
@@ -45,7 +45,7 @@
     {
         $metaData = array();
         $metaData['state'] = 'error';
-        $metaData['case'] = 'creation failed';
+        $metaData['case'] = 'Fehlgeschlagen';
 
         $data = array();
         $data['metaData'] = $metaData;

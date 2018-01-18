@@ -41,7 +41,7 @@
         {
             $metaData = array();
             $metaData['state'] = 'error';
-            $metaData['text'] = 'email is in use';
+            $metaData['text'] = 'E-Mail schon benutzt';
 
             $data['metaData'] = $metaData;
 
@@ -59,7 +59,7 @@
         {
             $metaData = array();
             $metaData['state'] = 'error';
-            $metaData['text'] = 'db error';
+            $metaData['text'] = 'DB Fehler';
 
             $data['metaData'] = $metaData;
             http_response_code(200);
@@ -90,7 +90,7 @@
         {
             $metaData = array();
             $metaData['state'] = 'error';
-            $metaData['text'] = 'db error';
+            $metaData['text'] = 'DB Fehler';
 
             $data['metaData'] = $metaData;
             http_response_code(200);

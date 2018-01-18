@@ -18,7 +18,7 @@
     {
         $metaData = array();
         $metaData['state'] = 'error';
-        $metaData['case'] = 'user not found';
+        $metaData['case'] = 'Benutzer nicht gefunden';
 
         $data = array();
         $data['metaData'] = $metaData;
@@ -60,7 +60,7 @@
         {
             $metaData = array();
             $metaData['state'] = 'error';
-            $metaData['case'] = 'db error';
+            $metaData['case'] = 'DB Fehler';
 
             $data = array();
             $data['metaData'] = $metaData;
@@ -72,7 +72,7 @@
 
     $metaData = array();
     $metaData['state'] = 'error';
-    $metaData['case'] = 'user is member yet';
+    $metaData['case'] = 'Benutzer ist schon Mitglied';
 
     $data = array();
     $data['metaData'] = $metaData;

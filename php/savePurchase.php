@@ -16,7 +16,7 @@
         $result = $db ->query($query);
         $db->close();
     }
-    
+
 
     $metaData = array();
     $metaData['state'] = "success";
