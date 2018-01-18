@@ -25,7 +25,7 @@
         <td>{{ article.minAmount }}</td>
         <td>{{ article.maxAmount }}</td>
         <td>{{ article.priority }}</td>
-        <td><button class='btn btn-danger' (click)='deleteArticle({{ article.id }})'>Löschen</button></td>
+        <td><button class='btn btn-danger' (click)='deleteArticle(article.id)'>Löschen</button></td>
     </tr>
     <tr>
         <td><input type='input' [(ngModel)]='newName' name="name"/></td>
