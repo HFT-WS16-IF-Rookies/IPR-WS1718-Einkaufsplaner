@@ -152,6 +152,12 @@ export class HouseholdArticleManagementComponent implements OnInit
         });
     }
 
+    private editArticle(id: number):void
+    {
+        let householdID = this.route.snapshot.paramMap.get('id');
+        this.router.navigateByUrl('/household/' + householdID + '/articles/edit/' + id);
+    }
+
     private deleteArticle(id: number): void
     {
         console.log(id);

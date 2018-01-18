@@ -11,6 +11,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { PurchaseComponent } from './purchase/purchase.component';
 import { CreatePurchaseComponent } from './create-purchase/create-purchase.component';
 import { CreateHouseholdComponent } from './create-household/create-household.component';
+import { EditArticleComponent } from './edit-article/edit-article.component';
 
 const routes: Routes =
 [
@@ -19,6 +20,7 @@ const routes: Routes =
     { path: 'household/:id', component: HouseholdComponent },
     { path: 'household/:id/articles', component: HouseholdArticleManagementComponent },
     { path: 'household/:id/settings', component: HouseholdSettingsComponent },
+    { path: 'household/:id/articles/edit/:articleID', component: EditArticleComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'profile', component: ProfileComponent },
