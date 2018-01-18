@@ -17,6 +17,6 @@
     </label>
     <br />
     <button class='btn btn-success' (click)='makePurchase(selectedStore.value, selectedHousehold.value)'>Einkauf anlegen</button>
-    <input class='btn btn-danger' type='reset' value='Zurücksetzen'>
+    <button class='btn btn-danger' (click)='goBack()'>Zur&uuml;ck</button>
     <p [innerHTML]='errorMsg'></p>
 </form>

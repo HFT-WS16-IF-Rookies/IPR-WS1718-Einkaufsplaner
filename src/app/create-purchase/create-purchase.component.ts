@@ -112,4 +112,9 @@ export class CreatePurchaseComponent implements OnInit {
             }
         });
     }
+
+    private goBack():void
+    {
+        window.history.back();
+    }
 }
