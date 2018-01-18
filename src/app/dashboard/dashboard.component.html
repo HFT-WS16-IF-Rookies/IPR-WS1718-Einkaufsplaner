@@ -3,9 +3,9 @@
 <div class="temHeadLines">Aktuelle Einkäufe <button id="createPurchase" (click)="createPurchase()"><span id="plusSign">&#43;</span></button></div>
 <table align="center">
     <tr>
-        <th>Name |</th>
-        <th> Laden </th>
-        <th>| Erstelldatum</th>
+        <th>Name</th>
+        <th>Laden</th>
+        <th>Erstelldatum</th>
     </tr>
     <tr *ngFor="let purchase of purchases; let i=index">
         <td><a [routerLink]="['/purchase/', purchase.id]">{{ purchase.name }}</a></td>
