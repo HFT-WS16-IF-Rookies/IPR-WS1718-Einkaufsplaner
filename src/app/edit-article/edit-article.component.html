@@ -1,29 +1,35 @@
-<table align="center">
-    <tr>
-        <th>Artikelname |</th>
-        <th> Ladenname |</th>
-        <th> Aktuelle Anzahl |</th>
-        <th> Mindestanzahl |</th>
-        <th> Maximalanzahl |</th>
-        <th> Priorität</th>
-    </tr>
-    <tr>
-        <td><input type='input' [(ngModel)]='article.name' name="name"/></td>
-        <td>
-            <select #selectedStore>
-              <option *ngFor="let store of stores; let i=index" [value]="i">{{ store.name }}</option>
-            </select>
-        </td>
-        <td><input type='number' [(ngModel)]='article.currentAmount' name="amount"/></td>
-        <td><input type='number' [(ngModel)]='article.minAmount' name="minAmount"/></td>
-        <td><input type='number' [(ngModel)]='article.maxAmount' name="maxAmount"/></td>
-        <td>
-            <select #selectedPriority>
-                <option [value]="'low'">niedrig</option>
-                <option [value]="'medium'" selected>normal</option>
-                <option [value]="'high'">hoch</option>
-            </select>
-        </td>
-        <td><button class="btn btn-success" (click)='saveArticle(selectedPriority.value, selectedStore.value)'>Speichern</button></td>
-    </tr>
-</table>
+<div class="table-responsive">
+    <table class="table table-striped" align="center">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Artikelname</th>
+                <th scope="col">Ladenname</th>
+                <th scope="col">Aktuelle Anzahl</th>
+                <th scope="col">Mindestanzahl</th>
+                <th scope="col">Maximalanzahl</th>
+                <th scope="col">Priorität</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type='input' [(ngModel)]='article.name' name="name"/></td>
+                <td>
+                    <select #selectedStore>
+                        <option *ngFor="let store of stores; let i=index" [value]="i">{{ store.name }}</option>
+                    </select>
+                </td>
+                <td><input type='number' [(ngModel)]='article.currentAmount' name="amount"/></td>
+                <td><input type='number' [(ngModel)]='article.minAmount' name="minAmount"/></td>
+                <td><input type='number' [(ngModel)]='article.maxAmount' name="maxAmount"/></td>
+                <td>
+                    <select #selectedPriority>
+                        <option [value]="'low'">niedrig</option>
+                        <option [value]="'medium'" selected>normal</option>
+                        <option [value]="'high'">hoch</option>
+                    </select>
+                </td>
+                <td><button class="btn btn-success" (click)='saveArticle(selectedPriority.value, selectedStore.value)'>Speichern</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
