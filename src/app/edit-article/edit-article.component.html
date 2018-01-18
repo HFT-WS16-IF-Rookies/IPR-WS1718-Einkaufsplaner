@@ -8,11 +8,22 @@
         <th> Priorität</th>
     </tr>
     <tr>
-        <td>{{ article.name }}</td>
-        <td>{{ article.storeName }}</td>
-        <td>{{ article.currentAmount }}</td>
-        <td>{{ article.minAmount }}</td>
-        <td>{{ article.maxAmount }}</td>
-        <td>{{ article.priority }}</td>
+        <td><input type='input' [(ngModel)]='article.name' name="name"/></td>
+        <td>
+            <select #selectedStore>
+              <option *ngFor="let store of stores; let i=index" [value]="i">{{ store.name }}</option>
+            </select>
+        </td>
+        <td><input type='number' [(ngModel)]='article.currentAmount' name="amount"/></td>
+        <td><input type='number' [(ngModel)]='article.minAmount' name="minAmount"/></td>
+        <td><input type='number' [(ngModel)]='article.maxAmount' name="maxAmount"/></td>
+        <td>
+            <select #selectedPriority>
+                <option [value]="'low'">niedrig</option>
+                <option [value]="'medium'" selected>normal</option>
+                <option [value]="'high'">hoch</option>
+            </select>
+        </td>
+        <td><button class="btn btn-success" (click)='saveArticle(selectedPriority.value, selectedStore.value)'>Speichern</button></td>
     </tr>
 </table>
