@@ -1,7 +1,7 @@
 <app-nav-bar></app-nav-bar>
-<p>Profileinstellungen</p>
+<h2>Profileinstellungen</h2>
 <form name="changePassword">
-    <p>Passwort ändern</p>
+    <h4>Passwort ändern</h4>
     <p>Neues Passwort</p>
     <input type="password" name="newPassword" [(ngModel)]='password' value=""><br>
     <p>Passwort bestätigen</p>
@@ -9,9 +9,9 @@
     <p [innerHTML]="errorMsgPassword"></p>
     <button class='btn btn-sucess' (click)='submitPassword()'>Passwort ändern</button>
 </form>
-
+<br />
 <form name="changeEMail">
-    <p>E-Mail ändern</p>
+    <h4>E-Mail ändern</h4>
     <p>Neue E-Mail</p>
     <input type="text" name="newEMail" [(ngModel)]='email' value=""><br>
     <p>EMail bestätigen</p>
