@@ -4,4 +4,4 @@
     * chkBox
     * artName
     * amount
-    * delete from list
+    * found

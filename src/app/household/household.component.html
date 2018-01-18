@@ -1,3 +1,54 @@
-<p>
-  household works!
-</p>
+<app-nav-bar></app-nav-bar>
+<app-nav-bar-household></app-nav-bar-household>
+<h2>
+    Haushaltsübersicht :
+</h2>
+<h4>
+    Liste aktiver Einkäufe :
+</h4>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm"></div>
+        <div class="col-sm">
+            <table class="table table-striped" align="center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Laden</th>
+                        <th scope="col">Erstelldatum</th>
+                        <th scope="col">Einkäufer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let purchase of purchases; let i=index">
+                        <td><a [routerLink]="['/purchase/', purchase.id]">{{ purchase.name }}</a></td>
+                        <td>{{ purchase.store }}</td>
+                        <td>{{ purchase.date }}</td>
+                        <td>{{ purchase.purchaser}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h4>
+                Produkte die gebraucht werden :
+            </h4>
+            <table class="table table-striped" align="center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Produktname</th>
+                        <th scope="col">Anzahl</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let neededItem of needed; let i=index">
+                        <td>{{ neededItem.name }}</td>
+                        <td>{{ neededItem.neededAmount }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <button class='btn btn-success' (click)="createPurchase()">Einkauf anlegen</button>
+        </div>
+        <div class="col-sm"></div>
+    </div>
+</div>

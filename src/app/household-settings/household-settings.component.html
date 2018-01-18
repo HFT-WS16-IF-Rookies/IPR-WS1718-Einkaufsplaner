@@ -1,3 +1,30 @@
-<p>
-  household-settings works!
-</p>
+<app-nav-bar></app-nav-bar>
+<app-nav-bar-household></app-nav-bar-household>
+<h2>
+    Haushaltseinstellungen
+</h2>
+<br />
+<form>
+    <label>E-Mail :
+        <input type="email" name="newUser" [(ngModel)]="newUser">
+        <button class="btn btn-default" (click)="addUserToHousehold()">Benutzer hinzufügen</button>
+    </label>
+    <p [innerHTML]="addUserErrorMsg"></p>
+</form>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm"></div>
+        <div class="col-sm">
+            <table class="table table-striped" align="center">
+                <thead class="thead-dark">
+                    <th scope="col">Lister der aktiven Benutzer:</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let member of members;">{{ member }}</tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm"></div>
+    </div>
+</div>
