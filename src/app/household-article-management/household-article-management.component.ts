@@ -154,6 +154,7 @@ export class HouseholdArticleManagementComponent implements OnInit
 
     private deleteArticle(id: number): void
     {
+        console.log(id);
         console.log(JSON.stringify(this.article[id].getID()));
         this.http.post('./deleteArticle.php', JSON.stringify(this.article[id].getID())).subscribe(res =>
         {
