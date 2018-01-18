@@ -26,20 +26,15 @@
 <h4>
     Produkte die gebraucht werden :
 </h4>
-<tr>
-    <th>Produktname</th>
-    <th>Anzahl</th>
-</tr>
-<tr *ngFor="let neededItem of needed; let i=index">
-    <td>{{ neededItem.name }}</td>
-    <td>{{ neededItem.neededAmount }}</td>
-</tr>
-<form>
-  <label>Laden :
-    <select>
-      <option *ngFor="let store of stores; let i=index">{{ store }}</option>
-    </select>
-  </label>
-</form>
+<table>
+    <tr>
+        <th>Produktname</th>
+        <th>Anzahl</th>
+    </tr>
+    <tr *ngFor="let neededItem of needed; let i=index">
+        <td>{{ neededItem.name }}</td>
+        <td>{{ neededItem.neededAmount }}</td>
+    </tr>
+</table>
 
 <button class='btn btn-success' (click)="createPurchase()">Einkauf anlegen</button>

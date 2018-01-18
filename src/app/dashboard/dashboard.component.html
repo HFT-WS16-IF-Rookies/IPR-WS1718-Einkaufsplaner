@@ -1,25 +1,33 @@
 <app-nav-bar></app-nav-bar>
 <h1>Dashboard</h1>
 <div class="temHeadLines">Aktuelle Einkäufe <button id="createPurchase" (click)="createPurchase()"><span id="plusSign">&#43;</span></button></div>
-<table align="center">
-    <tr>
-        <th>Name</th>
-        <th>Laden</th>
-        <th>Erstelldatum</th>
-    </tr>
-    <tr *ngFor="let purchase of purchases; let i=index">
-        <td><a [routerLink]="['/purchase/', purchase.id]">{{ purchase.name }}</a></td>
-        <td>{{ purchase.store }}</td>
-        <td>{{ purchase.date }}</td>
-    </tr>
+<table class="table table-striped" align="center">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Laden</th>
+            <th scope="col">Erstelldatum</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let purchase of purchases; let i=index">
+            <td><a [routerLink]="['/purchase/', purchase.id]">{{ purchase.name }}</a></td>
+            <td>{{ purchase.store }}</td>
+            <td>{{ purchase.date }}</td>
+        </tr>
+    </tbody>
 </table>
 
 <div class="temHeadLines">Deine Haushalte <button id="createHouseholds" (click)="createHousehold()"><span id="plusSign">&#43;</span></button></div>
-<table align="center">
-    <tr>
-        <th>Name des Haushalts</th>
-    </tr>
-    <tr *ngFor="let household of households; let i=index">
-        <td><a [routerLink]="['/household/', household.id]">{{ household.name }}</a></td>
-    </tr>
+<table class="table table-striped" align="center">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Name des Haushalts</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let household of households; let i=index">
+            <td><a [routerLink]="['/household/', household.id]">{{ household.name }}</a></td>
+        </tr>
+    </tbody>
 </table>
