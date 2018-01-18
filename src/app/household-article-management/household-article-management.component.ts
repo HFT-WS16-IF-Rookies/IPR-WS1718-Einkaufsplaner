@@ -158,6 +158,19 @@ export class HouseholdArticleManagementComponent implements OnInit
         console.log(JSON.stringify(this.articles[id].getID()));
         this.http.post('./deleteArticle.php', JSON.stringify(this.articles[id].getID())).subscribe(res =>
         {
+            let jsonData = res.json();
+            let metaData = jsonData.metaData;
+            delete jsonData.metaData;
+
+            switch (metaData.state)
+            {
+                case 'success':
+                    this.getArticles();
+                    break;
+
+                case 'error':
+                    break;
+            }
         });
     }
 }
