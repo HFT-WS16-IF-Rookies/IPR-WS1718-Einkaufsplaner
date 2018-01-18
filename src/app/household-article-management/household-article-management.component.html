@@ -15,7 +15,8 @@
         <th> Aktuelle Anzahl |</th>
         <th> Mindestanzahl |</th>
         <th> Maximalanzahl |</th>
-        <th> Priorität</th>
+        <th> Priorität |</th>
+        <th> Löschen</th>
     </tr>
     <tr *ngFor="let article of articles; let i=index">
         <td>{{ article.name }}</td>
@@ -24,6 +25,7 @@
         <td>{{ article.minAmount }}</td>
         <td>{{ article.maxAmount }}</td>
         <td>{{ article.priority }}</td>
+        <td><button class='btn btn-danger' (click)='deleteArticle(article.id)'>Löschen</button></td>
     </tr>
     <tr>
         <td><input type='input' [(ngModel)]='newName' name="name"/></td>
