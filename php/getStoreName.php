@@ -9,16 +9,16 @@
         $articleID = $purchaseArticle['articleID'];
     }
 
-    $query = "select storeID from Articles where ID = " . $articleID;
+    $query = "select storeID from Articles where articleID = " . $articleID;
     require './dbConnection.php';
     $storeResult = $db->query($query);
     $db->close();
     $storeID = $storeResult->fetch_assoc();
 
-    $query = "select name from Store where ID = " . $storeID['storeID'];
+    $query = "select storeName from Store where storeID = " . $storeID['storeID'];
     require './dbConnection.php';
     $storeResult = $db->query($query);
     $db->close();
     $store = $storeResult->fetch_assoc();
-    $storeName = $store['name'];
+    $storeName = $store['storeName'];
 ?>

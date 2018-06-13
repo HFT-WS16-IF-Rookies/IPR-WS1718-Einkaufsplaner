@@ -9,7 +9,7 @@
         die();
     }
 
-    $query = "select ID from Users where email = '" . $jsonData['newUser'] . "'";
+    $query = "select userID from Users where email = '" . $jsonData['newUser'] . "'";
     require './dbConnection.php';
     $result = $db->query($query);
     $db->close();
@@ -27,7 +27,7 @@
         die();
     }
 
-    $newUserID = $result->fetch_assoc()['ID'];
+    $newUserID = $result->fetch_assoc()['userID'];
 
     $query = "select * from HouseholdUsers where"
         ." householdID = " . $jsonData['householdID']

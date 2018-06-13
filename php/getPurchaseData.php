@@ -13,7 +13,7 @@
 
     require './dbConnection.php';
 
-    $query = "select * from Purchases where ID = '" . $jsonData['ID'] . "'";
+    $query = "select * from Purchase where purchaseID = '" . $jsonData['ID'] . "'";
     $result = $db->query($query);
     $db->close();
 
@@ -38,14 +38,14 @@
     /*echo print_r($purchase, true);
     die();*/
 
-    $query = "select * from PurchaseArticles where purchaseID = '" . $purchase['ID'] . "'";
+    $query = "select * from PurchaseArticles where purchaseID = '" . $purchase['purchaseID'] . "'";
     require './dbConnection.php';
     $result = $db->query($query);
     $db->close();
 
     while(($article = $result->fetch_assoc()) !== null)
     {
-        $query = "select name from Articles where ID = '" . $article['articleID'] . "'";
+        $query = "select articleName from Articles where articleID = '" . $article['articleID'] . "'";
 
         require './dbConnection.php';
         $articleResult = $db->query($query);
@@ -58,14 +58,14 @@
         }
 
         $nextArticle = array();
-        $nextArticle['name'] = $articleName['name'];
+        $nextArticle['name'] = $articleName['articleName'];
         $nextArticle['amount'] = $article['amount'];
         $nextArticle['found'] = $article['found'];
         $nextArticle['id'] = $jsonData['ID'];
         $nextArticle['articleID'] = $article['articleID'];
 
 
-        $data[$articleName['name']] = $nextArticle;
+        $data[$articleName['articleName']] = $nextArticle;
     }
 
     $metaData = array();

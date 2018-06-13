@@ -9,7 +9,7 @@
         die();
     }
 
-    $query = "select * from Store where name = '" . $jsonData['newStoreName'] . "'";
+    $query = "select * from Store where storeName = '" . $jsonData['newStoreName'] . "'";
     require './dbConnection.php';
     $result = $db->query($query);
     $db->close();
@@ -26,7 +26,7 @@
         die();
     }
 
-    $query = "insert into Store (name) values('" . $jsonData['newStoreName'] . "')";
+    $query = "insert into Store (storeName) values('" . $jsonData['newStoreName'] . "')";
     require './dbConnection.php';
     $result = $db->query($query);
     $db->close();

@@ -5,12 +5,12 @@
 
     $query = "UPDATE Articles SET "
         ."storeID=" . $jsonData['storeID']
-        ." , name='" . $jsonData['name'] ."'"
+        ." , articleName='" . $jsonData['name'] ."'"
         ." , currentAmount=". $jsonData['currentAmount']
         .", minAmount=" . $jsonData['minAmount']
         .", maxAmount=" . $jsonData['maxAmount']
         .", priority='" . $jsonData['priority'] . "'"
-        ." where ID=" . $jsonData['articleID'];
+        ." where articleID=" . $jsonData['articleID'];
 
     require './dbConnection.php';
     $result = $db ->query($query);

@@ -9,7 +9,7 @@
         die();
     }
 
-    $query = "INSERT INTO Household (name) VALUES('" . $jsonData['name'] . "')";
+    $query = "INSERT INTO Household (householdName) VALUES('" . $jsonData['name'] . "')";
 
     require './dbConnection.php';
 
@@ -27,7 +27,7 @@
     }
 
     require './dbConnection.php';
-    $query = "INSERT INTO HouseholdUsers (HouseholdID, userID) VALUES(" . $last_id . ", " . $jsonData['userID'] . ")";
+    $query = "INSERT INTO HouseholdUsers (householdID, userID) VALUES(" . $last_id . ", " . $jsonData['userID'] . ")";
     $dbState = $db->query($query);
     $db->close();
 

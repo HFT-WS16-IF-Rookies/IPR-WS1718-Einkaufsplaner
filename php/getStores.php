@@ -32,16 +32,16 @@
     $results = array();
     while(($row = $result->fetch_assoc()) !== null)
     {
-        if ($row['name'] === null)
+        if ($row['storeName'] === null)
         {
             http_response_code(500);
             die();
         }
 
         $nextStore = array();
-        $nextArticle['name'] = $row['name'];
-        $nextArticle['storeID'] = $row['ID'];
-        $data[$row['name']] = $nextArticle;
+        $nextArticle['name'] = $row['storeName'];
+        $nextArticle['storeID'] = $row['storeID'];
+        $data[$row['storeName']] = $nextArticle;
 
     }
 

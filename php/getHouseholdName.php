@@ -28,7 +28,7 @@
 
     while(($row = $resultMain->fetch_assoc()) !== null)
     {
-        $query = "SELECT name FROM Household WHERE ID=" . $row['householdID'];
+        $query = "SELECT householdName FROM Household WHERE householdID=" . $row['householdID'];
         require './dbConnection.php';
         $result = $db->query($query);
         $db->close();
@@ -45,7 +45,7 @@
         }
 
         $householdName = $result->fetch_assoc();
-        $household['name'] = $householdName['name'];
+        $household['name'] = $householdName['householdName'];
         $household['householdID'] = $row['householdID'];
         $data['household_' . $row['householdID']] = $household;
     }

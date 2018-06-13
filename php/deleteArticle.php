@@ -9,7 +9,7 @@
         die();
     }
 
-    $query = "delete from Articles where ID = " . $jsonData;
+    $query = "delete from Articles where articleID = " . $jsonData;
     require './dbConnection.php';
     $result = $db->query($query);
     $db->close();
