@@ -9,7 +9,7 @@
         die();
     }
 
-    $query = 'select * from Articles where ID=' . $jsonData['articleID'];
+    $query = 'select * from Articles where articleID=' . $jsonData['articleID'];
     require './dbConnection.php';
     $result = $db->query($query);
 
@@ -29,10 +29,10 @@
     $articleRS = $result->fetch_assoc();
 
     $article = array();
-    $articleID = $articleRS['ID'];
+    $articleID = $articleRS['articleID'];
     require './getStoreName.php';
-    $article['articleID'] = $articleRS['ID'];
-    $article['name'] = $articleRS['name'];
+    $article['articleID'] = $articleRS['articleID'];
+    $article['name'] = $articleRS['articleName'];
     $article['store'] = $storeName;
     $article['currentAmount'] = $articleRS['currentAmount'];
     $article['minAmount'] = $articleRS['minAmount'];

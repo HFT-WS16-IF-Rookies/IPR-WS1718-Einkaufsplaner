@@ -49,7 +49,7 @@
     }
 
     session_start();
-    $_SESSION['userID'] = $user['ID'];
+    $_SESSION['userID'] = $user['userID'];
 
     http_response_code(200);
     $metaData = array();
@@ -58,7 +58,7 @@
     $data = array();
     $data['metaData'] = $metaData;
     $userData = array();
-    $userData['userID'] = $user['ID'];
+    $userData['userID'] = $user['userID'];
     $userData['firstName'] = $user['firstName'];
     $userData['lastName'] = $user['lastName'];
     $userData['email'] = $user['email'];

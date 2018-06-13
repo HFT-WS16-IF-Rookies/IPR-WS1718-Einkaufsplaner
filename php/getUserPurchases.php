@@ -10,7 +10,7 @@
     }
 
     $data = array();
-    $query = "SELECT * FROM Purchases WHERE userID=" . $jsonData['ID'] . " AND done=false";
+    $query = "SELECT * FROM Purchase WHERE userID=" . $jsonData['ID'] . " AND done=false";
 
     require './dbConnection.php';
     $resultMain = $db->query($query);
@@ -27,13 +27,13 @@
     }
     while (($row = $resultMain->fetch_assoc()) !== null)
     {
-        $purchaseID = $row['ID'];
+        $purchaseID = $row['purchaseID'];
         require './getStoreName.php';
 
         $purchase['purchaseID'] = $purchaseID;
         $purchase['store'] = $storeName;
         $purchase['createDate'] = $row['createDate'];
-        $data['purchase_' . $row['ID']] = $purchase;
+        $data['purchase_' . $row['purchaseID']] = $purchase;
     }
 
     $metaData = array();

@@ -30,7 +30,7 @@
 
     while(($article = $result->fetch_assoc()) !== null)
     {
-        if ($article['name'] === null)
+        if ($article['articleName'] === null)
         {
             http_response_code(500);
             die();
@@ -38,10 +38,10 @@
         if ($article['maxAmount'] > $article['currentAmount'])
         {
             $nextArticle = array();
-            $nextArticle['name'] = $article['name'];
+            $nextArticle['name'] = $article['articleName'];
             $nextArticle['neededAmount'] = $article['maxAmount'] - $article['currentAmount'];
 
-            $data[$article['name']] = $nextArticle;
+            $data[$article['articleName']] = $nextArticle;
         }
     }
 

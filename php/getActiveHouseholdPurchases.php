@@ -12,7 +12,7 @@
     $data = array();
     require './dbConnection.php';
 
-    $query = "select * from Household where ID = '" . $jsonData['ID'] . "'";
+    $query = "select * from Household where householdID = '" . $jsonData['ID'] . "'";
     $result = $db->query($query);
     $db->close();
 
@@ -52,7 +52,7 @@
         die();
     }
 
-    $query = "select * from Purchases where ID in (";
+    $query = "select * from Purchase where purchaseID in (";
     $row = $result->fetch_assoc();
     $query .= $row['purchaseID'];
 
@@ -70,13 +70,13 @@
     while (($row = $result->fetch_assoc()) !== null)
     {
         $purchase = array();
-        $query = "select firstName, Lastname from Users where ID = " . $row['userID'];
+        $query = "select firstName, Lastname from Users where userID = " . $row['userID'];
         require './dbConnection.php';
         $userResult = $db->query($query);
         $db->close();
         $user = $userResult->fetch_assoc();
 
-        $purchaseID = $row['ID'];
+        $purchaseID = $row['purchaseID'];
         require './getStoreName.php';
 
         $purchase['purchaseID'] = $purchaseID;
@@ -85,7 +85,7 @@
 
         $purchase['user'] = $user['firstName'] . " " . $user['lastName'];
 
-        $data['purchase_' . $row['ID']] = $purchase;
+        $data['purchase_' . $row['purchaseID']] = $purchase;
     }
 
     $metaData = array();

@@ -8,7 +8,7 @@
     }
 
 
-    $query = "SELECT * FROM $dbDatabase.Users WHERE ID = " . $jsonData['userID'];
+    $query = "SELECT * FROM $dbDatabase.Users WHERE userID = " . $jsonData['userID'];
 
     require './dbConnection.php';
     $result = $db->query($query);
@@ -80,7 +80,7 @@
 
     function changePassword($userID, $password)
     {
-        $queryPasswordChange = "Update Users set `password`='" . $password ."' where ID = " . $userID;
+        $queryPasswordChange = "Update Users set `password`='" . $password ."' where userID = " . $userID;
 
         require './dbConnection.php';
         $dbState = $db->query($queryPasswordChange);

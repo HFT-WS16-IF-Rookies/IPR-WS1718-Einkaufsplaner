@@ -18,7 +18,7 @@
     while (($row = $result->fetch_assoc()) !== null)
     {
         $user = array();
-        $query = "select firstName, lastName from Users where ID = " . $row['userID'];
+        $query = "select firstName, lastName from Users where userID = " . $row['userID'];
         require './dbConnection.php';
         $userResult = $db->query($query);
         $db->close();

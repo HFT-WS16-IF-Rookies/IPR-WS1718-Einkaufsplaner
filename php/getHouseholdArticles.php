@@ -37,17 +37,17 @@
 
     while(($article = $result->fetch_assoc()) !== null)
     {
-        $articleID = $article['ID'];
+        $articleID = $article['articleID'];
         require './getStoreName.php';
 
         $nextArticle = array();
-        $nextArticle['name'] = $article['name'];
+        $nextArticle['name'] = $article['articleName'];
         $nextArticle['storeName'] = $storeName;
         $nextArticle['currentAmount'] = $article['currentAmount'];
         $nextArticle['minAmount'] = $article['minAmount'];
         $nextArticle['maxAmount'] = $article['maxAmount'];
         $nextArticle['priority'] = $article['priority'];
-        $nextArticle['ID'] = $article['ID'];
+        $nextArticle['ID'] = $article['articleID'];
         $data[$article['name']] = $nextArticle;
     }
 

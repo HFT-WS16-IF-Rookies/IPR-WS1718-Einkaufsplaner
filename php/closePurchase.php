@@ -17,7 +17,7 @@
         $db->close();
     }
     require './dbConnection.php';
-    $query = "update Purchases set done=true where ID =".$jsonData[0]['id'];
+    $query = "update Purchase set done=true where purchaseID =".$jsonData[0]['id'];
     $result = $db ->query($query);
     $db->close();
 
@@ -34,7 +34,7 @@
         $row = $result->fetch_assoc();
         $query = "update Articles set currentAmount=currentAmount-"
             . ($row['amount'] - $row['found'])
-            . " where ID=" . $jsonData[$i]['articleID'];
+            . " where articleID=" . $jsonData[$i]['articleID'];
 
         require './dbConnection.php';
         if (!$db->query($query))

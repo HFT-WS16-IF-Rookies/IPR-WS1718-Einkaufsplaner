@@ -19,12 +19,13 @@
         die();
     }
 
-    $query = "insert into Purchases (userID) values(".$jsonData['user']['ID'].")";
+    $query = "insert into Purchase (userID, householdID) values(".$jsonData['user']['ID'].", ".$jsonData['household']['householdID']. ")";
     require './dbConnection.php';
     if (!$db->query($query)) {
         http_response_code(200);
         $metaData['state'] = 'error';
         $metaData['case'] = 'Fehler beim Erstellen des Einkaufs';
+        $metaData['sqlQuery'] = $query;
 
         $data = array();
         $data['metaData'] = $metaData;
@@ -35,6 +36,7 @@
     $last_id = $db->insert_id;
     $db->close();
 
+/*
     $query = "insert into PurchaseHouseholds (purchaseID, householdID) values(".$last_id.",".$jsonData['household']['householdID'].")";
     require './dbConnection.php';
     if (!$db->query($query))
@@ -42,6 +44,7 @@
         http_response_code(200);
         $metaData['state'] = 'error';
         $metaData['case'] = 'Einkauf konnte nicht hinzugefügt werden';
+        $metaData['sqlQuery'] = $query;
 
         $data = array();
         $data['metaData'] = $metaData;
@@ -50,16 +53,18 @@
         die();
     }
     $db->close();
+    */
 
     while(($article = $result->fetch_assoc()) !== null)
     {
-        $query = "update Articles set currentAmount=" . ($article['currentAmount'] + ($article['maxAmount'] - $article['currentAmount'])) . " where ID=" . $article['ID'];
+        $query = "update Articles set currentAmount=" . ($article['currentAmount'] + ($article['maxAmount'] - $article['currentAmount'])) . " where articleID=" . $article['articleID'];
         require './dbConnection.php';
         if(!$db->query($query))
         {
             http_response_code(200);
             $metaData['state'] = 'error';
             $metaData['case'] = 'Stand konnte nicht erhöht werden';
+            $metaData['sqlQuery'] = $query;
 
             $data = array();
             $data['metaData'] = $metaData;
@@ -68,7 +73,7 @@
             die();
         }
 
-        $query = "insert into PurchaseArticles (purchaseID, articleID, amount, found) values(".$last_id.", ".$article['ID'].", ".($article['maxAmount'] - $article['currentAmount']).", 0)";
+        $query = "insert into PurchaseArticles (purchaseID, articleID, amount, found) values(".$last_id.", ".$article['articleID'].", ".($article['maxAmount'] - $article['currentAmount']).", 0)";
         require './dbConnection.php';
         $db->query($query);
         $db->close();
