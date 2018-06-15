@@ -46,6 +46,7 @@
         $data = array();
         $data['metaData'] = $metaData;
         echo json_encode($data);
+        die();
     }
 
     session_start();
