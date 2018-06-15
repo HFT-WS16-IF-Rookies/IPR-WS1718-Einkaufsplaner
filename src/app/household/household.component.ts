@@ -76,19 +76,23 @@ export class HouseholdComponent implements OnInit
 
             if(res.json().metaData.state === "success")
             {
-                let temp = res.json();
-                delete temp.metaData;
-
-                this.needed = new Array((Object.keys(temp)).length);
-                let i = 0;
-
-                for(let key in temp)
+                if (res.json().metaData.reason === "articleList")
                 {
-                    this.needed[i] = new NeededArticle(
-                        temp[key].name,
-                        +temp[key].neededAmount
-                    );
-                    i++;
+                    let temp = res.json();
+                    delete temp.metaData;
+
+                    this.needed = new Array((Object.keys(temp)).length);
+                    let i = 0;
+
+                    for(let key in temp)
+                    {
+                        this.needed[i] = new NeededArticle(
+                            temp[key].storeName,
+                            temp[key].articleName,
+                            +temp[key].neededAmount
+                        );
+                        i++;
+                    }
                 }
             }
         });
