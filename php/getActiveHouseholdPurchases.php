@@ -30,6 +30,18 @@
     $result = $db->query($query);
     $db->close();
 
+    if ($result->num_rows < 1)
+    {
+        $metaData = array();
+        $metaData['state'] = "success";
+        $metaData['response'] = "leer";
+
+        $data['metaData'] = $metaData;
+        http_response_code(200);
+        echo json_encode($data);
+        die();
+    }
+
     while (($row = $result->fetch_assoc()) !== null)
     {
         $purchase = array();
