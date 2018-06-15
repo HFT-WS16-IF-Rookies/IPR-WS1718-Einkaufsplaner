@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
+import { PasswordHasher } from '../PasswordHasher';
 
 @Component
 ({
@@ -54,7 +55,7 @@ export class LoginComponent implements OnInit
 
         let data: {[key: string]: string;} = {};
         data['email'] = this.email;
-        data['password'] = this.password;
+        data['password'] = PasswordHasher.hashPassword(this.password);
 
         this.http.post('./login.php', JSON.stringify(data)).subscribe(res =>
         {

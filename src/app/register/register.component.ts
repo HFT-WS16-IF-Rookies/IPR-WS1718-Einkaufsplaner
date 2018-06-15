@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Registration } from '../Registration';
 import { Router } from '@angular/router'
 import { Http } from '@angular/http';
+import { PasswordHasher } from '../PasswordHasher';
 
 @Component
 ({
@@ -12,6 +13,7 @@ import { Http } from '@angular/http';
 export class RegisterComponent implements OnInit
 {
     private registration: Registration;
+    @Input() private userPassword1: string;
     @Input() private userPassword2: string;
     private errorMsg: string;
     private http: Http;
@@ -20,6 +22,7 @@ export class RegisterComponent implements OnInit
     constructor(http: Http, router: Router)
     {
         this.registration = new Registration();
+        this.userPassword1 = "";
         this.userPassword2 = "";
         this.errorMsg = "";
         this.http = http;
@@ -62,13 +65,13 @@ export class RegisterComponent implements OnInit
         }
 
         // check if a password is given
-        if (this.registration.password === "")
+        if (this.userPassword1 === "")
         {
             this.errorMsg += "Bitte Passwort angeben<br/>";
         }
 
         // compare the two passwords
-        if (this.registration.password !== this.userPassword2)
+        if (this.userPassword1 !== this.userPassword2)
         {
             this.errorMsg += "Die Passwörter stimmen nicht überein.<br/>"
             this.userPassword2 = "";
@@ -79,6 +82,8 @@ export class RegisterComponent implements OnInit
         {
             return;
         }
+
+        this.registration.password = PasswordHasher.hashPassword(this.userPassword1);
 
         this.http.post('register.php', JSON.stringify(this.registration)).subscribe(res =>
         {
