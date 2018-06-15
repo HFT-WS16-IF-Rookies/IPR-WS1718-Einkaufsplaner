@@ -19,16 +19,17 @@
                 ) as UsersCut
                 natural join
                 (
-                    select purchaseID, userID, householdID, done, storeName from
+                    select purchaseID, userID, householdID, done, storeName, createDate from
                     (
-                        select purchaseID, userID, householdID, createDate done from Purchase
+                        select purchaseID, userID, householdID, createDate, done from Purchase
                     ) as a
                     natural join PurchaseArticles natural join Articles natural join Store
                 ) as PurchaseCut where done = '0' and householdID = '" . $jsonData['ID'] . "'";
 
     require "./dbConnection.php";
-    $row = $db->query($query);
+    $result = $db->query($query);
     $db->close();
+
     while (($row = $result->fetch_assoc()) !== null)
     {
         $purchase = array();
