@@ -13,7 +13,14 @@
 
     require './dbConnection.php';
 
-    $query = "select * from Articles where householdID = '" . $jsonData['ID'] . "'";
+    $query = "select storeName, articleName, (maxAmount - currentAmount) as neededAmount
+                from Articles
+                natural join Household
+                natural join Store
+                where
+                    maxAmount > currentAmount
+                    and householdID = '" . $jsonData['ID'] . "'
+                order by storeName";
     $result = $db->query($query);
     $db->close();
 
@@ -21,8 +28,8 @@
     {
         http_response_code(200);
         $metaData = array();
-        $metaData['state'] = "dumbUser";
-        $metaData['reason'] = "nicht gefunden";
+        $metaData['state'] = "success";
+        $metaData['reason'] = "empty";
         $data['metaData'] = $metaData;
         echo json_encode($data);
         die();
@@ -35,18 +42,17 @@
             http_response_code(500);
             die();
         }
-        if ($article['maxAmount'] > $article['currentAmount'])
-        {
-            $nextArticle = array();
-            $nextArticle['name'] = $article['articleName'];
-            $nextArticle['neededAmount'] = $article['maxAmount'] - $article['currentAmount'];
+        $nextArticle = array();
+        $nextArticle['storeName'] = $article['storeName'];
+        $nextArticle['articleName'] = $article['articleName'];
+        $nextArticle['neededAmount'] = $article['neededAmount'];
 
-            $data[$article['articleName']] = $nextArticle;
-        }
+        $data[$article['articleName']] = $nextArticle;
     }
 
     $metaData = array();
     $metaData['state'] = "success";
+    $metaData['reason'] = "articleList";
     $data['metaData'] = $metaData;
 
     http_response_code(200);

@@ -1,11 +1,13 @@
 export class NeededArticle
 {
-    name: string;
+    storeName: string;
+    articleName: string;
     neededAmount: number;
 
-    constructor(name: string, neededAmount: number)
+    constructor(storeName: string, articleName: string, neededAmount: number)
     {
-        this.name = name;
+        this.storeName = storeName;
+        this.articleName = articleName;
         this.neededAmount = neededAmount;
     }
 }
