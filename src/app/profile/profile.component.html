@@ -6,7 +6,7 @@
     <input type="password" name="newPassword" [(ngModel)]='password' value=""><br>
     <p>Passwort bestätigen</p>
     <input type="password" name="passwordConfirm" [(ngModel)]='passwordConfirm' value=""><br>
-    <p [innerHTML]="errorMsgPassword"></p>
+    <p [innerHTML]="statusMsgPassword"></p>
     <button class='btn btn-sucess' (click)='submitPassword()'>Passwort ändern</button>
 </form>
 <br />
@@ -16,6 +16,6 @@
     <input type="text" name="newEMail" [(ngModel)]='email' value=""><br>
     <p>E-Mail bestätigen</p>
     <input type="text" name="emailConfirm" [(ngModel)]='emailConfirm' value=""><br>
-    <p [innerHTML]="errorMsgMail"></p>
+    <p [innerHTML]="statusMsgMail"></p>
     <button class='btn btn-sucess' (click)='submitMail()'>Email ändern</button>
 </form>
