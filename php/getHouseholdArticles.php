@@ -48,7 +48,7 @@
         $nextArticle['maxAmount'] = $article['maxAmount'];
         $nextArticle['priority'] = $article['priority'];
         $nextArticle['ID'] = $article['articleID'];
-        $data[$article['name']] = $nextArticle;
+        $data[$article['articleName']] = $nextArticle;
     }
 
     $metaData = array();

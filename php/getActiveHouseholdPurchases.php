@@ -10,33 +10,23 @@
     }
 
     $data = array();
-    require './dbConnection.php';
 
-    $query = "select * from Household where householdID = '" . $jsonData['ID'] . "'";
-    $result = $db->query($query);
-    $db->close();
+    $query = "select firstName, lastName, storeName, purchaseID, createDate from Household
+                natural join HouseholdUsers
+                natural join
+                (
+                    select userID, firstName, lastName from Users
+                ) as UsersCut
+                natural join
+                (
+                    select purchaseID, userID, householdID, done, storeName, createDate from
+                    (
+                        select purchaseID, userID, householdID, createDate, done from Purchase
+                    ) as a
+                    natural join PurchaseArticles natural join Articles natural join Store
+                ) as PurchaseCut where done = '0' and householdID = '" . $jsonData['ID'] . "'";
 
-    if ($result->num_rows === 0)
-    {
-        http_response_code(200);
-        $metaData = array();
-        $metaData['state'] = "dumbUser";
-        $metaData['reason'] = "nicht gefunden";
-        $data['metaData'] = $metaData;
-        echo json_encode($data);
-        die();
-    }
-
-    if ($result->num_rows > 1)
-    {
-        http_response_code(500);
-        die();
-    }
-
-    $household = $result->fetch_assoc();
-
-    $query = "select purchaseID from PurchaseHouseholds where householdID = '" . $household['ID'] . "'";
-    require './dbConnection.php';
+    require "./dbConnection.php";
     $result = $db->query($query);
     $db->close();
 
@@ -52,38 +42,15 @@
         die();
     }
 
-    $query = "select * from Purchase where purchaseID in (";
-    $row = $result->fetch_assoc();
-    $query .= $row['purchaseID'];
-
-    while (($row = $result->fetch_assoc()) !== null)
-    {
-        $query .= ", " . $row['purchaseID'];
-    }
-
-    $query .= ") AND done = false";
-
-    require './dbConnection.php';
-    $result = $db->query($query);
-    $db->close();
-
     while (($row = $result->fetch_assoc()) !== null)
     {
         $purchase = array();
-        $query = "select firstName, Lastname from Users where userID = " . $row['userID'];
-        require './dbConnection.php';
-        $userResult = $db->query($query);
-        $db->close();
-        $user = $userResult->fetch_assoc();
 
-        $purchaseID = $row['purchaseID'];
-        require './getStoreName.php';
-
-        $purchase['purchaseID'] = $purchaseID;
+        $purchase['purchaseID'] = $row['purchaseID'];
         $purchase['createDate'] = $row['createDate'];
-        $purchase['store'] = $storeName;
+        $purchase['store'] = $row['storeName'];
 
-        $purchase['user'] = $user['firstName'] . " " . $user['lastName'];
+        $purchase['user'] = $row['firstName'] . " " . $row['lastName'];
 
         $data['purchase_' . $row['purchaseID']] = $purchase;
     }

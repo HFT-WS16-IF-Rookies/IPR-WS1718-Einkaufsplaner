@@ -19,8 +19,8 @@ export class ProfileComponent implements OnInit
     @Input() private passwordConfirm: string;
     @Input() private email: string;
     @Input() private emailConfirm: string;
-    private errorMsgMail: string;
-    private errorMsgPassword: string;
+    private statusMsgMail: string;
+    private statusMsgPassword: string;
 
     constructor(http: Http, router: Router)
     {
@@ -42,25 +42,25 @@ export class ProfileComponent implements OnInit
 
     private submitPassword(): void
     {
-        this.errorMsgPassword = "";
+        this.statusMsgPassword = "";
 
         if(this.password === "")
         {
-            this.errorMsgPassword = "Bitte Passwort eingeben";
+            this.statusMsgPassword = "Bitte Passwort eingeben";
         }
 
         if(this.passwordConfirm === "")
         {
-            this.errorMsgPassword = "Bitte Passwort bestätigen";
+            this.statusMsgPassword = "Bitte Passwort bestätigen";
         }
 
         if(this.password != this.passwordConfirm)
         {
-            this.errorMsgPassword = "Passwörte stimmen nicht überein";
+            this.statusMsgPassword = "Passwörte stimmen nicht überein";
             this.passwordConfirm = "";
         }
 
-        if(this.errorMsgPassword != "")
+        if(this.statusMsgPassword != "")
         {
             return;
         }
@@ -73,32 +73,36 @@ export class ProfileComponent implements OnInit
             {
                 if(res.json().metaData.state === "error")
                 {
-                    this.errorMsgPassword = res.json().metaData.text;
+                    this.statusMsgPassword = res.json().metaData.text;
+                }
+                else if (res.json().metaData.state === "success")
+                {
+                    this.statusMsgPassword = "Passwort geändert!";
                 }
             });
     }
 
     private submitMail(): void
     {
-        this.errorMsgMail = "";
+        this.statusMsgMail = "";
 
         if(this.email === "")
         {
-            this.errorMsgMail = "Bitte Email-Adresse eingeben";
+            this.statusMsgMail = "Bitte Email-Adresse eingeben";
         }
 
         if(this.emailConfirm === "")
         {
-            this.errorMsgMail = "Bitte Email-Adresse bestätigen";
+            this.statusMsgMail = "Bitte Email-Adresse bestätigen";
         }
 
         if(this.email != this.emailConfirm)
         {
-            this.errorMsgMail = "Email-Adressen stimmen nicht überein";
+            this.statusMsgMail = "Email-Adressen stimmen nicht überein";
             this.emailConfirm = "";
         }
 
-        if(this.errorMsgMail != "")
+        if(this.statusMsgMail != "")
         {
             return;
         }
@@ -111,7 +115,7 @@ export class ProfileComponent implements OnInit
         {
             if(res.json().metaData.state === "error")
             {
-                this.errorMsgMail = res.json().metaData.text;
+                this.statusMsgMail = res.json().metaData.text;
             }
         });
     }
